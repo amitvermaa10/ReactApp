@@ -1,12 +1,8 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-function Home()
-{
-    return (
-        <div>
-            <p>home page</p>
-        </div>
-    )
+function Home(){
+const [data,setData] = useState([])
+
 };
-
 export default Home;

@@ -1,0 +1,29 @@
+{
+    "users":[
+       {
+        "id":1,
+        "name":"ajit kumar",
+        "email":"ajit11@gmail.com"
+       },
+       {
+        "id":2,
+        "name":"ankit raj",
+        "email":"ankitraj2@gmail.com"
+       },
+       {
+        "id":3,
+        "name":"priya kumari",
+        "email":"priyaKumari3@gmail.com"
+       },
+       {
+        "id":3,
+        "name":"priya kumari",
+        "email":"priyaKumari3@gmail.com"
+       },
+       {
+        "id":4,
+        "name":"raghav prasad",
+        "email":"raghavprasad21@gmail.com"
+       }
+    ]
+}
