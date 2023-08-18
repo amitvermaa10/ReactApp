@@ -21,12 +21,14 @@
        {
         "id":4,
         "name":"priya kumari",
-        "email":"priyaKumari3@gmail.com"
+        "email":"priyaKumari3@gmail.com",
+        "age":30
        },
        {
         "id":5,
         "name":"raghav prasad",
-        "email":"raghavprasad21@gmail.com"
+        "email":"raghavprasad21@gmail.com",
+        "age":27
        }
     ]
 }
