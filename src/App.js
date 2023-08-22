@@ -11,6 +11,7 @@ function App() {
           <Route path = "/" Component={Home} /> 
         </Routes>
       </Router>   
+     
     </div>
   );
 }
