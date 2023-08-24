@@ -24,11 +24,16 @@ function Home() {
     }
     console.log("&&&&data", data);
 
+    const parentFunction = () => {
+        setShowForm(false);
+    }
 
     const formValueHandler = (formValues) => {
+        if (formValues.name != '' && formValues.email != '' && formValues.age != '') {
             let test = [...data];
             test.push(formValues)
             setData(test)
+        }
     }
 
     return (
@@ -48,7 +53,7 @@ function Home() {
                             data.length > 0 ?
                                 data.map((item, index) => {
                                     return <tr key={index}>
-                                        <td>{item.name}</td>
+                                        <td data-testid ="todo-1">{item.name}</td>
                                         <td>{item.email}</td>
                                         <td>{item.age}</td>
                                     </tr>
@@ -60,9 +65,9 @@ function Home() {
                 </table>
             </div>
 
-            <button onClick={handleClick}>Form</button>
+            <button data-testid="button" onClick={handleClick}>Form</button>
             {showForm &&
-                <InputForm formValueHandler={formValueHandler} />
+                <InputForm formValueHandler={formValueHandler} parentFunction={parentFunction} />
             }
         </div>
     )

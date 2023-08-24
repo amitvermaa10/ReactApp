@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, Grid, Button,TextField} from '@mui/material';
-import users from "../user/user";
-import { v4 as uuid } from "uuid";
 import {Link, useNavigate} from "react-router-dom";
 
 
-function InputForm({formValueHandler}) {
+function InputForm({formValueHandler,parentFunction}) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [age, setAge] = useState('');
@@ -47,18 +45,14 @@ function InputForm({formValueHandler}) {
     
     const handleSubmit =(e) =>{
         e.preventDefault(); 
-        const ids = uuid();
-         let uniqueId = ids.slice(0,8);
-      //    users.push({id : uniqueId, name :name, email:email,age:age});
-      //    history("/");
-  
-      // formValueHandler({name, email, age, id:uniqueId})
-      console.log("%%%%inputdata",inputData);
+         const ids =  Math.random().toString(16).slice(2);
+         let uniqueId = ids.slice(0,3);
       formValueHandler({...inputData, id:uniqueId})
     }
 
    const handleReset = (e) =>{
-   alert("reset")
+    console.log("$$$",e.target.value);
+    setInputData({...inputData,name:'', email:'',age:''})
    }
 
     return (
@@ -82,7 +76,7 @@ function InputForm({formValueHandler}) {
 
                             </Grid>
                             <Grid item xs={12}>
-                                <Button type="" variant="contained" fullWidth>Cancel</Button>
+                                <Button type="" variant="contained" fullWidth onClick={() => parentFunction()}>Cancel</Button>
                             </Grid>
                             <Grid item xs={12}>
                                 <Button type="reset" variant="contained" fullWidth onClick={(e) => handleReset(e)}>Reset</Button>
