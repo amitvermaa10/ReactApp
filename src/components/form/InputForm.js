@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Grid, Button, TextField } from '@mui/material';
+import { Card, CardContent, Grid, TextField, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Select, MenuItem, InputLabe, FormControl ,Rating,Typography } from '@mui/material';
+import './InputForm.scss';
 
 
-function InputForm({ formValueHandler, displayForm }) {
+function InputForm({ formValueHandler, displayForm, showForm }) {
     const [inputData, setInputData] = useState({ name: '', email: '', age: '' })
 
     const inputFromDetail = (e) => {
@@ -32,9 +33,22 @@ function InputForm({ formValueHandler, displayForm }) {
         setInputData({ ...inputData, name: '', email: '', age: '' })
     }
 
+    const handleClickOpen = () => {
+        // setOpen(true);
+    };
+
+    const handleClose = () => {
+        // setOpen(false);
+    };
+
+    const handleChange = (event) => {
+        // setAge(event.target.value);
+    }
+
+    console.log("&&&&&&&&showForm", showForm);
     return (
         <div>
-            <Card style={{ maxWidth: 500, margin: "0 auto" }}>
+            {/* <Card style={{ maxWidth: 500, margin: "0 auto" }}>
                 <CardContent>
                     <form>
                         <Grid container spacing={1}>
@@ -59,7 +73,80 @@ function InputForm({ formValueHandler, displayForm }) {
                         </Grid>
                     </form>
                 </CardContent>
-            </Card>
+            </Card> */}
+
+            <Dialog
+                open={showForm}
+                // onClose={displayForm}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle >
+                    {"Skill Assessment Form"}
+                </DialogTitle>
+                <DialogContent>
+                    <div className="select-field">
+                        <Grid container spacing={1}>
+                            <Grid xs={12} sm={6} item>
+                                <TextField label="Name" name="fullname" placeholder="Interviewer Name" value={inputData.name} variant="outlined" required onChange={(e) => inputFromDetail(e)} />
+                            </Grid>
+                            <Grid xs={12} sm={6} item>
+                                <TextField label="Name" name="fullname" placeholder="Date" value={inputData.name} variant="outlined" required onChange={(e) => inputFromDetail(e)} />
+                            </Grid>
+                        </Grid>
+                    </div>
+
+                    <div className="select-field">
+                        <Grid container spacing={1}>
+                            <Grid xs={12} sm={6} item>
+                                <TextField label="Name" name="fullname" placeholder="Candidate Name" value={inputData.name} variant="outlined" required onChange={(e) => inputFromDetail(e)} />
+                            </Grid>
+
+                            <Grid xs={12} sm={6} item>
+                                <FormControl sx={{ minWidth: 225 }}>
+                                    <Select
+                                        labelId="demo-select-small-label"
+                                        id="demo-select-small"
+                                        //    value={inputData.age} 
+                                        label="Age"
+                                        // onChange={handleChange}
+                                        onChange={(e) => handleChange(e)}
+
+                                    >
+                                        <MenuItem value={10}>first</MenuItem>
+                                        <MenuItem value={20}>Second</MenuItem>
+                                        <MenuItem value={30}>Final</MenuItem>
+                                    </Select>
+                                </FormControl>
+
+                            </Grid>
+
+                        </Grid>
+                    </div>
+
+                    <DialogContentText id="alert-dialog-description">
+                        Let Google help apps determine location. This means sending anonymous
+                        location data to Google, even when no apps are running.
+                    </DialogContentText>
+                </DialogContent>
+
+                
+                <div>
+                    <DialogTitle style={{'fontSize':'17px'}}>
+                        {"Primary Skill evaluated"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <Typography component="legend">HTML</Typography>
+                        <Rating name="html" defaultValue={2} max={5} precision={0.5} />
+                    </DialogContent>
+                </div>
+                <DialogActions>
+                    <Button onClick={displayForm}>Disagree</Button>
+                    <Button onClick={handleClose} autoFocus>
+                        Agree
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 };

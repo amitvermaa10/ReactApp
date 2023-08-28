@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './home.scss';
 import InputForm from "./form/InputForm";
-import { AppBar, Typography, Toolbar } from '@mui/material';
+import { AppBar, Typography, Toolbar,Button } from '@mui/material';
 
 
 
@@ -46,6 +46,10 @@ function Home() {
                     </Toolbar>
                 </AppBar>
             </div>
+            <div className="align-button">
+            <Button data-testid="button" onClick={handleClick}>+ New Assessment</Button>
+            </div>
+            
             <div className="home">
                 <table>
                     <thead>
@@ -73,9 +77,9 @@ function Home() {
                 </table>
             </div>
 
-            <button data-testid="button" onClick={handleClick}>Form</button>
+            
             {showForm &&
-                <InputForm formValueHandler={formValueHandler} displayForm={displayForm} />
+                <InputForm formValueHandler={formValueHandler} displayForm={displayForm} showForm={showForm} />
             }
         </div>
     )
