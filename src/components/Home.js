@@ -4,7 +4,7 @@ import axios from "axios";
 import './home.scss';
 import InputForm from "./form/InputForm";
 import { AppBar, Typography, Toolbar,Button } from '@mui/material';
-import { postData } from "./apiService/apiService";
+import { postData,UpdatetData ,deleteData} from "./apiService/apiService";
 import EmployeeTable from "./EmployeeTable/Employeetable";
 
 
@@ -13,13 +13,16 @@ function Home() {
     const [data, setData] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [userItem,setUserItem] = useState({});
+    const [isSuccess,setIsSuccess] = useState(false);
+    const [isview,setIsView] = useState(false);
+    const [isEdit,setIsEdit] = useState(false);
 
 
-    useEffect(() => {
-        axios.get('http://localhost:3035/users').then
-            (res => setData(res.data))
-            .catch(error => console.log(error))
-    }, []);
+    // useEffect(() => {
+    //     axios.get('http://localhost:3035/users').then
+    //         (res => setData(res.data))
+    //         .catch(error => console.log(error))
+    // }, []);
 
 
     const handleClick = () => {
@@ -32,8 +35,24 @@ function Home() {
     }
 
     const EditForm =(item) =>{
+        console.log("&&item",item);
         setShowForm(true);
         setUserItem(item);
+        setIsEdit(true);
+        setIsView(false);
+
+    }
+
+    const viewForm =(item)=>{
+        setShowForm(true);
+        setUserItem(item);
+        setIsView(true);
+        setIsEdit(false);
+
+    }
+
+    const DeleteForm=(item) =>{
+        DeleteformHandler(item);
     }
 
     // const formValueHandler = (formValues) => {
@@ -47,7 +66,14 @@ function Home() {
 
     const formValueHandler = async(formValues)=>{
         try{
-            const response = await postData(' http://localhost:3035/users',formValues);
+            if(isSuccess){
+                setIsSuccess(false)
+            }
+         postData(formValues).then(res =>{
+            if(res){
+                setIsSuccess(true);
+            }
+         });
         }
         catch(error){
             console.log(error);
@@ -56,13 +82,45 @@ function Home() {
 
     const updateFormHandler = async(formValues)=>{
         console.log("*****formValues",formValues,formValues.id)
-        axios.put('http://localhost:3035/users/'+formValues.id,formValues).then
-            (res => 
-                console.log("resssss",res))
-                // setData(res.data))
+        if(isSuccess){
+            setIsSuccess(false)
+        }
+        axios.put('http://localhost:3031/users/'+formValues.id,formValues).then
+            (res=>{ 
+                if(res){
+                    setIsSuccess(true);
+                }
+            })
             .catch(error => console.log(error))
-        ///setData(users)/;
     }
+
+    const DeleteformHandler = async(formValues)=>{
+        try{
+            if(isSuccess){
+                setIsSuccess(false)
+            }
+         deleteData(formValues.id).then(res =>{
+            if(res){
+                setIsSuccess(true);
+            }
+         });
+        }
+        catch(error){
+            console.log(error);
+        }
+    } 
+    // const updateFormHandler = async(formValues)=>{
+    //     if(isSuccess){
+    //         setIsSuccess(false)
+    //     }
+    //     UpdatetData(formValues).then
+    //         (res=>{ 
+    //             if(res){
+    //                 setIsSuccess(true);
+    //             }
+    //         })
+    //         .catch(error => console.log(error))
+    // }
 
 
     return (
@@ -106,14 +164,14 @@ function Home() {
                     </tbody>
                 </table> */}
 
-                <EmployeeTable EditForm ={EditForm}/> 
+                <EmployeeTable EditForm ={EditForm} isSuccess={isSuccess} DeleteForm ={DeleteForm} viewForm={viewForm} /> 
 
 
             </div>
 
             
             {showForm &&
-                <InputForm formValueHandler={formValueHandler} displayForm={displayForm} showForm={showForm} userItem={userItem} updateFormHandler={updateFormHandler}/>
+                <InputForm formValueHandler={formValueHandler} displayForm={displayForm} showForm={showForm} userItem={userItem} updateFormHandler={updateFormHandler} isview={isview} isEdit={isEdit}/>
             }
         </div>
     )

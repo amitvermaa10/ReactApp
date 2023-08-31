@@ -13,24 +13,24 @@ import { fetchData } from "../apiService/apiService";
 
 
 
-function EmployeeTable({EditForm}) {
+function EmployeeTable({EditForm,DeleteForm, viewForm,isSuccess}) {
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        axios.get('http://localhost:3035/users').then
-            (res => setData(res.data))
-            .catch(error => console.log(error))
-    }, [])
-
     // useEffect(() => {
-      
-    //     fetchData().then(responseData)=>{
-    //         setData(responseData)
-    //     }
+    //     axios.get('http://localhost:3035/users').then
+    //         (res => setData(res.data))
+    //         .catch(error => console.log(error))
     // }, [])
-    console.log("****getData",fetchData().then((data)=>{
-        console.log("&&&data",data)
-    }));
+
+    useEffect(() => {
+      
+        fetchData().then((res)=>{
+            setData(res.data)
+        })
+    }, [isSuccess])
+    // console.log("****getData",fetchData().then((res)=>{
+    //     console.log("&&&data",res.data)
+    // }));
     return (
         <div style={{textAlign:'centre'}}>
             <Paper sx ={{width:'100%'}}>
@@ -38,22 +38,31 @@ function EmployeeTable({EditForm}) {
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Email</TableCell>
-                        <TableCell>Age</TableCell>
-                        <TableCell>Edit Action</TableCell>
+                        <TableCell>Candidate Name</TableCell>
+                        <TableCell>Overall experience</TableCell>
+                        <TableCell>Relevant experience</TableCell>
+                        <TableCell>Selected</TableCell>
+                        <TableCell>Edit Actions</TableCell>
+                        <TableCell>Delete Actions</TableCell>
+                        <TableCell>View Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {data && data.map((item,index)=>{
                         return(
                             <TableRow key = {index}>
-                                <TableCell>{item.name}</TableCell>
-                                <TableCell>{item.email}</TableCell>
-                                <TableCell>{item.age}</TableCell>
+                                <TableCell>{item.candidateName}</TableCell>
+                                <TableCell>{item.overallExperience}</TableCell>
+                                <TableCell>{item.relevantExperience}</TableCell>
+                                <TableCell>{item.radiogroup}</TableCell>
                                 <TableCell>
-                                    {/* <Button onClick={()=>alert(item.id)}>Edit</Button> */}
                                     <Button onClick={() => EditForm(item)}>Edit</Button>
+                                </TableCell>
+                                <TableCell>
+                                    <Button onClick={() => DeleteForm(item)}>Delete</Button>
+                                </TableCell>
+                                <TableCell>
+                                    <Button onClick={() =>  viewForm(item,true)}>View</Button>
                                 </TableCell>
 
                             </TableRow>

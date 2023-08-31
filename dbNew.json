@@ -1,40 +1,27 @@
 {
-  "users": [
+  "users": [ 
     {
-      "id": 1,
-      "name": "ajit kumar",
-      "email": "ajit11@gmail.com",
-      "age": 23
-    },
-    {
-      "id": 2,
-      "name": "ankit raj",
-      "email": "ankitraj2@gmail.com",
-      "age": 25
-    },
-    {
-      "id": 3,
-      "name": "priya kumari",
-      "email": "priyaKumari3@gmail.com",
-      "age": 28
-    },
-    {
-      "id": 4,
-      "name": "priya kumari",
-      "email": "priyaKumari3@gmail.com",
-      "age": 30
-    },
-    {
-      "id": 5,
-      "name": "raghav prasad",
-      "email": "raghavprasad21@gmail.com",
-      "age": 27
-    },
-    {
-      "name": "dkdkkd",
-      "email": "dkdkkd@gmail.com",
-      "age": "23",
-      "id": "9b9"
-    }
+      "interviewerName": "manoj kumar",
+      "candidateName": "suresh",
+      "interviewRound": "first",
+      "overallExperience": "3",
+      "relevantExperience": "react",
+      "html": "3.5",
+      "css": "1",
+      "javascript": "3.5",
+      "typescript": "3.5",
+      "react": "3.5",
+      "hooks": "4",
+      "redux": "3.5",
+      "communication": "5",
+      "attitude": "3.5",
+      "selflearning": "4.5",
+      "radiogroup": "no",
+      "additionalComments": "need to work on basics",
+      "interviewFeedback": "need to work on basics",
+      "trainingRecommended": "need to work on basics",
+      "others": "need to work on basics",
+      "id": "229"
+    } 
   ]
 }
