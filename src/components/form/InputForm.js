@@ -132,7 +132,7 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
 
     useEffect(() => {
         setDateValue(inputData.datepicker)
-    })
+    },[inputData.datepicker])
 
     return (
         <div>
