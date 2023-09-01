@@ -6,30 +6,23 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from "moment/moment";
+import dayjs from "dayjs";
 
 import './InputForm.scss';
 
 
 function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler, userItem, isview, isEdit }) {
 
-    const newuser = { interviewerName: '', candidateName: '', interviewRound: '', overallExperience: '', relevantExperience: '', years:'',html: '', css: '', javascript: '', es6: '', typescript: '', react: '', hooks: '', redux: '', communication: '', attitude: '', selflearning: '', radiogroup: '', interviewFeedback: '', additionalComments: '', trainingRecommended: '', others: '' , datepicker:null};
+    const newuser = { interviewerName: '', candidateName: '', interviewRound: '', overallExperience: '', relevantExperience: '', years: '', html: '', css: '', javascript: '', es6: '', typescript: '', react: '', hooks: '', redux: '', communication: '', attitude: '', selflearning: '', radiogroup: '', interviewFeedback: '', additionalComments: '', trainingRecommended: '', others: '', datepicker: null };
 
     const [inputData, setInputData] = useState(userItem);
     const isEditableMode = Object.keys(userItem).length > 0;
     const isNewMode = !isEditableMode;
-
-     const [datevalue,setDateValue] = useState(null);
-    // const [selectedDate, setSelectedDate] = React.useState(null);
-
-
+    const [datevalue, setDateValue] = useState(null);
 
     useEffect(() => {
         setInputData(userItem)
     }, [userItem]);
-
-
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,15 +33,12 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
             // alert("its new form",inputData)
             console.log("inputDatainputData", inputData)
             formValueHandler({ ...inputData, id: uniqueId })
-            // setInputData({ ...inputData, name: '', email: '', age: '' })//need to uncomment
         }
         else {
-            console.log("inputDatainputData 123", inputData)
-           // alert("its edited form")
-            updateFormHandler({ ...inputData})
+            // alert("its edited form")
+            updateFormHandler({ ...inputData })
             // setInputData({ ...inputData, name: '', email: '', age: '' })//need to uncomment
         }
-
         displayForm();
     }
 
@@ -134,23 +124,16 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
         }
     };
 
-    const ondateChange=(date)=>{
-    console.log("sssssssssssssssssss",date.format('dd/MM/yyyy'))
-   //let test = moment(date).format("DD/MM/YYYY")
-   let test  = moment(date.$d, "DD/MM/YYYY");
-   console.log("testtesttest", test)
-    // inputData.datepicker = e;
-    // inputData.test =e;
-    // console.log("temp",inputData);
-    // setDateValue(e.$d);
-    console.log("inputDatainputDatainputDataccccc", inputData)
-    setInputData({...inputData, datepicker: test})
-    setDateValue(test)
-
+    const ondateChange = (date) => {
+        let test = moment(date.$d).format('YYYY-MM-DD');
+        setInputData({ ...inputData, datepicker: test })
+        setDateValue(test)
     }
-     console.log("&&&value",datevalue);
-     console.log("&&&&inputData",inputData);
-    
+
+    useEffect(() => {
+        setDateValue(inputData.datepicker)
+    })
+
     return (
         <div>
             <Dialog
@@ -171,25 +154,17 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                                 </Grid>
                                 <Grid xs={12} sm={6} item>
 
-                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <DemoContainer components={['DatePicker']}>
-                                            <DatePicker 
-                                            // value={datevalue}
-                                            
+                                            <DatePicker
+                                                value={dayjs(datevalue)}
                                                 onChange={ondateChange}
-                                               
-                                                renderInput ={(params)=><TextField{...params}/>}
+                                                renderInput={(params) => <TextField{...params} />}
                                                 name="datepicker"
-                                                //format="DD-MM-YYYY"
-
-                                                format={'MM-DD-YYYY'}
-                                                value={moment(datevalue, 'MM-DD-YYYY')}
-
-                                                 />
+                                                disabled={isNewMode ? false : isview ? true : true}
+                                            />
                                         </DemoContainer>
-                                    </LocalizationProvider> 
-                                    
-
+                                    </LocalizationProvider>
                                 </Grid>
                             </Grid>
                         </div>
@@ -204,10 +179,8 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                                     <FormControl variant="outlined" sx={{ minWidth: 225 }}>
                                         <InputLabel>Interview round</InputLabel>
                                         <Select
-                                            name="interviewRound"
-                                            //    value={inputData.age} 
+                                            name="interviewRound" 
                                             label="Interview"
-                                            // onChange={handleChange}
                                             onChange={(e) => inputFromDetail(e)}
                                             value={inputData.interviewRound}
                                             defaultValue=""
@@ -246,9 +219,9 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                                         </Select>
                                     </FormControl>
                                     &nbsp;
-                                    
-                                    <TextField style={{'width':'70px'}} label="years" name="years" placeholder="years" type="number" variant="outlined" required value={inputData.years} onChange={(e) => inputFromDetail(e)} inputProps={{ inputMode: 'numeric' }} disabled={isNewMode ? false : isview ? true : false} />
-                                   
+
+                                    <TextField style={{ 'width': '70px' }} label="years" name="years" placeholder="years" type="number" variant="outlined" required value={inputData.years} onChange={(e) => inputFromDetail(e)} inputProps={{ inputMode: 'numeric' }} disabled={isNewMode ? false : isview ? true : false} />
+
                                 </Grid>
                             </Grid>
                         </div>

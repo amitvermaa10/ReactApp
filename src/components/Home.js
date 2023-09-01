@@ -13,7 +13,7 @@ import HeaderComp from './header/HeaderComp';
 function Home() {
     const [data, setData] = useState([]);
     const [showForm, setShowForm] = useState(false);
-    const [userItem, setUserItem] = useState({});
+    const [userItem, setUserItem] = useState({interviewerName:''});
     const [isSuccess, setIsSuccess] = useState(false);
     const [isview, setIsView] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
@@ -101,7 +101,7 @@ function Home() {
             </div>
             <EmployeeTable EditForm={EditForm} isSuccess={isSuccess} DeleteForm={DeleteForm} viewForm={viewForm} />
             {showForm &&
-                <InputForm formValueHandler={formValueHandler} displayForm={displayForm} showForm={showForm} userItem={userItem} updateFormHandler={updateFormHandler} isview={isview} isEdit={isEdit} />
+                <InputForm formValueHandler={formValueHandler} displayForm={displayForm} showForm={showForm} userItem={userItem}  updateUserItem ={setUserItem} updateFormHandler={updateFormHandler} isview={isview} isEdit={isEdit} />
                 
             }          
         </div>
