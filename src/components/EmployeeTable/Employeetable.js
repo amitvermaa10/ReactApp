@@ -53,7 +53,7 @@ function EmployeeTable({EditForm,DeleteForm, viewForm,isSuccess}) {
                             <TableRow key = {index}>
                                 <TableCell>{item.candidateName}</TableCell>
                                 <TableCell>{item.overallExperience}</TableCell>
-                                <TableCell>{item.relevantExperience}</TableCell>
+                                <TableCell>{item.relevantExperience} {item.years} years</TableCell>
                                 <TableCell>{item.radiogroup}</TableCell>
                                 <TableCell>
                                     <Button onClick={() => EditForm(item)}>Edit</Button>
