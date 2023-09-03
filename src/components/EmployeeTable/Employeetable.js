@@ -39,7 +39,7 @@ function EmployeeTable({EditForm,DeleteForm, viewForm,isSuccess,isdeleteSuccess,
                     {data && data.map((item,index)=>{
                         return(
                             <TableRow key = {index}>
-                                <TableCell>{item.candidateName}</TableCell>
+                                <TableCell testid='Edit'>{item.candidateName}</TableCell>
                                  <TableCell>{item.datepicker}</TableCell> 
                                 <TableCell>{item.overallExperience}</TableCell>
                                 <TableCell>{item.relevantExperience} {item.years} years</TableCell>
