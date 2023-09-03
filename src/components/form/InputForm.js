@@ -30,14 +30,12 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
         const ids = Math.random().toString(16).slice(2);
         let uniqueId = ids.slice(0, 3);
         if (isNewMode) {
-            alert("its new form", inputData)
-            console.log("inputDatainputData", inputData)
+            alert("its new form")
             formValueHandler({ ...inputData, id: uniqueId })
         }
         else {
             alert("its edited form")
             updateFormHandler({ ...inputData })
-            // setInputData({ ...inputData, name: '', email: '', age: '' })//need to uncomment
         }
         displayForm();
     }
@@ -134,7 +132,6 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
         setDateValue(inputData.datepicker)
     }, [inputData.datepicker])
 
-    console.log("&&&&userItem", isEditableMode)
     return (
         <div>
             <Dialog
@@ -148,8 +145,8 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                     </DialogTitle>
                     <DialogContent>
                         <div className="select-field">
-                            <Grid container spacing={1}>
-                                <Grid xs={12} sm={6} item>
+                            <Grid container spacing={1} >
+                                <Grid xs={12} sm={6} item style={{'marginTop':'7px'}}>
                                     <TextField label="Interviewer Name" name="interviewerName" placeholder="Interviewer Name" value={inputData?.interviewerName} variant="outlined" required onChange={(e) => inputFromDetail(e)} disabled={isNewMode ? false : isview ? true : true} />
                                 </Grid>
                                 <Grid xs={12} sm={6} item>
@@ -158,9 +155,15 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                                             <DatePicker
                                                 value={dayjs(datevalue)}
                                                 onChange={ondateChange}
-                                                renderInput={(params) => <TextField{...params} />}
+                                                 renderInput={(params) => <TextField{...params} />}
                                                 name="datepicker"
                                                 disabled={isNewMode ? false : isview ? true : true}
+                                                slotProps={{
+                                                    textField: {
+                                                      error: false,
+                                                    },
+                                                  }}
+                                                
                                             />
                                         </DemoContainer>
                                     </LocalizationProvider>

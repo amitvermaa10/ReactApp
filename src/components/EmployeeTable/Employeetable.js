@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { AppBar, Typography, Toolbar, Button,TableContainer,Paper } from '@mui/material';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
+import { Button,TableContainer,Paper } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,15 +10,14 @@ import { fetchData } from "../apiService/apiService";
 
 
 
-function EmployeeTable({EditForm,DeleteForm, viewForm,isSuccess}) {
+function EmployeeTable({EditForm,DeleteForm, viewForm,isSuccess,isdeleteSuccess,isupdateSuccess}) {
     const [data, setData] = useState([]);
     useEffect(() => {
         fetchData().then((res)=>{
             setData(res.data)
         })
-    }, [isSuccess])
+    }, [isSuccess,isdeleteSuccess,isupdateSuccess])
    
-    console.log("&&&&&isSuccess",isSuccess);
     return (
         <div style={{textAlign:'centre'}}>
             <Paper sx ={{width:'100%'}}>

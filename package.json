@@ -36,7 +36,8 @@
     "eject": "react-scripts eject",
     "test": "jest",
     "coverage": "jest --coverage",
-    "format": "npx prettier --write ."
+    "format:watch": "prettier --write .--watch",
+    "lint:watch": "eslint .--watch"
   },
   "eslintConfig": {
     "extends": [
