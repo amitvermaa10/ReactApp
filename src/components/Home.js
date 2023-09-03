@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './home.scss';
 import InputForm from "./form/InputForm";
-import { AppBar, Typography, Toolbar, Button } from '@mui/material';
-import { postData, UpdatetData, deleteData } from "./apiService/apiService";
+import { Button } from '@mui/material';
+import { postData, deleteData } from "./apiService/apiService";
 import EmployeeTable from "./EmployeeTable/Employeetable";
 import HeaderComp from './header/HeaderComp';
 
@@ -13,13 +13,14 @@ import HeaderComp from './header/HeaderComp';
 function Home() {
     const [data, setData] = useState([]);
     const [showForm, setShowForm] = useState(false);
-    const [userItem, setUserItem] = useState({interviewerName:''});
+    const [userItem, setUserItem] = useState({ interviewerName: '' });
     const [isSuccess, setIsSuccess] = useState(false);
+    const [isdeleteSuccess, setIsDeleteSuccess] = useState(false);
     const [isview, setIsView] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
 
     const handleClick = () => {
-        setUserItem({});
+        setUserItem({ interviewerName: '', candidateName: '', interviewRound: '', overallExperience: '', relevantExperience: '', years: '', html: '', css: '', javascript: '', es6: '', typescript: '', react: '', hooks: '', redux: '', communication: '', attitude: '', selflearning: '', radiogroup: '', interviewFeedback: '', additionalComments: '', trainingRecommended: '', others: '', datepicker: null });
         setShowForm(true);
     }
 
@@ -45,7 +46,21 @@ function Home() {
     }
 
     const DeleteForm = (item) => {
-        DeleteformHandler(item);
+        console.log("&&&&item", item)
+        // DeleteformHandler(item);
+        if (isdeleteSuccess) {
+            setIsDeleteSuccess(false)
+        }
+        deleteData(item.id).then((res) => {
+            return {
+                if(res) {
+                    console.log("&&&&&&&res", res);
+                    setIsDeleteSuccess(true);
+                }
+            }
+
+        }).catch(error => console.log(error));
+
     }
 
     const formValueHandler = async (formValues) => {
@@ -79,12 +94,14 @@ function Home() {
 
     const DeleteformHandler = async (formValues) => {
         try {
-            if (isSuccess) {
-                setIsSuccess(false)
-            }
+            console.log("&&&&formValues", formValues);
+            // if (isdeleteSuccess) {
+            //     setIsDeleteSuccess(false)
+            // }
             deleteData(formValues.id).then(res => {
                 if (res) {
-                    setIsSuccess(true);
+                    console.log("&&&&&&&res", res);
+                    setIsDeleteSuccess(true);
                 }
             });
         }
@@ -92,18 +109,18 @@ function Home() {
             console.log(error);
         }
     }
- 
+
     return (
         <div>
-            <HeaderComp/>
+            <HeaderComp />
             <div className="align-button">
                 <Button data-testid="button" onClick={handleClick}>+ New Assessment</Button>
             </div>
-            <EmployeeTable EditForm={EditForm} isSuccess={isSuccess} DeleteForm={DeleteForm} viewForm={viewForm} />
+            <EmployeeTable EditForm={EditForm} isSuccess={isSuccess} isdeleteSuccess={isdeleteSuccess} DeleteForm={DeleteForm} viewForm={viewForm} />
             {showForm &&
-                <InputForm formValueHandler={formValueHandler} displayForm={displayForm} showForm={showForm} userItem={userItem}  updateUserItem ={setUserItem} updateFormHandler={updateFormHandler} isview={isview} isEdit={isEdit} />
-                
-            }          
+                <InputForm formValueHandler={formValueHandler} displayForm={displayForm} showForm={showForm} userItem={userItem} updateUserItem={setUserItem} updateFormHandler={updateFormHandler} isview={isview} isEdit={isEdit} />
+
+            }
         </div>
     )
 };

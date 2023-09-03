@@ -15,22 +15,13 @@ import { fetchData } from "../apiService/apiService";
 
 function EmployeeTable({EditForm,DeleteForm, viewForm,isSuccess}) {
     const [data, setData] = useState([]);
-
-    // useEffect(() => {
-    //     axios.get('http://localhost:3035/users').then
-    //         (res => setData(res.data))
-    //         .catch(error => console.log(error))
-    // }, [])
-
     useEffect(() => {
-      
         fetchData().then((res)=>{
             setData(res.data)
         })
     }, [isSuccess])
-    // console.log("****getData",fetchData().then((res)=>{
-    //     console.log("&&&data",res.data)
-    // }));
+   
+    console.log("&&&&&isSuccess",isSuccess);
     return (
         <div style={{textAlign:'centre'}}>
             <Paper sx ={{width:'100%'}}>
@@ -64,7 +55,7 @@ function EmployeeTable({EditForm,DeleteForm, viewForm,isSuccess}) {
                                     <Button onClick={() => DeleteForm(item)}>Delete</Button>
                                 </TableCell>
                                 <TableCell>
-                                    <Button onClick={() =>  viewForm(item,true)}>View</Button>
+                                    <Button onClick={() =>  viewForm(item)}>View</Button>
                                 </TableCell>
 
                             </TableRow>

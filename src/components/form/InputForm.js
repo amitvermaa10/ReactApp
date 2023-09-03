@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Grid, TextField, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Select, MenuItem, InputLabel, FormControl, Rating, Typography, Divider, RadioGroup, FormControlLabel, FormLabel, Radio, OutlinedInput } from '@mui/material';
+import { Grid, TextField, Dialog, DialogTitle, DialogContent,  DialogActions, Button, Select, MenuItem, InputLabel, FormControl, Rating, Typography, Divider, RadioGroup, FormControlLabel, FormLabel, Radio } from '@mui/material';
 
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -11,12 +11,12 @@ import dayjs from "dayjs";
 import './InputForm.scss';
 
 
-function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler, userItem, isview, isEdit }) {
+function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler, userItem, isview }) {
 
     const newuser = { interviewerName: '', candidateName: '', interviewRound: '', overallExperience: '', relevantExperience: '', years: '', html: '', css: '', javascript: '', es6: '', typescript: '', react: '', hooks: '', redux: '', communication: '', attitude: '', selflearning: '', radiogroup: '', interviewFeedback: '', additionalComments: '', trainingRecommended: '', others: '', datepicker: null };
 
     const [inputData, setInputData] = useState(userItem);
-    const isEditableMode = Object.keys(userItem).length > 0;
+    const isEditableMode = userItem.interviewerName !== '';
     const isNewMode = !isEditableMode;
     const [datevalue, setDateValue] = useState(null);
 
@@ -29,13 +29,13 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
 
         const ids = Math.random().toString(16).slice(2);
         let uniqueId = ids.slice(0, 3);
-        if (Object.keys(userItem).length == 0) {
-            // alert("its new form",inputData)
+        if (isNewMode) {
+            alert("its new form", inputData)
             console.log("inputDatainputData", inputData)
             formValueHandler({ ...inputData, id: uniqueId })
         }
         else {
-            // alert("its edited form")
+            alert("its edited form")
             updateFormHandler({ ...inputData })
             // setInputData({ ...inputData, name: '', email: '', age: '' })//need to uncomment
         }
@@ -132,13 +132,13 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
 
     useEffect(() => {
         setDateValue(inputData.datepicker)
-    },[inputData.datepicker])
+    }, [inputData.datepicker])
 
+    console.log("&&&&userItem", isEditableMode)
     return (
         <div>
             <Dialog
                 open={showForm}
-                //  onClose={displayForm}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
@@ -150,10 +150,9 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                         <div className="select-field">
                             <Grid container spacing={1}>
                                 <Grid xs={12} sm={6} item>
-                                    <TextField label="Interviewer Name" name="interviewerName" placeholder="Interviewer Name" value={inputData.interviewerName} variant="outlined" required onChange={(e) => inputFromDetail(e)} disabled={isNewMode ? false : isview ? true : true} />
+                                    <TextField label="Interviewer Name" name="interviewerName" placeholder="Interviewer Name" value={inputData?.interviewerName} variant="outlined" required onChange={(e) => inputFromDetail(e)} disabled={isNewMode ? false : isview ? true : true} />
                                 </Grid>
                                 <Grid xs={12} sm={6} item>
-
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <DemoContainer components={['DatePicker']}>
                                             <DatePicker
@@ -179,7 +178,7 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                                     <FormControl variant="outlined" sx={{ minWidth: 225 }}>
                                         <InputLabel>Interview round</InputLabel>
                                         <Select
-                                            name="interviewRound" 
+                                            name="interviewRound"
                                             label="Interview"
                                             onChange={(e) => inputFromDetail(e)}
                                             value={inputData.interviewRound}
@@ -359,7 +358,7 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                 </div>
                 <DialogActions>
                     <Button type="submit" onClick={(e) => handleSubmit(e)}>Save</Button>
-                    <Button onClick={(e) => handleReset(e)} disabled={isview}>Reset</Button>
+                    <Button onClick={(e) => handleReset(e)} disabled={isEditableMode}>Reset</Button>
                     <Button onClick={() => displayForm()}>Cancel</Button>
                 </DialogActions>
             </Dialog>

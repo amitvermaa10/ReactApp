@@ -1,26 +1,3 @@
 {
-  "users": [
-    {
-      "interviewerName": "testtttt",
-      "candidateName": "testtttt",
-      "overallExperience": "2",
-      "datepicker": "2023-10-30",
-      "interviewRound": "first",
-      "relevantExperience": "angular",
-      "years": "4",
-      "radiogroup": "yes",
-      "id": "916"
-    },
-    {
-      "datepicker": "2023-09-15",
-      "interviewerName": "testt",
-      "candidateName": "suresh",
-      "interviewRound": "second",
-      "relevantExperience": "angular",
-      "overallExperience": "4",
-      "years": "2",
-      "radiogroup": "yes",
-      "id": "34b"
-    }
-  ]
+  "users": []
 }
