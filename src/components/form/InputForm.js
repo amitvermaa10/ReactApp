@@ -240,11 +240,11 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                             <Grid container spacing={1}>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">HTML</Typography>
-                                    <Rating name="html" max={5} precision={0.5} value={parseInt(inputData.html)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="html" max={5} precision={0.5} value={parseFloat(inputData.html)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">CSS</Typography>
-                                    <Rating name="css" max={5} precision={0.5} value={parseInt(inputData.css)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="css" max={5} precision={0.5} value={parseFloat(inputData.css)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                             </Grid>
                         </div>
@@ -252,11 +252,11 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                             <Grid container spacing={1}>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">Javascript</Typography>
-                                    <Rating name="javascript" max={5} precision={0.5} value={parseInt(inputData.javascript)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="javascript" max={5} precision={0.5} value={parseFloat(inputData.javascript)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">ES6 Concepts</Typography>
-                                    <Rating name="es6" max={5} precision={0.5} value={parseInt(inputData.es6)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="es6" max={5} precision={0.5} value={parseFloat(inputData.es6)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                             </Grid>
                         </div>
@@ -264,11 +264,11 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                             <Grid container spacing={1}>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">TypeScript</Typography>
-                                    <Rating name="typescript" max={5} precision={0.5} value={parseInt(inputData.typescript)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="typescript" max={5} precision={0.5} value={parseFloat(inputData.typescript)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">React</Typography>
-                                    <Rating name="react" max={5} precision={0.5} value={parseInt(inputData.react)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="react" max={5} precision={0.5} value={parseFloat(inputData.react)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                             </Grid>
                         </div>
@@ -276,11 +276,11 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                             <Grid container spacing={1}>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">Hooks</Typography>
-                                    <Rating name="hooks" value={parseInt(inputData.hooks)} max={5} precision={0.5} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="hooks" value={parseFloat(inputData.hooks)} max={5} precision={0.5} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">Redux</Typography>
-                                    <Rating name="redux" max={5} precision={0.5} value={parseInt(inputData.redux)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="redux" max={5} precision={0.5} value={parseFloat(inputData.redux)} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                             </Grid>
                         </div>
@@ -296,11 +296,11 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                             <Grid container spacing={1}>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">Communication</Typography>
-                                    <Rating name="communication" value={parseInt(inputData.communication)} max={5} precision={0.5} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="communication" value={parseFloat(inputData.communication)} max={5} precision={0.5} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">Attitude</Typography>
-                                    <Rating name="attitude" value={parseInt(inputData.attitude)} max={5} precision={0.5} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="attitude" value={parseFloat(inputData.attitude)} max={5} precision={0.5} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
                             </Grid>
                         </div>
@@ -308,7 +308,7 @@ function InputForm({ formValueHandler, displayForm, showForm, updateFormHandler,
                             <Grid container spacing={1}>
                                 <Grid xs={12} sm={6} item>
                                     <Typography component="legend">Self-Learning</Typography>
-                                    <Rating name="selflearning" value={parseInt(inputData.selflearning)} max={5} precision={0.5} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
+                                    <Rating name="selflearning" value={parseFloat(inputData.selflearning)} max={5} precision={0.5} onChange={(e) => handleInputRating(e)} disabled={isNewMode ? false : isview ? true : false} />
                                 </Grid>
 
                             </Grid>
