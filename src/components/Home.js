@@ -94,7 +94,7 @@ function Home() {
     }
     UpdatetData(formValues)
       .then((res) => {
-        if (res.status === '200') {
+        if (res.status === 200) {
           setIsUpdateSuccess(true)
         }
       })

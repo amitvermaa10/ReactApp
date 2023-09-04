@@ -5,7 +5,11 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import PageviewIcon from '@mui/icons-material/Pageview';
 import { fetchData } from '../apiService/apiService';
+
 
 function EmployeeTable({
   EditForm,
@@ -52,13 +56,13 @@ function EmployeeTable({
                       </TableCell>
                       <TableCell>{item.radiogroup}</TableCell>
                       <TableCell>
-                        <Button onClick={() => EditForm(item)}>Edit</Button>
+                        <Button onClick={() => EditForm(item)}><EditIcon/></Button>
                       </TableCell>
                       <TableCell>
-                        <Button onClick={() => DeleteForm(item)}>Delete</Button>
+                        <Button onClick={() => DeleteForm(item)}><DeleteIcon/></Button>
                       </TableCell>
                       <TableCell>
-                        <Button onClick={() => viewForm(item)}>View</Button>
+                        <Button onClick={() => viewForm(item)}><PageviewIcon/></Button>
                       </TableCell>
                     </TableRow>
                   );
