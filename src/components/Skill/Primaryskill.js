@@ -17,6 +17,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
+import './Primaryskill.scss';
+
 
 function Primaryskill({
   inputData,
@@ -33,8 +35,8 @@ function Primaryskill({
         <DialogTitle>{'Skill Assessment Form'}</DialogTitle>
         <DialogContent>
           <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item style={{ marginTop: '7px' }}>
+            <Grid container spacing={3}>
+              <Grid xs={4} sm={4} item style={{ marginTop: '7px' }}>
                 <TextField
                   label="Interviewer Name"
                   name="interviewerName"
@@ -44,9 +46,15 @@ function Primaryskill({
                   required
                   onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : true}
+                  sx={{
+                    "& fieldset": { border: isview ? 'none' : '' },
+                  }}
+                  inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
                 />
               </Grid>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item style={{paddingLeft:'17px'}}>
+                <div className='datePickerStyle'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={['DatePicker']}>
                     <DatePicker
@@ -59,16 +67,18 @@ function Primaryskill({
                           error: false,
                         },
                       }}
+                      sx={{
+                        "& fieldset": { border: isview ? 'none' : '' },
+                      }}
+                      inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                      InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
                     />
                   </DemoContainer>
                 </LocalizationProvider>
+                </div>
+              
               </Grid>
-            </Grid>
-          </div>
-
-          <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item style={{ marginTop: '7px' }}>
                 <TextField
                   label="Candidate Name"
                   name="candidateName"
@@ -78,10 +88,37 @@ function Primaryskill({
                   required
                   onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : true}
+                  sx={{
+                    "& fieldset": { border: isview ? 'none' : '' },
+                  }}
+                  inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                />
+              </Grid>
+            </Grid>
+          </div>
+
+          <div className="select-field">
+            <Grid container spacing={2}>
+              <Grid xs={4} sm={4} item>
+                <TextField
+                  label="Candidate Name"
+                  name="candidateName"
+                  placeholder="Candidate Name"
+                  value={inputData.candidateName}
+                  variant="outlined"
+                  required
+                  onChange={(e) => inputFromDetail(e)}
+                  disabled={isNewMode ? false : isview ? true : true}
+                  sx={{
+                    "& fieldset": { border: isview ? 'none' : '' },
+                  }}
+                  inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
                 />
               </Grid>
 
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item>
                 <FormControl variant="outlined" sx={{ minWidth: 225 }}>
                   <InputLabel>Interview round</InputLabel>
                   <Select
@@ -91,6 +128,11 @@ function Primaryskill({
                     value={inputData.interviewRound}
                     defaultValue=""
                     disabled={isNewMode ? false : isview ? true : true}
+                    sx={{
+                      "& fieldset": { border: isview ? 'none' : '' },
+                    }}
+                    inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
                   >
                     <MenuItem value="first">first</MenuItem>
                     <MenuItem value="second">Second</MenuItem>
@@ -98,11 +140,8 @@ function Primaryskill({
                   </Select>
                 </FormControl>
               </Grid>
-            </Grid>
-          </div>
-          <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item>
+
+              <Grid xs={4} sm={4} item>
                 <TextField
                   label="Overall Experience"
                   name="overallExperience"
@@ -112,13 +151,23 @@ function Primaryskill({
                   required
                   value={inputData.overallExperience}
                   onChange={(e) => inputFromDetail(e)}
-                  inputProps={{ inputMode: 'numeric' }}
+                  inputProps={{ inputMode: 'numeric' ,style:{fontSize:isview ? 20 : ''}}}
                   disabled={isNewMode ? false : isview ? true : false}
+                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                  sx={{
+                    "& fieldset": { border: isview ? 'none' : '' },
+                  }}
+                  
                 />
               </Grid>
-              <Grid xs={12} sm={6} item>
-                <FormControl variant="outlined" sx={{ minWidth: 150 }}>
-                  <InputLabel>Relevant experience</InputLabel>
+            </Grid>
+          </div>
+          <div className="select-field">
+            <Grid container spacing={2}>
+             
+              <Grid xs={4} sm={4} item>
+                <FormControl variant="outlined" sx={{ minWidth: 220 }}>
+                  <InputLabel style={{fontSize: isview ? 20 : ''}}  disabled={isview ? true : false}>Relevant experience</InputLabel>
                   <Select
                     name="relevantExperience"
                     value={inputData.relevantExperience}
@@ -126,15 +175,21 @@ function Primaryskill({
                     onChange={(e) => inputFromDetail(e)}
                     defaultValue=""
                     disabled={isview ? true : false}
+                    inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                    InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                    sx={{
+                      "& fieldset": { border: isview ? 'none' : '' },
+                    }}
                   >
                     <MenuItem value="react">React</MenuItem>
                     <MenuItem value="angular">Angular</MenuItem>
                     <MenuItem value="node">Node</MenuItem>
                   </Select>
                 </FormControl>
+                </Grid>
                 &nbsp;
+                <Grid xs={4} sm={4} item>
                 <TextField
-                  style={{ width: '70px' }}
                   label="years"
                   name="years"
                   placeholder="years"
@@ -143,10 +198,15 @@ function Primaryskill({
                   required
                   value={inputData.years}
                   onChange={(e) => inputFromDetail(e)}
-                  inputProps={{ inputMode: 'numeric' }}
+                  inputProps={{ inputMode: 'numeric' ,style: {fontSize: isview ? 20 : ''}}}
                   disabled={isNewMode ? false : isview ? true : false}
+                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                  sx={{
+                    "& fieldset": { border: isview ? 'none' : '' },
+                  }}
                 />
-              </Grid>
+                </Grid>
+              
             </Grid>
           </div>
         </DialogContent>
@@ -156,8 +216,8 @@ function Primaryskill({
         <DialogTitle style={{ fontSize: '17px' }}>{'Primary Skill evaluated'}</DialogTitle>
         <DialogContent>
           <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item>
+            <Grid container spacing={2}>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">HTML</Typography>
                 <Rating
                   name="html"
@@ -168,7 +228,7 @@ function Primaryskill({
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">CSS</Typography>
                 <Rating
                   name="css"
@@ -179,11 +239,7 @@ function Primaryskill({
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
-            </Grid>
-          </div>
-          <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">Javascript</Typography>
                 <Rating
                   name="javascript"
@@ -194,7 +250,11 @@ function Primaryskill({
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
-              <Grid xs={12} sm={6} item>
+            </Grid>
+          </div>
+          <div className="select-field">
+            <Grid container spacing={1}>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">ES6 Concepts</Typography>
                 <Rating
                   name="es6"
@@ -205,11 +265,7 @@ function Primaryskill({
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
-            </Grid>
-          </div>
-          <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">TypeScript</Typography>
                 <Rating
                   name="typescript"
@@ -220,7 +276,7 @@ function Primaryskill({
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">React</Typography>
                 <Rating
                   name="react"
@@ -234,8 +290,8 @@ function Primaryskill({
             </Grid>
           </div>
           <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item>
+            <Grid container spacing={2}>
+            <Grid xs={4} sm={4} item>
                 <Typography component="legend">Hooks</Typography>
                 <Rating
                   name="hooks"
@@ -246,7 +302,7 @@ function Primaryskill({
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">Redux</Typography>
                 <Rating
                   name="redux"
@@ -266,8 +322,8 @@ function Primaryskill({
         <DialogTitle style={{ fontSize: '17px' }}>{'Common Skills Evaluated'}</DialogTitle>
         <DialogContent>
           <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item>
+            <Grid container spacing={2}>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">Communication</Typography>
                 <Rating
                   name="communication"
@@ -278,7 +334,7 @@ function Primaryskill({
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">Attitude</Typography>
                 <Rating
                   name="attitude"
@@ -289,11 +345,7 @@ function Primaryskill({
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
-            </Grid>
-          </div>
-          <div className="select-field">
-            <Grid container spacing={1}>
-              <Grid xs={12} sm={6} item>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">Self-Learning</Typography>
                 <Rating
                   name="selflearning"
@@ -306,6 +358,7 @@ function Primaryskill({
               </Grid>
             </Grid>
           </div>
+         
         </DialogContent>
         <Divider />
       </div>

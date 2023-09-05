@@ -150,6 +150,12 @@ function InputForm({
         open={showForm}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        PaperProps={{
+          sx: {
+            width: '100%',
+            maxWidth: '1150px',
+          },
+        }}
       >
         <Primaryskill
           inputData={inputData}
@@ -164,8 +170,8 @@ function InputForm({
           <DialogTitle style={{ fontSize: '17px' }}>{'Decision'}</DialogTitle>
           <DialogContent>
             <div className="select-field">
-              <Grid container spacing={1}>
-                <Grid xs={12} sm={6} item>
+              <Grid container spacing={2}>
+                <Grid xs={4} sm={4} item>
                   <FormControl>
                     <FormLabel>Selected</FormLabel>
                     <RadioGroup
@@ -189,22 +195,8 @@ function InputForm({
                     </RadioGroup>
                   </FormControl>
                 </Grid>
-                <Grid xs={12} sm={6} item>
-                  <TextField
-                    label="Additional Comments"
-                    name="additionalComments"
-                    placeholder="Additional Comments"
-                    value={inputData.additionalComments}
-                    variant="outlined"
-                    onChange={(e) => inputFromDetail(e)}
-                    disabled={isNewMode ? false : isview ? true : true}
-                  />
-                </Grid>
-              </Grid>
-            </div>
-            <div className="select-field">
-              <Grid container spacing={1}>
-                <Grid xs={12} sm={6} item>
+
+                <Grid xs={4} sm={4} item>
                   <TextField
                     label="Interview Feedback"
                     name="interviewFeedback"
@@ -217,7 +209,8 @@ function InputForm({
                     disabled={isNewMode ? false : isview ? true : false}
                   />
                 </Grid>
-                <Grid xs={12} sm={6} item>
+
+                <Grid xs={4} sm={4} item>
                   <TextField
                     label="Training Recommended"
                     name="trainingRecommended"
@@ -233,8 +226,8 @@ function InputForm({
               </Grid>
             </div>
             <div className="select-field">
-              <Grid container spacing={1}>
-                <Grid xs={12} sm={6} item>
+              <Grid container spacing={2}>
+                <Grid xs={4} sm={4} item>
                   <TextField
                     label="others"
                     name="others"
@@ -242,6 +235,17 @@ function InputForm({
                     rows={4}
                     placeholder="Others"
                     value={inputData.others}
+                    variant="outlined"
+                    onChange={(e) => inputFromDetail(e)}
+                    disabled={isNewMode ? false : isview ? true : true}
+                  />
+                </Grid>
+                <Grid xs={4} sm={4} item>
+                  <TextField
+                    label="Additional Comments"
+                    name="additionalComments"
+                    placeholder="Additional Comments"
+                    value={inputData.additionalComments}
                     variant="outlined"
                     onChange={(e) => inputFromDetail(e)}
                     disabled={isNewMode ? false : isview ? true : true}

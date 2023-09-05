@@ -27,7 +27,7 @@ function EmployeeTable({
   }, [isSuccess, isdeleteSuccess, isupdateSuccess]);
 
   return (
-    <div style={{ textAlign: 'centre' }}>
+    <div style={{ marginLeft:'32px',marginRight:'32px',textAlign: 'centre' }}>
       <Paper sx={{ width: '100%' }}>
         <TableContainer>
           <Table>
