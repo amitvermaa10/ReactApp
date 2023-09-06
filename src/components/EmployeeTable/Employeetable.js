@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Button, TableContainer, Paper } from '@mui/material';
+import {
+  Button,
+  TableContainer,
+  Paper,
+  TableSortLabel,
+  TextField,
+  InputAdornment,
+} from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,7 +16,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import { fetchData } from '../apiService/apiService';
-
+import SearchIcon from '@mui/icons-material/Search';
+// import SearchBar from 'material-ui-search-bar';
 
 function EmployeeTable({
   EditForm,
@@ -20,22 +28,97 @@ function EmployeeTable({
   isupdateSuccess,
 }) {
   const [data, setData] = useState([]);
+  const [orderBy, setOrderBy] = useState('');
+  const [order, setOrder] = useState('asc');
+  const [searchQuery, setSearchQuery] = useState('');
+
   useEffect(() => {
     fetchData().then((res) => {
       setData(res.data);
     });
   }, [isSuccess, isdeleteSuccess, isupdateSuccess]);
 
+  const handleSort = (columnName) => {
+    const isAsc = orderBy === columnName && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(columnName);
+  };
+
+  const updatedData = () => {
+    const regex = new RegExp(searchQuery, 'i');
+    return data
+      .filter(
+        (row) =>
+          regex.test(row.candidateName) ||
+          regex.test(row.datepicker) ||
+          regex.test(row.overallExperience) ||
+          regex.test(row.overallExperience) ||
+          regex.test(row.relevantExperience) ||
+          regex.test(row.radiogroup)
+      )
+      .sort((a, b) => {
+        const aValue = a[orderBy];
+        const bValue = b[orderBy];
+
+        if (order === 'asc') {
+          return aValue < bValue ? -1 : 1;
+        } else {
+          return aValue > bValue ? -1 : 1;
+        }
+      });
+  };
+
+  const sortedData = updatedData();
   return (
-    <div style={{ marginLeft:'32px',marginRight:'32px',textAlign: 'centre' }}>
+    <div style={{ marginLeft: '32px', marginRight: '32px', textAlign: 'centre' }}>
       <Paper sx={{ width: '100%' }}>
+        <TextField
+          type="search"
+          sx={{ minWidth: '100%' }}
+          label="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
         <TableContainer>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Candidate Name</TableCell>
-                <TableCell>Interview Date</TableCell>
-                <TableCell>Overall experience</TableCell>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === 'candidateName'}
+                    direction={orderBy === 'candidateName' ? order : 'asc'}
+                    onClick={() => handleSort('candidateName')}
+                  >
+                    Candidate Name
+                  </TableSortLabel>
+                </TableCell>
+
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === 'overallExperience'}
+                    direction={orderBy === 'overallExperience' ? order : 'asc'}
+                    onClick={() => handleSort('overallExperience')}
+                  >
+                    Overall experience
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === 'datepicker'}
+                    direction={orderBy === 'datepicker' ? order : 'asc'}
+                    onClick={() => handleSort('datepicker')}
+                  >
+                    Interview Date
+                  </TableSortLabel>
+                </TableCell>
+
                 <TableCell>Relevant experience</TableCell>
                 <TableCell>Selected</TableCell>
                 <TableCell>Edit Actions</TableCell>
@@ -44,25 +127,32 @@ function EmployeeTable({
               </TableRow>
             </TableHead>
             <TableBody>
-              {data &&
-                data.map((item, index) => {
+              {sortedData &&
+                sortedData.map((item, index) => {
                   return (
                     <TableRow key={index}>
                       <TableCell testid="Edit">{item.candidateName}</TableCell>
-                      <TableCell>{item.datepicker.split("-").reverse().join("-")}</TableCell>
                       <TableCell>{item.overallExperience}</TableCell>
+                      <TableCell>{item.datepicker}</TableCell>
+
                       <TableCell>
                         {item.relevantExperience} {item.years} years
                       </TableCell>
                       <TableCell>{item.radiogroup}</TableCell>
                       <TableCell>
-                        <Button onClick={() => EditForm(item)}><EditIcon/></Button>
+                        <Button onClick={() => EditForm(item)}>
+                          <EditIcon />
+                        </Button>
                       </TableCell>
                       <TableCell>
-                        <Button onClick={() => DeleteForm(item)}><DeleteIcon/></Button>
+                        <Button onClick={() => DeleteForm(item)}>
+                          <DeleteIcon />
+                        </Button>
                       </TableCell>
                       <TableCell>
-                        <Button onClick={() => viewForm(item)}><PageviewIcon/></Button>
+                        <Button onClick={() => viewForm(item)}>
+                          <PageviewIcon />
+                        </Button>
                       </TableCell>
                     </TableRow>
                   );

@@ -157,6 +157,17 @@ function InputForm({
           },
         }}
       >
+        <div className='dialogActions'>
+        <DialogActions>
+          <Button type="submit" onClick={(e) => handleSubmit(e)}>
+            Save
+          </Button>
+          <Button onClick={(e) => handleReset(e)} disabled={isEditableMode}>
+            Reset
+          </Button>
+          <Button onClick={() => displayForm()}>Cancel</Button>
+        </DialogActions>
+        </div>
         <Primaryskill
           inputData={inputData}
           isNewMode={isNewMode}
@@ -172,6 +183,64 @@ function InputForm({
             <div className="select-field">
               <Grid container spacing={2}>
                 <Grid xs={4} sm={4} item>
+                  <TextField
+                    label="Interview Feedback"
+                    name="interviewFeedback"
+                    multiline
+                    rows={4}
+                    placeholder="Interview Feedback"
+                    value={inputData.interviewFeedback}
+                    variant="outlined"
+                    onChange={(e) => inputFromDetail(e)}
+                    disabled={isNewMode ? false : isview ? true : false}
+                    sx={{
+                      "& fieldset": { border: isview ? 'none' : '' },
+                    }}
+                    inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                    inputlabelprops={{style: {fontSize: isview ? 20 : ''}}}
+                  />
+                </Grid>
+                <Grid xs={4} sm={4} item>
+                  <TextField
+                    label="Training Recommended"
+                    name="trainingRecommended"
+                    multiline
+                    rows={4}
+                    placeholder="Training Recommended"
+                    value={inputData.trainingRecommended}
+                    variant="outlined"
+                    onChange={(e) => inputFromDetail(e)}
+                    disabled={isNewMode ? false : isview ? true : true}
+                    sx={{
+                      "& fieldset": { border: isview ? 'none' : '' },
+                    }}
+                    inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                    inputlabelprops={{style: {fontSize: isview ? 20 : ''}}}
+                  />
+                </Grid>
+                <Grid xs={4} sm={4} item>
+                  <TextField
+                    label="others"
+                    name="others"
+                    multiline
+                    rows={4}
+                    placeholder="Others"
+                    value={inputData.others}
+                    variant="outlined"
+                    onChange={(e) => inputFromDetail(e)}
+                    disabled={isNewMode ? false : isview ? true : true}
+                    sx={{
+                      "& fieldset": { border: isview ? 'none' : '' },
+                    }}
+                    inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                    inputlabelprops={{style: {fontSize: isview ? 20 : ''}}}
+                  />
+                </Grid>
+              </Grid>
+            </div>
+            <div className="select-field">
+              <Grid container spacing={2}>
+              <Grid xs={4} sm={4} item>
                   <FormControl>
                     <FormLabel>Selected</FormLabel>
                     <RadioGroup
@@ -195,51 +264,7 @@ function InputForm({
                     </RadioGroup>
                   </FormControl>
                 </Grid>
-
-                <Grid xs={4} sm={4} item>
-                  <TextField
-                    label="Interview Feedback"
-                    name="interviewFeedback"
-                    multiline
-                    rows={4}
-                    placeholder="Interview Feedback"
-                    value={inputData.interviewFeedback}
-                    variant="outlined"
-                    onChange={(e) => inputFromDetail(e)}
-                    disabled={isNewMode ? false : isview ? true : false}
-                  />
-                </Grid>
-
-                <Grid xs={4} sm={4} item>
-                  <TextField
-                    label="Training Recommended"
-                    name="trainingRecommended"
-                    multiline
-                    rows={4}
-                    placeholder="Training Recommended"
-                    value={inputData.trainingRecommended}
-                    variant="outlined"
-                    onChange={(e) => inputFromDetail(e)}
-                    disabled={isNewMode ? false : isview ? true : true}
-                  />
-                </Grid>
-              </Grid>
-            </div>
-            <div className="select-field">
-              <Grid container spacing={2}>
-                <Grid xs={4} sm={4} item>
-                  <TextField
-                    label="others"
-                    name="others"
-                    multiline
-                    rows={4}
-                    placeholder="Others"
-                    value={inputData.others}
-                    variant="outlined"
-                    onChange={(e) => inputFromDetail(e)}
-                    disabled={isNewMode ? false : isview ? true : true}
-                  />
-                </Grid>
+               
                 <Grid xs={4} sm={4} item>
                   <TextField
                     label="Additional Comments"
@@ -249,21 +274,17 @@ function InputForm({
                     variant="outlined"
                     onChange={(e) => inputFromDetail(e)}
                     disabled={isNewMode ? false : isview ? true : true}
+                    sx={{
+                      "& fieldset": { border: isview ? 'none' : '' },
+                    }}
+                    inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
+                    inputlabelprops={{style: {fontSize: isview ? 20 : ''}}}
                   />
                 </Grid>
               </Grid>
             </div>
           </DialogContent>
         </div>
-        <DialogActions>
-          <Button type="submit" onClick={(e) => handleSubmit(e)}>
-            Save
-          </Button>
-          <Button onClick={(e) => handleReset(e)} disabled={isEditableMode}>
-            Reset
-          </Button>
-          <Button onClick={() => displayForm()}>Cancel</Button>
-        </DialogActions>
       </Dialog>
     </div>
   );

@@ -19,7 +19,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import './Primaryskill.scss';
 
-
 function Primaryskill({
   inputData,
   isNewMode,
@@ -47,36 +46,36 @@ function Primaryskill({
                   onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : true}
                   sx={{
-                    "& fieldset": { border: isview ? 'none' : '' },
+                    '& fieldset': { border: isview ? 'none' : '' },
                   }}
-                  inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
-                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                  inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
+                  inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                 />
               </Grid>
-              <Grid xs={4} sm={4} item style={{paddingLeft:'17px'}}>
-                <div className='datePickerStyle'>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={['DatePicker']}>
-                    <DatePicker
-                      value={dayjs(datevalue)}
-                      onChange={ondateChange}
-                      name="datepicker"
-                      disabled={isNewMode ? false : isview ? true : true}
-                      slotProps={{
-                        textField: {
-                          error: false,
-                        },
-                      }}
-                      sx={{
-                        "& fieldset": { border: isview ? 'none' : '' },
-                      }}
-                      inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
-                      InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
+              <Grid xs={4} sm={4} item style={{ paddingLeft: '17px' }}>
+                <div className="datePickerStyle">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={['DatePicker']}>
+                      <DatePicker
+                        value={dayjs(datevalue)}
+                        onChange={ondateChange}
+                        name="datepicker"
+                        disabled={isNewMode ? false : isview ? true : true}
+                        slotProps={{
+                          textField: {
+                            error: false,
+                          },
+                        }}
+                        sx={{
+                          '& fieldset': { border: isview ? 'none' : '' },
+                        }}
+                        inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
+                        inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
+                        disableFuture={true}
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
                 </div>
-              
               </Grid>
               <Grid xs={4} sm={4} item style={{ marginTop: '7px' }}>
                 <TextField
@@ -89,10 +88,10 @@ function Primaryskill({
                   onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : true}
                   sx={{
-                    "& fieldset": { border: isview ? 'none' : '' },
+                    '& fieldset': { border: isview ? 'none' : '' },
                   }}
-                  inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
-                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                  inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
+                  inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                 />
               </Grid>
             </Grid>
@@ -100,24 +99,6 @@ function Primaryskill({
 
           <div className="select-field">
             <Grid container spacing={2}>
-              <Grid xs={4} sm={4} item>
-                <TextField
-                  label="Candidate Name"
-                  name="candidateName"
-                  placeholder="Candidate Name"
-                  value={inputData.candidateName}
-                  variant="outlined"
-                  required
-                  onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : true}
-                  sx={{
-                    "& fieldset": { border: isview ? 'none' : '' },
-                  }}
-                  inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
-                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
-                />
-              </Grid>
-
               <Grid xs={4} sm={4} item>
                 <FormControl variant="outlined" sx={{ minWidth: 225 }}>
                   <InputLabel>Interview round</InputLabel>
@@ -129,10 +110,10 @@ function Primaryskill({
                     defaultValue=""
                     disabled={isNewMode ? false : isview ? true : true}
                     sx={{
-                      "& fieldset": { border: isview ? 'none' : '' },
+                      '& fieldset': { border: isview ? 'none' : '' },
                     }}
-                    inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
-                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                    inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
+                    inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   >
                     <MenuItem value="first">first</MenuItem>
                     <MenuItem value="second">Second</MenuItem>
@@ -151,23 +132,22 @@ function Primaryskill({
                   required
                   value={inputData.overallExperience}
                   onChange={(e) => inputFromDetail(e)}
-                  inputProps={{ inputMode: 'numeric' ,style:{fontSize:isview ? 20 : ''}}}
+                  inputProps={{ inputMode: 'numeric', style: { fontSize: isview ? 20 : '' } }}
                   disabled={isNewMode ? false : isview ? true : false}
-                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                  inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   sx={{
-                    "& fieldset": { border: isview ? 'none' : '' },
+                    '& fieldset': { border: isview ? 'none' : '' },
                   }}
-                  
                 />
               </Grid>
-            </Grid>
-          </div>
-          <div className="select-field">
-            <Grid container spacing={2}>
-             
               <Grid xs={4} sm={4} item>
                 <FormControl variant="outlined" sx={{ minWidth: 220 }}>
-                  <InputLabel style={{fontSize: isview ? 20 : ''}}  disabled={isview ? true : false}>Relevant experience</InputLabel>
+                  <InputLabel
+                    style={{ fontSize: isview ? 20 : '' }}
+                    disabled={isview ? true : false}
+                  >
+                    Relevant experience
+                  </InputLabel>
                   <Select
                     name="relevantExperience"
                     value={inputData.relevantExperience}
@@ -175,10 +155,10 @@ function Primaryskill({
                     onChange={(e) => inputFromDetail(e)}
                     defaultValue=""
                     disabled={isview ? true : false}
-                    inputProps={{style: {fontSize: isview ? 20 : ''}}} // font size of input text
-                    InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                    inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
+                    inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                     sx={{
-                      "& fieldset": { border: isview ? 'none' : '' },
+                      '& fieldset': { border: isview ? 'none' : '' },
                     }}
                   >
                     <MenuItem value="react">React</MenuItem>
@@ -186,11 +166,15 @@ function Primaryskill({
                     <MenuItem value="node">Node</MenuItem>
                   </Select>
                 </FormControl>
-                </Grid>
-                &nbsp;
-                <Grid xs={4} sm={4} item>
+              </Grid>
+            </Grid>
+          </div>
+          <div className="select-field">
+            <Grid container spacing={2}>
+              &nbsp;
+              <Grid xs={4} sm={4} item>
                 <TextField
-                  label="years"
+                  label=" Relevant years"
                   name="years"
                   placeholder="years"
                   type="number"
@@ -198,15 +182,14 @@ function Primaryskill({
                   required
                   value={inputData.years}
                   onChange={(e) => inputFromDetail(e)}
-                  inputProps={{ inputMode: 'numeric' ,style: {fontSize: isview ? 20 : ''}}}
+                  inputProps={{ inputMode: 'numeric', style: { fontSize: isview ? 20 : '' } }}
                   disabled={isNewMode ? false : isview ? true : false}
-                  InputLabelProps={{style: {fontSize: isview ? 20 : ''}}}
+                  inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   sx={{
-                    "& fieldset": { border: isview ? 'none' : '' },
+                    '& fieldset': { border: isview ? 'none' : '' },
                   }}
                 />
-                </Grid>
-              
+              </Grid>
             </Grid>
           </div>
         </DialogContent>
@@ -291,7 +274,7 @@ function Primaryskill({
           </div>
           <div className="select-field">
             <Grid container spacing={2}>
-            <Grid xs={4} sm={4} item>
+              <Grid xs={4} sm={4} item>
                 <Typography component="legend">Hooks</Typography>
                 <Rating
                   name="hooks"
@@ -358,7 +341,6 @@ function Primaryskill({
               </Grid>
             </Grid>
           </div>
-         
         </DialogContent>
         <Divider />
       </div>
