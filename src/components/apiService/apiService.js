@@ -36,5 +36,6 @@ export const UpdatetData = async (formValues) =>{
 export const fetchData = async()=>{
     const response = await axios.get('http://localhost:3031/users')
     return response;
+    
 }
   

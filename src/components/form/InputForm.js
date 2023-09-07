@@ -17,6 +17,7 @@ import moment from 'moment/moment';
 import './InputForm.scss';
 import Primaryskill from '../Skill/Primaryskill';
 
+
 function InputForm({
   formValueHandler,
   displayForm,
@@ -56,22 +57,26 @@ function InputForm({
   const isNewMode = !isEditableMode;
   const [datevalue, setDateValue] = useState(null);
 
+
   useEffect(() => {
     setInputData(userItem);
   }, [userItem]);
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const ids = Math.random().toString(16).slice(2);
     let uniqueId = ids.slice(0, 3);
     if (isNewMode) {
-      alert('its new form');
+       alert('its new form');
       formValueHandler({ ...inputData, id: uniqueId });
     } else {
       alert('its edited form');
       updateFormHandler({ ...inputData });
     }
-    displayForm();
+   displayForm();
+    
   };
 
   const handleReset = (e) => {
@@ -144,6 +149,9 @@ function InputForm({
     setDateValue(inputData.datepicker);
   }, [inputData.datepicker]);
 
+
+
+ 
   return (
     <div>
       <Dialog

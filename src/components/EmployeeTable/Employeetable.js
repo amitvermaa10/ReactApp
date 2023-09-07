@@ -17,7 +17,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import { fetchData } from '../apiService/apiService';
 import SearchIcon from '@mui/icons-material/Search';
-// import SearchBar from 'material-ui-search-bar';
 
 function EmployeeTable({
   EditForm,
@@ -31,11 +30,21 @@ function EmployeeTable({
   const [orderBy, setOrderBy] = useState('');
   const [order, setOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isaxioserror, setIsaxioserror] = useState(false);
 
   useEffect(() => {
-    fetchData().then((res) => {
-      setData(res.data);
-    });
+    try {
+      fetchData().then((res) => {
+        if (res && res.data) {
+          setData(res.data);
+        } else {
+          setIsaxioserror(true);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      setData([]);
+    }
   }, [isSuccess, isdeleteSuccess, isupdateSuccess]);
 
   const handleSort = (columnName) => {
@@ -67,10 +76,20 @@ function EmployeeTable({
         }
       });
   };
-
   const sortedData = updatedData();
+  console.log('&&&&&data', data);
+
   return (
     <div style={{ marginLeft: '32px', marginRight: '32px', textAlign: 'centre' }}>
+      {isaxioserror && (
+        <div style={{ marginBottom: '10px' }}>
+          <TextField
+            variant="standard"
+            value={'Issue in fetching data'}
+            inputProps={{ min: 0, style: { textAlign: 'center' } }}
+          />
+        </div>
+      )}
       <Paper sx={{ width: '100%' }}>
         <TextField
           type="search"
@@ -128,6 +147,7 @@ function EmployeeTable({
             </TableHead>
             <TableBody>
               {sortedData &&
+                sortedData.length > 0 &&
                 sortedData.map((item, index) => {
                   return (
                     <TableRow key={index}>

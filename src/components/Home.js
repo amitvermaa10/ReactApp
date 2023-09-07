@@ -1,19 +1,23 @@
-import React, { useState } from 'react'
-import './home.scss'
-import InputForm from './form/InputForm'
-import { Button } from '@mui/material'
-import { postData, deleteData, UpdatetData } from './apiService/apiService'
-import EmployeeTable from './EmployeeTable/Employeetable'
-import HeaderComp from './header/HeaderComp'
+import React, { useState } from 'react';
+import './home.scss';
+import InputForm from './form/InputForm';
+import { Button, Snackbar, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { postData, deleteData, UpdatetData } from './apiService/apiService';
+import EmployeeTable from './EmployeeTable/Employeetable';
+import HeaderComp from './header/HeaderComp';
 
 function Home() {
-  const [showForm, setShowForm] = useState(false)
-  const [userItem, setUserItem] = useState({ interviewerName: '' })
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [isdeleteSuccess, setIsDeleteSuccess] = useState(false)
-  const [isupdateSuccess, setIsUpdateSuccess] = useState(false)
-  const [isview, setIsView] = useState(false)
-  const [isEdit, setIsEdit] = useState(false)
+  const [showForm, setShowForm] = useState(false);
+  const [userItem, setUserItem] = useState({ interviewerName: '' });
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isdeleteSuccess, setIsDeleteSuccess] = useState(false);
+  const [isupdateSuccess, setIsUpdateSuccess] = useState(false);
+  const [isview, setIsView] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [snackbartext, setSnackbartext] = useState('');
+  const [issnackbarError, setIssnackbarError] = useState(false);
 
   const handleClick = () => {
     setUserItem({
@@ -40,70 +44,127 @@ function Home() {
       trainingRecommended: '',
       others: '',
       datepicker: null,
-    })
-    setShowForm(true)
-  }
+    });
+    setShowForm(true);
+  };
 
   const displayForm = () => {
-    setShowForm(false)
-  }
+    setShowForm(false);
+  };
 
   const EditForm = (item) => {
-    setShowForm(true)
-    setUserItem(item)
-    setIsEdit(true)
-    setIsView(false)
-  }
+    setShowForm(true);
+    setUserItem(item);
+    setIsEdit(true);
+    setIsView(false);
+  };
 
   const viewForm = (item) => {
-    setShowForm(true)
-    setUserItem(item)
-    setIsView(true)
-    setIsEdit(false)
-  }
+    setShowForm(true);
+    setUserItem(item);
+    setIsView(true);
+    setIsEdit(false);
+  };
 
   const DeleteForm = (item) => {
-    if (isdeleteSuccess) {
-      setIsDeleteSuccess(false)
-    }
-    deleteData(item.id).then((res) => {
-      if (res) {
-        setIsDeleteSuccess(true)
+    try {
+      if (isdeleteSuccess) {
+        setIsDeleteSuccess(false);
       }
-    })
-  }
+      deleteData(item.id).then((res) => {
+        if (res) {
+          setIsDeleteSuccess(true);
+          setOpen(true);
+          setSnackbartext('it is successfull');
+        }
+      });
+    } catch (error) {
+      setOpen(true);
+      setIssnackbarError(true);
+      setSnackbartext('it is not successfull');
+    }
+  };
 
   const formValueHandler = async (formValues) => {
     try {
       if (isSuccess) {
-        setIsSuccess(false)
+        setIsSuccess(false);
       }
       postData(formValues).then((res) => {
         if (res) {
-          setIsSuccess(true)
+          setIsSuccess(true);
+          setOpen(true);
+
+          setSnackbartext('it is successfull');
         }
-      })
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      setOpen(true);
+      setIssnackbarError(true);
+      setSnackbartext('it is not successfull');
     }
-  }
+  };
 
   const updateFormHandler = async (formValues) => {
     if (isupdateSuccess) {
-      setIsUpdateSuccess(false)
+      setIsUpdateSuccess(false);
     }
     UpdatetData(formValues)
       .then((res) => {
         if (res.status === 200) {
-          setIsUpdateSuccess(true)
+          setIsUpdateSuccess(true);
+          setOpen(true);
+          setSnackbartext('it is successfull');
         }
       })
-      .catch((error) => console.log(error))
-  }
+      .catch((error) => {
+        console.log(error);
+        setOpen(true);
+        setIssnackbarError(true);
+        setSnackbartext('it is not successfull');
+      });
+  };
 
+  setTimeout(() => {
+    setOpen(false);
+    setIssnackbarError(false);
+  }, 1000);
+
+  const handleClose = () => {
+    setOpen(false);
+    setIssnackbarError(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  console.log('&&&&isopen', open);
   return (
     <div>
       <HeaderComp />
+      <Snackbar
+        open={open}
+        // autoHideDuration={6000}
+        message={snackbartext}
+        action={action}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        ContentProps={{
+          sx: {
+            // background: 'green',
+            ...(issnackbarError ? { background: 'red' } : { background: 'green' }),
+          },
+        }}
+      />
       <div className="align-button">
         <Button data-testid="button" onClick={handleClick}>
           + New Assessment
@@ -130,7 +191,7 @@ function Home() {
         />
       )}
     </div>
-  )
+  );
 }
 
 export default Home;
