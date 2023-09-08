@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Box } from '@mui/material';
+import { TextField, Button, Container, Typography, Box, Divider } from '@mui/material';
+import LockIcon from '@mui/icons-material/Lock';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -16,9 +17,9 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.username === 'demo' && formData.password === 'password') {
+    if (formData.password === 'password') {
       // to navigate
-      navigate('/home');
+      navigate('/home', { state: { name: formData.username } });
     } else {
       alert('Invalid credentials. please try again.');
     }
@@ -28,7 +29,7 @@ function Login() {
     <Container maxWidth="xs">
       <Box
         sx={{
-          boxShadow: 3,
+          boxShadow: 5,
           borderRadius: 2,
           px: 4,
           py: 6,
@@ -38,10 +39,13 @@ function Login() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h4"  style={{ marginTop: '20px' }}>
+        <LockIcon color="primary" style={{ fontSize: '48', marginBottom: '5px' }} />
+        <Typography variant="h4" style={{ marginTop: '20px' }} gutterBottom>
           Login
         </Typography>
+
         <form onSubmit={handleSubmit}>
+          <Divider sx={{ borderBottomWidth: '4px', bgcolor: 'primary.light' }} />
           <TextField
             fullWidth
             label="Username"
@@ -51,6 +55,7 @@ function Login() {
             value={formData.username}
             onChange={handleInputChange}
           />
+
           <TextField
             fullWidth
             label="Password"

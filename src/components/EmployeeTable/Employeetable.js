@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  TableContainer,
-  Paper,
-  TableSortLabel,
-  TextField,
-  InputAdornment,
-} from '@mui/material';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import PageviewIcon from '@mui/icons-material/Pageview';
+import { Rating } from '@mui/material';
 import { fetchData } from '../apiService/apiService';
-import SearchIcon from '@mui/icons-material/Search';
+import saveAs from 'file-saver';
+import { Document, Packer, Paragraph, TextRun } from 'docx';
+import EmployeeRendertable from './EmployeeRendertable';
+import './EmployeeTable.scss';
 
 function EmployeeTable({
   EditForm,
@@ -60,8 +48,6 @@ function EmployeeTable({
         (row) =>
           regex.test(row.candidateName) ||
           regex.test(row.datepicker) ||
-          regex.test(row.overallExperience) ||
-          regex.test(row.overallExperience) ||
           regex.test(row.relevantExperience) ||
           regex.test(row.radiogroup)
       )
@@ -77,112 +63,70 @@ function EmployeeTable({
       });
   };
   const sortedData = updatedData();
-  console.log('&&&&&data', data);
+  const handleDownload = (rowData) => {
+    const doc = new Document({
+      sections: [
+        {
+          properties: {},
+          children: [
+            new Paragraph({
+              children: [
+                new TextRun('\tName: ' + rowData.candidateName),
+                new TextRun('\toverallExperience: ' + rowData.overallExperience),
+                new TextRun('\tdate: ' + rowData.datepicker),
+                new TextRun('\tinterviewerName: ' + rowData.interviewerName),
+                new TextRun('\trelevantExperience: ' + rowData.relevantExperience + rowData.years),
+                new TextRun('\tSelected: ' + rowData.radiogroup),
+                new TextRun('\tinterviewRound: ' + rowData.interviewRound),
+                new TextRun('\taAvgSkills: ' + avgCalculate(rowData)),
+                new TextRun('\tinterviewFeedback: ' + rowData.interviewFeedback),
+                new TextRun('\ttrainingRecommended: ' + rowData.trainingRecommended),
+                new TextRun('\tadditionalComments: ' + rowData.additionalComments),
+                new TextRun('\tothers: ' + rowData.others),
+              ],
+            }),
+          ],
+        },
+      ],
+    });
+
+    Packer.toBlob(doc).then((blob) => {
+      saveAs(blob, `data_${rowData.candidateName}.docx`);
+    });
+  };
+  const handlechangenew = (item) => {
+    return <Rating max={5} precision={0.5} value={avgCalculate(item)} />;
+  };
+
+  const avgCalculate = (item) => {
+    const avg =
+      (parseFloat(item.html) +
+        parseFloat(item.css) +
+        parseFloat(item.javascript) +
+        parseFloat(item.es6) +
+        parseFloat(item.typescript) +
+        parseFloat(item.react) +
+        parseFloat(item.hooks) +
+        parseFloat(item.redux)) /
+      8;
+    return avg;
+  };
 
   return (
-    <div style={{ marginLeft: '32px', marginRight: '32px', textAlign: 'centre' }}>
-      {isaxioserror && (
-        <div style={{ marginBottom: '10px' }}>
-          <TextField
-            variant="standard"
-            value={'Issue in fetching data'}
-            inputProps={{ min: 0, style: { textAlign: 'center' } }}
-          />
-        </div>
-      )}
-      <Paper sx={{ width: '100%' }}>
-        <TextField
-          type="search"
-          sx={{ minWidth: '100%' }}
-          label="Search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <TableSortLabel
-                    active={orderBy === 'candidateName'}
-                    direction={orderBy === 'candidateName' ? order : 'asc'}
-                    onClick={() => handleSort('candidateName')}
-                  >
-                    Candidate Name
-                  </TableSortLabel>
-                </TableCell>
-
-                <TableCell>
-                  <TableSortLabel
-                    active={orderBy === 'overallExperience'}
-                    direction={orderBy === 'overallExperience' ? order : 'asc'}
-                    onClick={() => handleSort('overallExperience')}
-                  >
-                    Overall experience
-                  </TableSortLabel>
-                </TableCell>
-                <TableCell>
-                  <TableSortLabel
-                    active={orderBy === 'datepicker'}
-                    direction={orderBy === 'datepicker' ? order : 'asc'}
-                    onClick={() => handleSort('datepicker')}
-                  >
-                    Interview Date
-                  </TableSortLabel>
-                </TableCell>
-
-                <TableCell>Relevant experience</TableCell>
-                <TableCell>Selected</TableCell>
-                <TableCell>Edit Actions</TableCell>
-                <TableCell>Delete Actions</TableCell>
-                <TableCell>View Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {sortedData &&
-                sortedData.length > 0 &&
-                sortedData.map((item, index) => {
-                  return (
-                    <TableRow key={index}>
-                      <TableCell testid="Edit">{item.candidateName}</TableCell>
-                      <TableCell>{item.overallExperience}</TableCell>
-                      <TableCell>{item.datepicker}</TableCell>
-
-                      <TableCell>
-                        {item.relevantExperience} {item.years} years
-                      </TableCell>
-                      <TableCell>{item.radiogroup}</TableCell>
-                      <TableCell>
-                        <Button onClick={() => EditForm(item)}>
-                          <EditIcon />
-                        </Button>
-                      </TableCell>
-                      <TableCell>
-                        <Button onClick={() => DeleteForm(item)}>
-                          <DeleteIcon />
-                        </Button>
-                      </TableCell>
-                      <TableCell>
-                        <Button onClick={() => viewForm(item)}>
-                          <PageviewIcon />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
-    </div>
+    <EmployeeRendertable
+      handlechangenew={handlechangenew}
+      isaxioserror={isaxioserror}
+      handleDownload={handleDownload}
+      viewForm={viewForm}
+      DeleteForm={DeleteForm}
+      EditForm={EditForm}
+      sortedData={sortedData}
+      searchQuery={searchQuery}
+      setSearchQuery={setSearchQuery}
+      orderBy={orderBy}
+      order={order}
+      handleSort={handleSort}
+    />
   );
 }
-
 export default EmployeeTable;

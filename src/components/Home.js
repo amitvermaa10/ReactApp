@@ -6,10 +6,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import { postData, deleteData, UpdatetData } from './apiService/apiService';
 import EmployeeTable from './EmployeeTable/Employeetable';
 import HeaderComp from './header/HeaderComp';
+import { useLocation } from 'react-router-dom';
 
 function Home() {
   const [showForm, setShowForm] = useState(false);
-  const [userItem, setUserItem] = useState({ interviewerName: '' });
+  const [userItem, setUserItem] = useState();
   const [isSuccess, setIsSuccess] = useState(false);
   const [isdeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [isupdateSuccess, setIsUpdateSuccess] = useState(false);
@@ -19,6 +20,10 @@ function Home() {
   const [snackbartext, setSnackbartext] = useState('');
   const [issnackbarError, setIssnackbarError] = useState(false);
 
+  const location = useLocation();
+
+
+
   const handleClick = () => {
     setUserItem({
       interviewerName: '',
@@ -26,18 +31,18 @@ function Home() {
       interviewRound: '',
       overallExperience: '',
       relevantExperience: '',
-      years: '',
-      html: '',
-      css: '',
-      javascript: '',
-      es6: '',
-      typescript: '',
-      react: '',
-      hooks: '',
-      redux: '',
-      communication: '',
-      attitude: '',
-      selflearning: '',
+      years: 0,
+      html: 0,
+      css: 0,
+      javascript: 0,
+      es6: 0,
+      typescript: 0,
+      react: 0,
+      hooks: 0,
+      redux: 0,
+      communication: 0,
+      attitude: 0,
+      selflearning: 0,
       radiogroup: '',
       interviewFeedback: '',
       additionalComments: '',
@@ -75,13 +80,13 @@ function Home() {
         if (res) {
           setIsDeleteSuccess(true);
           setOpen(true);
-          setSnackbartext('it is successfull');
+          setSnackbartext('Delete is successfull');
         }
       });
     } catch (error) {
       setOpen(true);
       setIssnackbarError(true);
-      setSnackbartext('it is not successfull');
+      setSnackbartext('Delete is unsuccessfull');
     }
   };
 
@@ -95,14 +100,14 @@ function Home() {
           setIsSuccess(true);
           setOpen(true);
 
-          setSnackbartext('it is successfull');
+          setSnackbartext('Submit is successfull');
         }
       });
     } catch (error) {
       console.log(error);
       setOpen(true);
       setIssnackbarError(true);
-      setSnackbartext('it is not successfull');
+      setSnackbartext('Submit is successfull');
     }
   };
 
@@ -126,11 +131,6 @@ function Home() {
       });
   };
 
-  setTimeout(() => {
-    setOpen(false);
-    setIssnackbarError(false);
-  }, 1000);
-
   const handleClose = () => {
     setOpen(false);
     setIssnackbarError(false);
@@ -146,14 +146,12 @@ function Home() {
       </IconButton>
     </React.Fragment>
   );
-
-  console.log('&&&&isopen', open);
   return (
     <div>
-      <HeaderComp />
+      <HeaderComp name ={location?.state?.name}/>
       <Snackbar
         open={open}
-        // autoHideDuration={6000}
+        autoHideDuration={2000}
         message={snackbartext}
         action={action}
         onClose={handleClose}
@@ -165,6 +163,7 @@ function Home() {
           },
         }}
       />
+
       <div className="align-button">
         <Button data-testid="button" onClick={handleClick}>
           + New Assessment
@@ -188,6 +187,7 @@ function Home() {
           updateFormHandler={updateFormHandler}
           isview={isview}
           isEdit={isEdit}
+          handleClick={handleClick}
         />
       )}
     </div>

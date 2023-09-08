@@ -23,7 +23,6 @@ function Primaryskill({
   inputData,
   isNewMode,
   isview,
-  handleInputRating,
   inputFromDetail,
   datevalue,
   ondateChange,
@@ -52,7 +51,7 @@ function Primaryskill({
                   inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                 />
               </Grid>
-              <Grid xs={4} sm={4} item style={{ paddingLeft: '17px' }}>
+              <Grid xs={4} sm={4} item style={{ paddingLeft: '20px' }}>
                 <div className="datePickerStyle">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={['DatePicker']}>
@@ -140,8 +139,8 @@ function Primaryskill({
                   }}
                 />
               </Grid>
-              <Grid xs={4} sm={4} item>
-                <FormControl variant="outlined" sx={{ minWidth: 220 }}>
+              <Grid xs={4} sm={4} item style={{ paddingLeft: '20px' }}>
+                <FormControl variant="outlined" sx={{ minWidth: 225 }}>
                   <InputLabel
                     style={{ fontSize: isview ? 20 : '' }}
                     disabled={isview ? true : false}
@@ -207,7 +206,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   value={parseFloat(inputData.html)}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -218,7 +217,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   value={parseFloat(inputData.css)}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -229,7 +228,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   value={parseFloat(inputData.javascript)}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -244,7 +243,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   value={parseFloat(inputData.es6)}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -255,7 +254,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   value={parseFloat(inputData.typescript)}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -266,7 +265,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   value={parseFloat(inputData.react)}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -281,7 +280,7 @@ function Primaryskill({
                   value={parseFloat(inputData.hooks)}
                   max={5}
                   precision={0.5}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -292,7 +291,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   value={parseFloat(inputData.redux)}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -313,7 +312,7 @@ function Primaryskill({
                   value={parseFloat(inputData.communication)}
                   max={5}
                   precision={0.5}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -324,7 +323,7 @@ function Primaryskill({
                   value={parseFloat(inputData.attitude)}
                   max={5}
                   precision={0.5}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>
@@ -335,7 +334,7 @@ function Primaryskill({
                   value={parseFloat(inputData.selflearning)}
                   max={5}
                   precision={0.5}
-                  onChange={(e) => handleInputRating(e)}
+                  onChange={(e) => inputFromDetail(e)}
                   disabled={isNewMode ? false : isview ? true : false}
                 />
               </Grid>

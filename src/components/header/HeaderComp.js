@@ -1,13 +1,19 @@
 import React from 'react';
-import { AppBar, Typography, Toolbar } from '@mui/material';
+import { AppBar, Typography, Toolbar, Button } from '@mui/material';
 
-function HeaderComp() {
+function HeaderComp({name}) {
   return (
     <div className="heading">
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Skill Assessment Dashboard
+          <div style={{'paddingLeft':'40%'}}>
+            <Typography variant="h6" component="div" align="center" sx={{ flexGrow: 1 }}>
+              Skill Assessment Dashboard
+            </Typography>
+          </div>
+
+          <Typography variant="h12" component="div" align="right" sx={{ flexGrow: 1 }}>
+            {name}
           </Typography>
         </Toolbar>
       </AppBar>
