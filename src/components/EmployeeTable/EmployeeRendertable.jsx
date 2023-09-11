@@ -38,7 +38,7 @@ function EmployeeRendertable({
         <div style={{ marginBottom: '10px' }}>
           <TextField
             variant="standard"
-            value={'Issue in fetching data'}
+            value='Issue in fetching data'
             inputProps={{ min: 0, style: { textAlign: 'center' } }}
             error
           />
@@ -107,9 +107,8 @@ function EmployeeRendertable({
             <TableBody>
               {sortedData &&
                 sortedData.length > 0 &&
-                sortedData.map((item, index) => {
-                  return (
-                    <TableRow key={index}>
+                sortedData.map((item) => 
+                    <TableRow >
                       <TableCell testid="Edit">{item.candidateName}</TableCell>
                       <TableCell>{item.overallExperience}</TableCell>
                       <TableCell>{item.datepicker}</TableCell>
@@ -139,8 +138,8 @@ function EmployeeRendertable({
                         </Button>
                       </TableCell>
                     </TableRow>
-                  );
-                })}
+                  
+                )}
             </TableBody>
           </Table>
         </TableContainer>

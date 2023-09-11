@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Dialog, DialogActions, Button } from '@mui/material';
 import moment from 'moment/moment';
 import './InputForm.scss';
-import Primaryskill from '../Skill/Primaryskill';
-import Decision from '../decision/Decision';
+import Primaryskill from '../Skill/Primaryskill.jsx';
+import Decision from '../decision/Decision.jsx';
 
 function InputForm({
   formValueHandler,
@@ -24,7 +24,6 @@ function InputForm({
   }, [userItem]);
 
   const handleSubmit = (e) => {
-    console.log('&&&&&&inputData', inputData);
     if (
       inputData.candidateName !== '' &&
       inputData.interviewerName !== '' &&
@@ -33,20 +32,17 @@ function InputForm({
     ) {
       e.preventDefault();
       const ids = Math.random().toString(16).slice(2);
-      let uniqueId = ids.slice(0, 3);
+      const uniqueId = ids.slice(0, 3);
       if (isNewMode) {
-        alert('its new form');
         formValueHandler({ ...inputData, id: uniqueId });
       } else {
-        alert('its edited form');
         updateFormHandler({ ...inputData });
       }
       displayForm();
     }
   };
   const inputFromDetail = (e) => {
-    let value = e.target.value;
-    let name = e.target.name;
+    const { name, value } = e.target;
     setInputData({
       ...inputData,
       [name]: value,
@@ -57,7 +53,7 @@ function InputForm({
   };
 
   const ondateChange = (date) => {
-    let test = moment(date.$d).format('YYYY-MM-DD');
+    const test = moment(date.$d).format('YYYY-MM-DD');
     setInputData({ ...inputData, datepicker: test });
     setDateValue(test);
   };
@@ -84,13 +80,14 @@ function InputForm({
             <Button
               type="submit"
               onClick={(e) => handleSubmit(e)}
-              disabled={isNewMode ? false : isview ? true : false}
+              disabled={isview}
             >
               Save
             </Button>
             <Button
               onClick={(e) => handleClick(e)}
-              disabled={isNewMode ? false : isview ? true : false}
+              disabled={!isNewMode}
+             
             >
               Reset
             </Button>

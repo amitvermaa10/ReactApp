@@ -11,10 +11,11 @@ import {
   Radio,
 } from '@mui/material';
 
-function Decision({ inputData, isview, isNewMode, inputFromDetail }) {
+function Decision({ inputData, isview, inputFromDetail }) {
+
   return (
     <div>
-      <DialogTitle style={{ fontSize: '17px' }}>{'Decision'}</DialogTitle>
+      <DialogTitle style={{ fontSize: '17px' }}>Decision</DialogTitle>
       <DialogContent>
         <div className="select-field">
           <Grid container spacing={2}>
@@ -28,7 +29,7 @@ function Decision({ inputData, isview, isNewMode, inputFromDetail }) {
                 value={inputData.interviewFeedback}
                 variant="outlined"
                 onChange={(e) => inputFromDetail(e)}
-                disabled={isNewMode ? false : isview ? true : false}
+                 disabled={isview}
                 sx={{
                   '& fieldset': { border: isview ? 'none' : '' },
                 }}
@@ -46,7 +47,7 @@ function Decision({ inputData, isview, isNewMode, inputFromDetail }) {
                 value={inputData.trainingRecommended}
                 variant="outlined"
                 onChange={(e) => inputFromDetail(e)}
-                disabled={isNewMode ? false : isview ? true : true}
+                disabled ={isview}
                 sx={{
                   '& fieldset': { border: isview ? 'none' : '' },
                 }}
@@ -64,7 +65,7 @@ function Decision({ inputData, isview, isNewMode, inputFromDetail }) {
                 value={inputData.others}
                 variant="outlined"
                 onChange={(e) => inputFromDetail(e)}
-                disabled={isNewMode ? false : isview ? true : true}
+                disabled ={isview}
                 sx={{
                   '& fieldset': { border: isview ? 'none' : '' },
                 }}
@@ -89,13 +90,14 @@ function Decision({ inputData, isview, isNewMode, inputFromDetail }) {
                     value="yes"
                     control={<Radio />}
                     label="yes"
-                    disabled={isNewMode ? false : isview ? true : true}
+                    disabled ={isview}
+                    
                   />
                   <FormControlLabel
                     value="no"
                     control={<Radio />}
                     label="No"
-                    disabled={isNewMode ? false : isview ? true : true}
+                    disabled ={isview}
                   />
                 </RadioGroup>
               </FormControl>
@@ -109,7 +111,7 @@ function Decision({ inputData, isview, isNewMode, inputFromDetail }) {
                 value={inputData.additionalComments}
                 variant="outlined"
                 onChange={(e) => inputFromDetail(e)}
-                disabled={isNewMode ? false : isview ? true : true}
+                disabled ={isview}
                 sx={{
                   '& fieldset': { border: isview ? 'none' : '', minWidth: 140 },
                 }}

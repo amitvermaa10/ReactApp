@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Typography, Toolbar, Button } from '@mui/material';
+import { AppBar, Typography, Toolbar } from '@mui/material';
 
 function HeaderComp({name}) {
   return (

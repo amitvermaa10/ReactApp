@@ -27,10 +27,11 @@ function Primaryskill({
   datevalue,
   ondateChange,
 }) {
+  
   return (
     <div>
       <div>
-        <DialogTitle>{'Skill Assessment Form'}</DialogTitle>
+        <DialogTitle>`&#34;`Skill Assessment Form`&#34;`</DialogTitle>
         <DialogContent>
           <div className="select-field">
             <Grid container spacing={3}>
@@ -43,7 +44,7 @@ function Primaryskill({
                   variant="outlined"
                   required
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : true}
+                   disabled={!isNewMode}
                   sx={{
                     '& fieldset': { border: isview ? 'none' : '' },
                   }}
@@ -59,7 +60,7 @@ function Primaryskill({
                         value={dayjs(datevalue)}
                         onChange={ondateChange}
                         name="datepicker"
-                        disabled={isNewMode ? false : isview ? true : true}
+                        disabled={!isNewMode}
                         slotProps={{
                           textField: {
                             error: false,
@@ -70,7 +71,7 @@ function Primaryskill({
                         }}
                         inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
                         inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
-                        disableFuture={true}
+                        disableFuture
                       />
                     </DemoContainer>
                   </LocalizationProvider>
@@ -85,7 +86,7 @@ function Primaryskill({
                   variant="outlined"
                   required
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : true}
+                  disabled={!isNewMode}
                   sx={{
                     '& fieldset': { border: isview ? 'none' : '' },
                   }}
@@ -107,7 +108,7 @@ function Primaryskill({
                     onChange={(e) => inputFromDetail(e)}
                     value={inputData.interviewRound}
                     defaultValue=""
-                    disabled={isNewMode ? false : isview ? true : true}
+                    disabled={!isNewMode}
                     sx={{
                       '& fieldset': { border: isview ? 'none' : '' },
                     }}
@@ -132,7 +133,7 @@ function Primaryskill({
                   value={inputData.overallExperience}
                   onChange={(e) => inputFromDetail(e)}
                   inputProps={{ inputMode: 'numeric', style: { fontSize: isview ? 20 : '' } }}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled= {isview} 
                   inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   sx={{
                     '& fieldset': { border: isview ? 'none' : '' },
@@ -143,7 +144,7 @@ function Primaryskill({
                 <FormControl variant="outlined" sx={{ minWidth: 225 }}>
                   <InputLabel
                     style={{ fontSize: isview ? 20 : '' }}
-                    disabled={isview ? true : false}
+                    disabled={isview}
                   >
                     Relevant experience
                   </InputLabel>
@@ -153,7 +154,7 @@ function Primaryskill({
                     label="Relevant experience"
                     onChange={(e) => inputFromDetail(e)}
                     defaultValue=""
-                    disabled={isview ? true : false}
+                    disabled={isview}
                     inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
                     inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                     sx={{
@@ -182,7 +183,7 @@ function Primaryskill({
                   value={inputData.years}
                   onChange={(e) => inputFromDetail(e)}
                   inputProps={{ inputMode: 'numeric', style: { fontSize: isview ? 20 : '' } }}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                   inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   sx={{
                     '& fieldset': { border: isview ? 'none' : '' },
@@ -195,7 +196,7 @@ function Primaryskill({
         <Divider />
       </div>
       <div>
-        <DialogTitle style={{ fontSize: '17px' }}>{'Primary Skill evaluated'}</DialogTitle>
+        <DialogTitle style={{ fontSize: '17px' }}>Primary Skill evaluated</DialogTitle>
         <DialogContent>
           <div className="select-field">
             <Grid container spacing={2}>
@@ -207,7 +208,7 @@ function Primaryskill({
                   precision={0.5}
                   value={parseFloat(inputData.html)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -218,7 +219,7 @@ function Primaryskill({
                   precision={0.5}
                   value={parseFloat(inputData.css)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -229,7 +230,7 @@ function Primaryskill({
                   precision={0.5}
                   value={parseFloat(inputData.javascript)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                 />
               </Grid>
             </Grid>
@@ -244,7 +245,7 @@ function Primaryskill({
                   precision={0.5}
                   value={parseFloat(inputData.es6)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -255,7 +256,7 @@ function Primaryskill({
                   precision={0.5}
                   value={parseFloat(inputData.typescript)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -266,7 +267,7 @@ function Primaryskill({
                   precision={0.5}
                   value={parseFloat(inputData.react)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                 />
               </Grid>
             </Grid>
@@ -281,7 +282,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -292,7 +293,7 @@ function Primaryskill({
                   precision={0.5}
                   value={parseFloat(inputData.redux)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={isview}
                 />
               </Grid>
             </Grid>
@@ -301,7 +302,7 @@ function Primaryskill({
         <Divider />
       </div>
       <div>
-        <DialogTitle style={{ fontSize: '17px' }}>{'Common Skills Evaluated'}</DialogTitle>
+        <DialogTitle style={{ fontSize: '17px' }}>Common Skills Evaluated</DialogTitle>
         <DialogContent>
           <div className="select-field">
             <Grid container spacing={2}>
@@ -313,7 +314,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={!isNewMode}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -324,7 +325,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={!isNewMode}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -335,7 +336,7 @@ function Primaryskill({
                   max={5}
                   precision={0.5}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isNewMode ? false : isview ? true : false}
+                  disabled={!isNewMode}
                 />
               </Grid>
             </Grid>

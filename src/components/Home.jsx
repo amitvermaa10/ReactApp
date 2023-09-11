@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import './home.scss';
-import InputForm from './form/InputForm';
 import { Button, Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { postData, deleteData, UpdatetData } from './apiService/apiService';
-import EmployeeTable from './EmployeeTable/Employeetable';
-import HeaderComp from './header/HeaderComp';
 import { useLocation } from 'react-router-dom';
+import './home.scss';
+import InputForm from './form/InputForm.jsx';
+import { postData, deleteData, UpdatetData } from './apiService/apiService.js';
+import EmployeeTable from './EmployeeTable/Employeetable.jsx';
+import HeaderComp from './header/HeaderComp.jsx';
+
 
 function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -21,8 +22,6 @@ function Home() {
   const [issnackbarError, setIssnackbarError] = useState(false);
 
   const location = useLocation();
-
-
 
   const handleClick = () => {
     setUserItem({
@@ -137,18 +136,18 @@ function Home() {
   };
 
   const action = (
-    <React.Fragment>
+    <>
       <Button color="secondary" size="small" onClick={handleClose}>
         UNDO
       </Button>
       <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
         <CloseIcon fontSize="small" />
       </IconButton>
-    </React.Fragment>
+    </>
   );
   return (
     <div>
-      <HeaderComp name ={location?.state?.name}/>
+      <HeaderComp name={location?.state?.name} />
       <Snackbar
         open={open}
         autoHideDuration={2000}

@@ -19,6 +19,7 @@
     },
     "plugins": ["react", "jest"],
     "rules": {
+        "react/prop-types": "off",
         "no-underscore-dangle": 0,
         "import/extensions": [
             "error",
