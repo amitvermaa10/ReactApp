@@ -18,6 +18,7 @@ function InputForm({
   const isEditableMode = userItem.interviewerName !== '';
   const isNewMode = !isEditableMode;
   const [datevalue, setDateValue] = useState(null);
+ 
 
   useEffect(() => {
     setInputData(userItem);
@@ -48,7 +49,7 @@ function InputForm({
       [name]: value,
     });
     if (name === 'overallExperience') {
-      setInputData({ ...inputData, overallExperience: value.replace(/[^0-9]/g, '') });
+     setInputData({ ...inputData, overallExperience: value.replace(/[^0-9]/g, '') });
     }
   };
 
@@ -75,7 +76,7 @@ function InputForm({
           },
         }}
       >
-        <div className="dialogActions">
+        {/* <div className="dialogActions">
           <DialogActions>
             <Button
               type="submit"
@@ -93,7 +94,7 @@ function InputForm({
             </Button>
             <Button onClick={() => displayForm()}>Cancel</Button>
           </DialogActions>
-        </div>
+        </div> */}
         <Primaryskill
           inputData={inputData}
           isNewMode={isNewMode}
@@ -109,6 +110,24 @@ function InputForm({
           isNewMode={isNewMode}
           inputFromDetail={inputFromDetail}
         />
+         <div className="dialogActionsNew">
+          <DialogActions>
+            <Button onClick={() => displayForm()}>Cancel</Button>
+            <Button
+              type="submit"
+              onClick={(e) => handleSubmit(e)}
+              disabled={isview}
+            >
+              Save
+            </Button>
+            <Button
+              onClick={(e) => handleClick(e)}
+              disabled={!isNewMode}
+            >
+              Reset
+            </Button>
+          </DialogActions>
+        </div>
       </Dialog>
     </div>
   );

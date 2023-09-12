@@ -31,7 +31,7 @@ function Primaryskill({
   return (
     <div>
       <div>
-        <DialogTitle>`&#34;`Skill Assessment Form`&#34;`</DialogTitle>
+        <DialogTitle>Skill Assessment Form</DialogTitle>
         <DialogContent>
           <div className="select-field">
             <Grid container spacing={3}>
@@ -115,7 +115,7 @@ function Primaryskill({
                     inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
                     inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   >
-                    <MenuItem value="first">first</MenuItem>
+                    <MenuItem value="first">First</MenuItem>
                     <MenuItem value="second">Second</MenuItem>
                     <MenuItem value="final">Final</MenuItem>
                   </Select>
@@ -132,12 +132,14 @@ function Primaryskill({
                   required
                   value={inputData.overallExperience}
                   onChange={(e) => inputFromDetail(e)}
-                  inputProps={{ inputMode: 'numeric', style: { fontSize: isview ? 20 : '' } }}
+                  InputProps={{ inputProps: { min: 3, max: 10 },inputMode: 'numeric', style: { fontSize: isview ? 20 : '' } }}
+                  
                   disabled= {isview} 
                   inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   sx={{
                     '& fieldset': { border: isview ? 'none' : '' },
                   }}
+                  fullWidth
                 />
               </Grid>
               <Grid xs={4} sm={4} item style={{ paddingLeft: '20px' }}>

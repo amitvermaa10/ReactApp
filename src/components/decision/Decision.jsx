@@ -19,7 +19,7 @@ function Decision({ inputData, isview, inputFromDetail }) {
       <DialogContent>
         <div className="select-field">
           <Grid container spacing={2}>
-            <Grid xs={4} sm={4} item>
+            <Grid xs={4} sm={4} item style={{ minWidth: '350px' }}>
               <TextField
                 label="Interview Feedback"
                 name="interviewFeedback"
@@ -53,6 +53,7 @@ function Decision({ inputData, isview, inputFromDetail }) {
                 }}
                 inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
                 inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
+                fullWidth
               />
             </Grid>
             <Grid xs={4} sm={4} item>
@@ -77,6 +78,22 @@ function Decision({ inputData, isview, inputFromDetail }) {
         </div>
         <div className="select-field">
           <Grid container spacing={2}>
+          <Grid xs={4} sm={4} item>
+              <TextField
+                label="Additional Comments"
+                name="additionalComments"
+                placeholder="Additional Comments"
+                value={inputData.additionalComments}
+                variant="outlined"
+                onChange={(e) => inputFromDetail(e)}
+                disabled ={isview}
+                sx={{
+                  '& fieldset': { border: isview ? 'none' : '', minWidth: 140 },
+                }}
+                inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
+                inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
+              />
+            </Grid>
             <Grid xs={4} sm={4} item>
               <FormControl>
                 <FormLabel>Selected</FormLabel>
@@ -103,22 +120,7 @@ function Decision({ inputData, isview, inputFromDetail }) {
               </FormControl>
             </Grid>
 
-            <Grid xs={4} sm={4} item>
-              <TextField
-                label="Additional Comments"
-                name="additionalComments"
-                placeholder="Additional Comments"
-                value={inputData.additionalComments}
-                variant="outlined"
-                onChange={(e) => inputFromDetail(e)}
-                disabled ={isview}
-                sx={{
-                  '& fieldset': { border: isview ? 'none' : '', minWidth: 140 },
-                }}
-                inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
-                inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
-              />
-            </Grid>
+           
           </Grid>
         </div>
       </DialogContent>

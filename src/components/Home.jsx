@@ -7,6 +7,7 @@ import InputForm from './form/InputForm.jsx';
 import { postData, deleteData, UpdatetData } from './apiService/apiService.js';
 import EmployeeTable from './EmployeeTable/Employeetable.jsx';
 import HeaderComp from './header/HeaderComp.jsx';
+import CandidateCard from './CandidateCard/CandidateCard.jsx';
 
 
 function Home() {
@@ -68,6 +69,7 @@ function Home() {
     setUserItem(item);
     setIsView(true);
     setIsEdit(false);
+    alert("heya view");
   };
 
   const DeleteForm = (item) => {
@@ -168,6 +170,7 @@ function Home() {
           + New Assessment
         </Button>
       </div>
+      <CandidateCard/>
       <EmployeeTable
         EditForm={EditForm}
         isSuccess={isSuccess}
