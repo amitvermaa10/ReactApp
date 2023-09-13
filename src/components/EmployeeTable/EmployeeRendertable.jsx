@@ -33,12 +33,12 @@ function EmployeeRendertable({
   handleSort,
 }) {
   return (
-    <div style={{ marginLeft: '32px', marginRight: '32px', textAlign: 'centre' }}>
+    <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
       {isaxioserror && (
         <div style={{ marginBottom: '10px' }}>
           <TextField
             variant="standard"
-            value='Issue in fetching data'
+            value="Issue in fetching data"
             inputProps={{ min: 0, style: { textAlign: 'center' } }}
             error
           />
@@ -76,15 +76,7 @@ function EmployeeRendertable({
                   </TableSortLabel>
                 </TableCell>
 
-                <TableCell>
-                  <TableSortLabel
-                    active={orderBy === 'overallExperience'}
-                    direction={orderBy === 'overallExperience' ? order : 'asc'}
-                    onClick={() => handleSort('overallExperience')}
-                  >
-                    Overall experience
-                  </TableSortLabel>
-                </TableCell>
+                <TableCell>Overall experience</TableCell>
                 <TableCell>
                   <TableSortLabel
                     active={orderBy === 'datepicker'}
@@ -107,39 +99,38 @@ function EmployeeRendertable({
             <TableBody>
               {sortedData &&
                 sortedData.length > 0 &&
-                sortedData.map((item) => 
-                    <TableRow >
-                      <TableCell testid="Edit">{item.candidateName}</TableCell>
-                      <TableCell>{item.overallExperience}</TableCell>
-                      <TableCell>{item.datepicker}</TableCell>
-                      <TableCell>
-                        {item.relevantExperience} {item.years} years
-                      </TableCell>
-                      <TableCell>{handlechangenew(item)}</TableCell>
-                      <TableCell>{item.radiogroup}</TableCell>
-                      <TableCell>
-                        <Button onClick={() => EditForm(item)}>
-                          <EditIcon />
-                        </Button>
-                      </TableCell>
-                      <TableCell>
-                        <Button onClick={() => DeleteForm(item)}>
-                          <DeleteIcon />
-                        </Button>
-                      </TableCell>
-                      <TableCell>
-                        <Button onClick={() => viewForm(item)}>
-                          <PageviewIcon />
-                        </Button>
-                      </TableCell>
-                      <TableCell>
-                        <Button onClick={() => handleDownload(item)}>
-                          <CloudDownloadIcon />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  
-                )}
+                sortedData.map((item) => (
+                  <TableRow>
+                    <TableCell testid="Edit">{item.candidateName}</TableCell>
+                    <TableCell>{item.overallExperience}</TableCell>
+                    <TableCell>{item.datepicker}</TableCell>
+                    <TableCell>
+                      {item.relevantExperience} {item.years} years
+                    </TableCell>
+                    <TableCell>{handlechangenew(item)}</TableCell>
+                    <TableCell>{item.radiogroup}</TableCell>
+                    <TableCell>
+                      <Button onClick={() => EditForm(item)}>
+                        <EditIcon />
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button onClick={() => DeleteForm(item)}>
+                        <DeleteIcon />
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button onClick={() => viewForm(item)}>
+                        <PageviewIcon />
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button onClick={() => handleDownload(item)}>
+                        <CloudDownloadIcon />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>

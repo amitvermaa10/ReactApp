@@ -3,7 +3,7 @@ import { Avatar, Card, CardHeader, CardContent, Typography, Grid } from '@mui/ma
 
 function CandidateCard() {
   return (
-    <div style={{ marginLeft: '32px', marginRight: '32px', textAlign: 'centre' }}>
+    <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
       <Grid container spacing={2}>
         <Grid xs={3} sm={3} item>
           <Card sx={{ maxWidth: '25rem', margin: '3rem auto' }}>

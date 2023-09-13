@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
 import { Button, Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from 'react-router-dom';
 import './home.scss';
+import {fetchAllUsers} from '../redux/slice/todo.js'
 import InputForm from './form/InputForm.jsx';
 import { postData, deleteData, UpdatetData } from './apiService/apiService.js';
 import EmployeeTable from './EmployeeTable/Employeetable.jsx';
 import HeaderComp from './header/HeaderComp.jsx';
 import CandidateCard from './CandidateCard/CandidateCard.jsx';
+import EmployeeChart from './EmployeeChart/EmployeeChart.jsx';
+
 
 
 function Home() {
@@ -23,6 +27,16 @@ function Home() {
   const [issnackbarError, setIssnackbarError] = useState(false);
 
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(fetchAllUsers());
+  },[])
+
+  const stateUpdated = useSelector((state)=> state.app);
+  
+  //  console.log("^^^^^^^",state.app)
+
 
   const handleClick = () => {
     setUserItem({
@@ -147,7 +161,9 @@ function Home() {
       </IconButton>
     </>
   );
+  console.log("&&&stateUpdated",stateUpdated);
   return (
+   
     <div>
       <HeaderComp name={location?.state?.name} />
       <Snackbar
@@ -171,6 +187,7 @@ function Home() {
         </Button>
       </div>
       <CandidateCard/>
+      <EmployeeChart/>
       <EmployeeTable
         EditForm={EditForm}
         isSuccess={isSuccess}
