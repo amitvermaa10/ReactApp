@@ -14,6 +14,7 @@ export const deleteData = async (id) => {
   try {
     // const response = await axios.delete('http://localhost:3031/users/' + id);
     const response = await axios.delete(`http://localhost:3031/users/${id}`);
+    console.log("&&&response111",response)
     return response.data;
   } catch (error) {
     // console.log(error);

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from 'react-router-dom';
 import './home.scss';
-import {fetchAllUsers} from '../redux/slice/todo.js'
+import { fetchAllUsers, createUsers, deleteUsers } from '../redux/slice/todo.js';
 import InputForm from './form/InputForm.jsx';
 import { postData, deleteData, UpdatetData } from './apiService/apiService.js';
 import EmployeeTable from './EmployeeTable/Employeetable.jsx';
 import HeaderComp from './header/HeaderComp.jsx';
 import CandidateCard from './CandidateCard/CandidateCard.jsx';
 import EmployeeChart from './EmployeeChart/EmployeeChart.jsx';
-
-
 
 function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -29,14 +27,16 @@ function Home() {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchAllUsers());
-  },[])
+  }, []);
 
-  const stateUpdated = useSelector((state)=> state.app);
-  
+  const stateUpdated = useSelector((state) =>
+    // state.app
+    console.log('&&&&sate', state)
+  );
+
   //  console.log("^^^^^^^",state.app)
-
 
   const handleClick = () => {
     setUserItem({
@@ -83,7 +83,7 @@ function Home() {
     setUserItem(item);
     setIsView(true);
     setIsEdit(false);
-    alert("heya view");
+    alert('heya view');
   };
 
   const DeleteForm = (item) => {
@@ -91,13 +91,10 @@ function Home() {
       if (isdeleteSuccess) {
         setIsDeleteSuccess(false);
       }
-      deleteData(item.id).then((res) => {
-        if (res) {
-          setIsDeleteSuccess(true);
-          setOpen(true);
-          setSnackbartext('Delete is successfull');
-        }
-      });
+      dispatch(deleteUsers(item.id));
+      setIsDeleteSuccess(true);
+      setOpen(true);
+      setSnackbartext('Delete is successfull');
     } catch (error) {
       setOpen(true);
       setIssnackbarError(true);
@@ -105,19 +102,55 @@ function Home() {
     }
   };
 
+  // const DeleteForm = (item) => {
+  //   try {
+  //     if (isdeleteSuccess) {
+  //       setIsDeleteSuccess(false);
+  //     }
+  //     deleteData(item.id).then((res) => {
+  //       if (res) {
+  //         setIsDeleteSuccess(true);
+  //         setOpen(true);
+  //         setSnackbartext('Delete is successfull');
+  //       }
+  //     });
+  //   } catch (error) {
+  //     setOpen(true);
+  //     setIssnackbarError(true);
+  //     setSnackbartext('Delete is unsuccessfull');
+  //   }
+  // };
+
+  // const formValueHandler = async (formValues) => {
+  //   try {
+  //     if (isSuccess) {
+  //       setIsSuccess(false);
+  //     }
+  //     postData(formValues).then((res) => {
+  //       if (res) {
+  //         setIsSuccess(true);
+  //         setOpen(true);
+
+  //         setSnackbartext('Submit is successfull');
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     setOpen(true);
+  //     setIssnackbarError(true);
+  //     setSnackbartext('Submit is successfull');
+  //   }
+  // };
+
   const formValueHandler = async (formValues) => {
     try {
       if (isSuccess) {
         setIsSuccess(false);
       }
-      postData(formValues).then((res) => {
-        if (res) {
-          setIsSuccess(true);
-          setOpen(true);
-
-          setSnackbartext('Submit is successfull');
-        }
-      });
+      dispatch(createUsers(formValues));
+      setIsSuccess(true);
+      setOpen(true);
+      setSnackbartext('Submit is successfull');
     } catch (error) {
       console.log(error);
       setOpen(true);
@@ -161,9 +194,8 @@ function Home() {
       </IconButton>
     </>
   );
-  console.log("&&&stateUpdated",stateUpdated);
+  console.log('&&&stateUpdated', stateUpdated);
   return (
-   
     <div>
       <HeaderComp name={location?.state?.name} />
       <Snackbar
@@ -186,8 +218,8 @@ function Home() {
           + New Assessment
         </Button>
       </div>
-      <CandidateCard/>
-      <EmployeeChart/>
+      <CandidateCard />
+      <EmployeeChart />
       <EmployeeTable
         EditForm={EditForm}
         isSuccess={isSuccess}
