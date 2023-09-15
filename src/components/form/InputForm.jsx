@@ -18,7 +18,6 @@ function InputForm({
   const isEditableMode = userItem.interviewerName !== '';
   const isNewMode = !isEditableMode;
   const [datevalue, setDateValue] = useState(null);
- 
 
   useEffect(() => {
     setInputData(userItem);
@@ -48,9 +47,26 @@ function InputForm({
       ...inputData,
       [name]: value,
     });
-    if (name === 'overallExperience') {
-     setInputData({ ...inputData, overallExperience: value.replace(/[^0-9]/g, '') });
-    }
+    // if (name === 'overallExperience') {
+    //   setInputData({ ...inputData, overallExperience: value.replace(/[^0-9]/g, '') });
+    // }
+    // if (name === 'interviewerName') {
+    //   const alphabeticRegex = /^[A-Za-z]+$/;
+    //   if ((value.match(alphabeticRegex) || value === '') && value.length <= 20) {
+    //     //     setInputData({ ...inputData, interviewerName: inputValue});
+    //     setInputData({
+    //       ...inputData,
+    //       [name]: value,
+    //     });
+    //     //   }
+    //   }
+    // }
+  };
+
+  const inputFromDetailUpdated = (e) => {
+    const { name} = e.target;
+    const formattedValue = e.target.value.replace(/[^A-Za-z]/g, '').slice(0, 20);
+    setInputData({ ...inputData, [name]: formattedValue });
   };
 
   const ondateChange = (date) => {
@@ -102,6 +118,7 @@ function InputForm({
           inputFromDetail={inputFromDetail}
           datevalue={datevalue}
           ondateChange={ondateChange}
+          inputFromDetailUpdated={inputFromDetailUpdated}
         />
 
         <Decision
@@ -110,20 +127,13 @@ function InputForm({
           isNewMode={isNewMode}
           inputFromDetail={inputFromDetail}
         />
-         <div className="dialogActionsNew">
+        <div className="dialogActionsNew">
           <DialogActions>
             <Button onClick={() => displayForm()}>Cancel</Button>
-            <Button
-              type="submit"
-              onClick={(e) => handleSubmit(e)}
-              disabled={isview}
-            >
+            <Button type="submit" onClick={(e) => handleSubmit(e)} disabled={isview}>
               Save
             </Button>
-            <Button
-              onClick={(e) => handleClick(e)}
-              disabled={!isNewMode}
-            >
+            <Button onClick={(e) => handleClick(e)} disabled={!isNewMode}>
               Reset
             </Button>
           </DialogActions>

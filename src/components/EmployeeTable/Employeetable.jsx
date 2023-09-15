@@ -1,44 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { Rating } from '@mui/material';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { TextField, InputAdornment, Rating } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import saveAs from 'file-saver';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
-import { fetchData } from '../apiService/apiService.js';
 import EmployeeRendertable from './EmployeeRendertable.jsx';
+// import Othertable from './Othertable.jsx';
 import './EmployeeTable.scss';
 
-function EmployeeTable({
-  EditForm,
-  DeleteForm,
-  viewForm,
-  isSuccess,
-  isdeleteSuccess,
-  isupdateSuccess,
-}) {
-  const [data, setData] = useState([]);
+function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
+  // const [data, setData] = useState([]);
   const [orderBy, setOrderBy] = useState('');
   const [order, setOrder] = useState('asc');
+  const [orderByOther, setOrderByOther] = useState('');
+  const [orderOther, setOrderOther] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isaxioserror, setIsaxioserror] = useState(false);
+  const [searchQueryOther, setSearchQueryOther] = useState('');
+  const [isaxioserror] = useState(false);
 
-  useEffect(() => {
-    try {
-      fetchData().then((res) => {
-        if (res && res.data) {
-          setData(res.data);
-        } else {
-          setIsaxioserror(true);
-        }
-      });
-    } catch (error) {
-      console.log(error);
-      setData([]);
-    }
-  }, [isSuccess, isdeleteSuccess, isupdateSuccess]);
+  const data = useSelector((state) => state.app.data);
+
+  const myInterviewerData = data.filter((item) => item.interviewerName !== name);
+  const otherInterviewerdata = data.filter((item) => item.interviewerName === name);
 
   const handleSort = (columnName) => {
     const isAsc = orderBy === columnName && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(columnName);
+  };
+
+  const handleSortOther = (columnName) => {
+    const isAsc = orderByOther === columnName && orderOther === 'asc';
+    setOrderOther(isAsc ? 'desc' : 'asc');
+    setOrderByOther(columnName);
   };
 
   const avgCalculate = (item) => {
@@ -57,7 +51,7 @@ function EmployeeTable({
 
   const updatedData = () => {
     const regex = new RegExp(searchQuery, 'i');
-    return data
+    return myInterviewerData
       .filter(
         (row) =>
           regex.test(row.candidateName) ||
@@ -72,13 +66,38 @@ function EmployeeTable({
         if (order === 'asc') {
           return aValue < bValue ? -1 : 1;
         }
-        
         // else {
-          return aValue > bValue ? -1 : 1;
+        return aValue > bValue ? -1 : 1;
         // }
       });
   };
-  const sortedData = updatedData();
+
+  const updatedDataOther = () => {
+    const regex = new RegExp(searchQueryOther, 'i');
+    return otherInterviewerdata
+      .filter(
+        (row) =>
+          regex.test(row.candidateName) ||
+          regex.test(row.datepicker) ||
+          regex.test(row.relevantExperience) ||
+          regex.test(row.radiogroup)
+      )
+      .sort((a, b) => {
+        const aValue = a[orderByOther];
+        const bValue = b[orderByOther];
+
+        if (orderOther === 'asc') {
+          return aValue < bValue ? -1 : 1;
+        }
+
+        // else {
+        return aValue > bValue ? -1 : 1;
+        // }
+      });
+  };
+
+  const sortedData = updatedData(myInterviewerData);
+  const sortedDataOther = updatedDataOther(otherInterviewerdata);
   const handleDownload = (rowData) => {
     const doc = new Document({
       sections: [
@@ -87,33 +106,73 @@ function EmployeeTable({
           children: [
             new Paragraph({
               children: [
-                // new TextRun('\tName: ' + rowData.candidateName),
-                // new TextRun('\toverallExperience: ' + rowData.overallExperience),
-                // new TextRun('\tdate: ' + rowData.datepicker),
-                // new TextRun('\tinterviewerName: ' + rowData.interviewerName),
-                // new TextRun('\trelevantExperience: ' + rowData.relevantExperience + rowData.years),
-                // new TextRun('\tSelected: ' + rowData.radiogroup),
-                // new TextRun('\tinterviewRound: ' + rowData.interviewRound),
-                // new TextRun('\taAvgSkills: ' + avgCalculate(rowData)),
-                // new TextRun('\tinterviewFeedback: ' + rowData.interviewFeedback),
-                // new TextRun('\ttrainingRecommended: ' + rowData.trainingRecommended),
-                // new TextRun('\tadditionalComments: ' + rowData.additionalComments),
-                // new TextRun('\tothers: ' + rowData.others),
-
-                new TextRun(`\tName:${rowData.candidateName}`),
-                new TextRun(`\toverallExperience: ${rowData.overallExperience}`),
-                new TextRun(`\tdate: ${rowData.datepicker}`),
-                new TextRun(`\tinterviewerName: ${rowData.interviewerName}`),
-                new TextRun(
-                  `\trelevantExperience:  ${rowData.relevantExperience} ${rowData.years}`
-                ),
-                new TextRun(`\tSelected: ${rowData.radiogroup}`),
-                new TextRun(`\tinterviewRound: ${rowData.interviewRound}`),
-                new TextRun(`\taAvgSkills: ' + ${avgCalculate(rowData)}`),
-                new TextRun(`\tinterviewFeedback: ' + ${rowData.interviewFeedback}`),
-                 new TextRun(`\ttrainingRecommended: ' + ${rowData.trainingRecommended}`),
-                // new TextRun('\tadditionalComments: ' + rowData.additionalComments),
-                // new TextRun('\tothers: ' + rowData.others),
+                new TextRun({
+                  text: `Name: ${rowData.candidateName}`,
+                  bold: true,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Overall Experience: ${rowData.overallExperience}`,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Date: ${rowData.datepicker}`,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Interviewer Name: ${rowData.interviewerName}`,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Relevant Experience: ${rowData.relevantExperience} ${rowData.years}`,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Selected: ${rowData.radiogroup}`,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Interview Round: ${rowData.interviewRound}`,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Avg Skills: ${avgCalculate(rowData)}`,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Interview Feedback: ${rowData.interviewFeedback}`,
+                }),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Training Recommended: ${rowData.trainingRecommended}`,
+                }),
               ],
             }),
           ],
@@ -125,25 +184,100 @@ function EmployeeTable({
       saveAs(blob, `data_${rowData.candidateName}.docx`);
     });
   };
-  const handlechangenew = (item) => { <Rating max={5} precision={0.5} value={avgCalculate(item)} /> };
 
-  
-
-  return (
-    <EmployeeRendertable
-      handlechangenew={handlechangenew}
-      isaxioserror={isaxioserror}
-      handleDownload={handleDownload}
-      viewForm={viewForm}
-      DeleteForm={DeleteForm}
-      EditForm={EditForm}
-      sortedData={sortedData}
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-      orderBy={orderBy}
-      order={order}
-      handleSort={handleSort}
+  const handlechangenew = (item) => (
+    <Rating
+      max={5}
+      precision={0.5}
+      value={avgCalculate(item)}
+      readOnly
+      sx={{
+        cursor: 'not-allowed',
+      }}
     />
+  );
+  console.log('&&&&&&otherInterviewer', otherInterviewerdata);
+  return (
+    <div>
+      <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>My Interviews</h3>
+      <div
+        className="search-textbox"
+        style={{
+          marginBottom: '20px',
+          marginTop: '20px',
+          marginLeft: '100px',
+          marginRight: '100px',
+        }}
+      >
+        <TextField
+          type="search"
+          sx={{ minWidth: '100%' }}
+          label="Search"
+          value={searchQueryOther}
+          onChange={(e) => setSearchQueryOther(e.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </div>
+      <EmployeeRendertable
+        handlechangenew={handlechangenew}
+        isaxioserror={isaxioserror}
+        handleDownload={handleDownload}
+        viewForm={viewForm}
+        DeleteForm={DeleteForm}
+        EditForm={EditForm}
+        sortedData={sortedDataOther}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        orderBy={orderByOther}
+        order={orderOther}
+        handleSort={handleSortOther}
+      />
+      <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>Other Interviews</h3>
+      <div
+        className="search-textbox"
+        style={{
+          marginBottom: '20px',
+          marginTop: '20px',
+          marginLeft: '100px',
+          marginRight: '100px',
+        }}
+      >
+        <TextField
+          type="search"
+          sx={{ minWidth: '100%' }}
+          label="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </div>
+      <EmployeeRendertable
+        handlechangenew={handlechangenew}
+        isaxioserror={isaxioserror}
+        handleDownload={handleDownload}
+        viewForm={viewForm}
+        DeleteForm={DeleteForm}
+        EditForm={EditForm}
+        sortedData={sortedData}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        orderBy={orderBy}
+        order={order}
+        handleSort={handleSort}
+      />
+    </div>
   );
 }
 export default EmployeeTable;

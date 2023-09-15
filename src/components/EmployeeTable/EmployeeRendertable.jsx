@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   TableContainer,
   Paper,
   TableSortLabel,
   TextField,
-  InputAdornment,
+  Pagination,
 } from '@mui/material';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -15,7 +16,6 @@ import TableRow from '@mui/material/TableRow';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PageviewIcon from '@mui/icons-material/Pageview';
-import SearchIcon from '@mui/icons-material/Search';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 function EmployeeRendertable({
@@ -26,12 +26,19 @@ function EmployeeRendertable({
   DeleteForm,
   EditForm,
   sortedData,
-  searchQuery,
-  setSearchQuery,
   orderBy,
   order,
   handleSort,
 }) {
+  const [page, setPage] = useState(1);
+  const [rowsPerPage] = useState(3);
+
+  const startIndex = (page - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
   return (
     <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
       {isaxioserror && (
@@ -44,23 +51,6 @@ function EmployeeRendertable({
           />
         </div>
       )}
-
-      <div className="search-textbox" style={{ marginBottom: '20px' }}>
-        <TextField
-          type="search"
-          sx={{ minWidth: '30%' }}
-          label="Search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
       <Paper sx={{ width: '100%' }}>
         <TableContainer>
           <Table>
@@ -99,7 +89,7 @@ function EmployeeRendertable({
             <TableBody>
               {sortedData &&
                 sortedData.length > 0 &&
-                sortedData.map((item) => (
+                sortedData.slice(startIndex, endIndex).map((item) => (
                   <TableRow>
                     <TableCell testid="Edit">{item.candidateName}</TableCell>
                     <TableCell>{item.overallExperience}</TableCell>
@@ -134,6 +124,11 @@ function EmployeeRendertable({
             </TableBody>
           </Table>
         </TableContainer>
+        <Pagination
+          count={Math.ceil(sortedData.length / rowsPerPage)}
+          page={page}
+          onChange={handleChangePage}
+        />
       </Paper>
     </div>
   );

@@ -20,7 +20,7 @@ function CandidateCard() {
 
   let candidatecount = 0;
   data.forEach((obj) => {
-    if (obj.interviewerName === 'bbbbb') {
+    if (obj.interviewerName === 'Utkarsh') {
       candidatecount += 1;
     }
   });

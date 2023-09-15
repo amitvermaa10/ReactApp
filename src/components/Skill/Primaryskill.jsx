@@ -19,19 +19,13 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import './Primaryskill.scss';
 
-function Primaryskill({
-  inputData,
-  isNewMode,
-  isview,
-  inputFromDetail,
-  datevalue,
-  ondateChange,
-}) {
-  
+function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue, ondateChange ,inputFromDetailUpdated}) {
   return (
     <div>
+      <header>
+       <h3 style={{paddingLeft:'30px'}}>Skill Assessment Form </h3>
+      </header>
       <div>
-        <DialogTitle>Skill Assessment Form</DialogTitle>
         <DialogContent>
           <div className="select-field">
             <Grid container spacing={3}>
@@ -43,8 +37,8 @@ function Primaryskill({
                   value={inputData?.interviewerName}
                   variant="outlined"
                   required
-                  onChange={(e) => inputFromDetail(e)}
-                   disabled={!isNewMode}
+                  onChange={(e) => inputFromDetailUpdated(e)}
+                  disabled={!isNewMode}
                   sx={{
                     '& fieldset': { border: isview ? 'none' : '' },
                   }}
@@ -85,7 +79,7 @@ function Primaryskill({
                   value={inputData.candidateName}
                   variant="outlined"
                   required
-                  onChange={(e) => inputFromDetail(e)}
+                  onChange={(e) => inputFromDetailUpdated(e)}
                   disabled={!isNewMode}
                   sx={{
                     '& fieldset': { border: isview ? 'none' : '' },
@@ -132,9 +126,12 @@ function Primaryskill({
                   required
                   value={inputData.overallExperience}
                   onChange={(e) => inputFromDetail(e)}
-                  InputProps={{ inputProps: { min: 3, max: 10 },inputMode: 'numeric', style: { fontSize: isview ? 20 : '' } }}
-                  
-                  disabled= {isview} 
+                  InputProps={{
+                    inputProps: { min: 3, max: 10 },
+                    inputMode: 'numeric',
+                    style: { fontSize: isview ? 20 : '' },
+                  }}
+                  disabled={isview}
                   inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   sx={{
                     '& fieldset': { border: isview ? 'none' : '' },
@@ -144,10 +141,7 @@ function Primaryskill({
               </Grid>
               <Grid xs={4} sm={4} item style={{ paddingLeft: '20px' }}>
                 <FormControl variant="outlined" sx={{ minWidth: 225 }}>
-                  <InputLabel
-                    style={{ fontSize: isview ? 20 : '' }}
-                    disabled={isview}
-                  >
+                  <InputLabel style={{ fontSize: isview ? 20 : '' }} disabled={isview}>
                     Relevant experience
                   </InputLabel>
                   <Select

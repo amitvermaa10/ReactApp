@@ -14,8 +14,8 @@ function EmployeeChart() {
   };
   data.forEach((item) => {
     const experience = item.relevantExperience;
-    if (experienceCounts.hasOwnProperty(experience)) {
-      experienceCounts[experience]++;
+    if (Object.prototype.hasOwnProperty.call(experienceCounts, experience)) {
+      experienceCounts[experience] += 1;
     }
   });
   const experienceCountsArray = Object.values(experienceCounts);
@@ -23,12 +23,11 @@ function EmployeeChart() {
   let selectedcount = 0;
   data.forEach((item) => {
     if (item.radiogroup === 'yes') {
-      selectedcount++;
+      selectedcount+=1;
     }
   });
 
   const notSelectedCandidate = Number(totalNoOfCandidate - selectedcount);
-  console.log('&&&notSelectedCandidate', notSelectedCandidate);
   return (
     <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
       <Grid container spacing={2}>

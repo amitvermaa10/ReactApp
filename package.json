@@ -46,7 +46,9 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "eslint": "eslint src --ext .js, .jsx",
-    "prettier": "npx prettier src --check"
+    "prettier": "npx prettier src --check",
+    "client-server": "npm-run-all --parallel start json-server",
+    "json-server": "json-server --watch dbNew.json --port 3031"
   },
   "eslintIgnore": [
     "**/*.test.js",

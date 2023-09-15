@@ -4,9 +4,8 @@ import { Button, Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from 'react-router-dom';
 import './home.scss';
-import { fetchAllUsers, createUsers, deleteUsers } from '../redux/slice/todo.js';
+import { fetchAllUsers, createUsers, deleteUsers, updateUsers } from '../redux/slice/todo.js';
 import InputForm from './form/InputForm.jsx';
-import { postData, deleteData, UpdatetData } from './apiService/apiService.js';
 import EmployeeTable from './EmployeeTable/Employeetable.jsx';
 import HeaderComp from './header/HeaderComp.jsx';
 import CandidateCard from './CandidateCard/CandidateCard.jsx';
@@ -29,7 +28,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(fetchAllUsers());
-  }, []);
+  },);
 
   const stateUpdated = useSelector((state) =>
     // state.app
@@ -159,24 +158,47 @@ function Home() {
     }
   };
 
+  // const updateFormHandler = async (formValues) => {
+  //   if (isupdateSuccess) {
+  //     setIsUpdateSuccess(false);
+  //   }
+  //   UpdatetData(formValues)
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         setIsUpdateSuccess(true);
+  //         setOpen(true);
+  //         setSnackbartext('it is successfull');
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setOpen(true);
+  //       setIssnackbarError(true);
+  //       setSnackbartext('it is not successfull');
+  //     });
+  // };
+
   const updateFormHandler = async (formValues) => {
     if (isupdateSuccess) {
       setIsUpdateSuccess(false);
     }
-    UpdatetData(formValues)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsUpdateSuccess(true);
-          setOpen(true);
-          setSnackbartext('it is successfull');
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setOpen(true);
-        setIssnackbarError(true);
-        setSnackbartext('it is not successfull');
-      });
+    dispatch(updateUsers(formValues));
+    setIsUpdateSuccess(true);
+    setOpen(true);
+    setSnackbartext('it is successfull');
+    // .then((res) => {
+    //   if (res.status === 200) {
+    //     setIsUpdateSuccess(true);
+    //     setOpen(true);
+    //     setSnackbartext('it is successfull');
+    //   }
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   setOpen(true);
+    //   setIssnackbarError(true);
+    //   setSnackbartext('it is not successfull');
+    // });
   };
 
   const handleClose = () => {
@@ -227,6 +249,7 @@ function Home() {
         isupdateSuccess={isupdateSuccess}
         DeleteForm={DeleteForm}
         viewForm={viewForm}
+        name={location?.state?.name}
       />
       {showForm && (
         <InputForm
