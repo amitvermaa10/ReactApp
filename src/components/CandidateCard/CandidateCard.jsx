@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Avatar, Card, CardHeader, CardContent, Typography, Grid } from '@mui/material';
+import './CandidateCard.scss';
 
 function CandidateCard() {
   const data = useSelector((state) => state.app.data);
@@ -31,7 +32,7 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              maxWidth: '25rem',
+              // maxWidth: '25rem',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}
@@ -49,7 +50,7 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              maxWidth: '25rem',
+              // maxWidth: '25rem',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}
@@ -67,7 +68,7 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              maxWidth: '25rem',
+              // maxWidth: '25rem',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}
@@ -84,7 +85,7 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              maxWidth: '25rem',
+              // maxWidth: '25rem',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}

@@ -196,7 +196,6 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
       }}
     />
   );
-  console.log('&&&&&&otherInterviewer', otherInterviewerdata);
   return (
     <div>
       <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>My Interviews</h3>

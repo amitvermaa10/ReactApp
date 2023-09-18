@@ -28,7 +28,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(fetchAllUsers());
-  });
+  },[isupdateSuccess,isdeleteSuccess]);
 
   const handleClick = () => {
     setIsView(false);
@@ -69,6 +69,7 @@ function Home() {
     setUserItem(item);
     setIsEdit(true);
     setIsView(false);
+    setIsUpdateSuccess(false);
   };
 
   const viewForm = (item) => {
@@ -87,6 +88,9 @@ function Home() {
       setIsDeleteSuccess(true);
       setOpen(true);
       setSnackbartext('Delete is successfull');
+      setTimeout(()=>{
+        setIsDeleteSuccess(false);
+      },2000);
     } catch (error) {
       setOpen(true);
       setIssnackbarError(true);

@@ -90,7 +90,7 @@ function EmployeeRendertable({
               {sortedData &&
                 sortedData.length > 0 &&
                 sortedData.slice(startIndex, endIndex).map((item) => (
-                  <TableRow>
+                  <TableRow key={item.id}>
                     <TableCell testid="Edit">{item.candidateName}</TableCell>
                     <TableCell>{item.overallExperience}</TableCell>
                     <TableCell>{item.datepicker}</TableCell>
