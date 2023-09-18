@@ -19,11 +19,18 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import './Primaryskill.scss';
 
-function Primaryskill({ inputData, isNewMode, inputFromDetail, datevalue, ondateChange ,inputFromDetailUpdated}) {
+function Primaryskill({
+  inputData,
+  isNewMode,
+  inputFromDetail,
+  datevalue,
+  ondateChange,
+  inputFromDetailUpdated,
+}) {
   return (
     <div>
       <header>
-       <h3 style={{paddingLeft:'30px'}}>Skill Assessment Form </h3>
+        <h3 style={{ paddingLeft: '30px' }}>Skill Assessment Form </h3>
       </header>
       <div>
         <DialogContent>
@@ -114,9 +121,7 @@ function Primaryskill({ inputData, isNewMode, inputFromDetail, datevalue, ondate
               </Grid>
               <Grid xs={4} sm={4} item style={{ paddingLeft: '20px' }}>
                 <FormControl variant="outlined" sx={{ minWidth: 225 }}>
-                  <InputLabel >
-                    Relevant experience
-                  </InputLabel>
+                  <InputLabel>Relevant experience</InputLabel>
                   <Select
                     name="relevantExperience"
                     value={inputData.relevantExperience}
@@ -135,7 +140,7 @@ function Primaryskill({ inputData, isNewMode, inputFromDetail, datevalue, ondate
           <div className="select-field">
             <Grid container spacing={2}>
               &nbsp;
-              <Grid xs={4} sm={4} item >
+              <Grid xs={4} sm={4} item>
                 <TextField
                   label=" Relevant years"
                   name="years"

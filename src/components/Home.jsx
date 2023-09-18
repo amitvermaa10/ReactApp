@@ -28,7 +28,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(fetchAllUsers());
-  },);
+  });
 
   const handleClick = () => {
     setIsView(false);
@@ -93,7 +93,6 @@ function Home() {
       setSnackbartext('Delete is unsuccessfull');
     }
   };
-
 
   const formValueHandler = async (formValues) => {
     try {

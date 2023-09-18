@@ -3,11 +3,8 @@ import todoSlice from './slice/todo.js';
 
 export const store = configureStore({
   reducer: {
-    app: todoSlice, 
+    app: todoSlice,
   },
 });
 
 export default store;
-
- 
-

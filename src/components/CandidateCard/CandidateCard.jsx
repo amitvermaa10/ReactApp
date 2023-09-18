@@ -16,7 +16,7 @@ function CandidateCard() {
   }
 
   const average = overallsum / totalNoOfCandidate;
-  const overalltotalAvg = Math.round(average * 10) / 10; 
+  const overalltotalAvg = Math.round(average * 10) / 10;
 
   let candidatecount = 0;
   data.forEach((obj) => {
@@ -29,7 +29,13 @@ function CandidateCard() {
     <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
       <Grid container spacing={2}>
         <Grid xs={3} sm={3} item>
-          <Card sx={{ maxWidth: '25rem', margin: '3rem auto' ,background:'linear-gradient(to bottom, #1976D2, white)'}}>
+          <Card
+            sx={{
+              maxWidth: '25rem',
+              margin: '3rem auto',
+              background: 'linear-gradient(to bottom, #1976D2, white)',
+            }}
+          >
             <CardHeader avatar={<Avatar>C</Avatar>} title="Total Candidate" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
@@ -41,7 +47,13 @@ function CandidateCard() {
         </Grid>
 
         <Grid xs={3} sm={3} item>
-          <Card sx={{ maxWidth: '25rem', margin: '3rem auto',background:'linear-gradient(to bottom, #1976D2, white)' }}>
+          <Card
+            sx={{
+              maxWidth: '25rem',
+              margin: '3rem auto',
+              background: 'linear-gradient(to bottom, #1976D2, white)',
+            }}
+          >
             <CardHeader avatar={<Avatar>O</Avatar>} title="Overall Experience" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
@@ -53,7 +65,13 @@ function CandidateCard() {
         </Grid>
 
         <Grid xs={3} sm={3} item>
-          <Card sx={{ maxWidth: '25rem', margin: '3rem auto',background:'linear-gradient(to bottom, #1976D2, white)' }}>
+          <Card
+            sx={{
+              maxWidth: '25rem',
+              margin: '3rem auto',
+              background: 'linear-gradient(to bottom, #1976D2, white)',
+            }}
+          >
             <CardHeader avatar={<Avatar>I</Avatar>} title="My Interviews" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
@@ -64,7 +82,13 @@ function CandidateCard() {
           </Card>
         </Grid>
         <Grid xs={3} sm={3} item>
-          <Card sx={{ maxWidth: '25rem', margin: '3rem auto',background:'linear-gradient(to bottom, #1976D2, white)' }}>
+          <Card
+            sx={{
+              maxWidth: '25rem',
+              margin: '3rem auto',
+              background: 'linear-gradient(to bottom, #1976D2, white)',
+            }}
+          >
             <CardHeader avatar={<Avatar>O</Avatar>} title="Other Interviews" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">

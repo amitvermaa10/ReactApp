@@ -23,7 +23,7 @@ function EmployeeChart() {
   let selectedcount = 0;
   data.forEach((item) => {
     if (item.radiogroup === 'yes') {
-      selectedcount+=1;
+      selectedcount += 1;
     }
   });
 

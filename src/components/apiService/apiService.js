@@ -5,7 +5,7 @@ export const postData = async (data) => {
     const response = await axios.post('http://localhost:3031/users', data);
     return response.data;
   } catch (error) {
-    return error
+    return error;
   }
 };
 
@@ -15,7 +15,7 @@ export const deleteData = async (id) => {
     const response = await axios.delete(`http://localhost:3031/users/${id}`);
     return response.data;
   } catch (error) {
-    return error
+    return error;
   }
 };
 
@@ -25,7 +25,7 @@ export const UpdatetData = async (formValues) => {
     const response = axios.put(`http://localhost:3031/users/${formValues.id}`, formValues);
     return response;
   } catch (error) {
-    return error
+    return error;
   }
 };
 

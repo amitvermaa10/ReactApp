@@ -15,14 +15,17 @@ export const createUsers = createAsyncThunk('createUser', async (data, { rejectW
   }
 });
 
-export const updateUsers = createAsyncThunk('updateUser', async (formValues, { rejectWithValue }) => {
-  try {
-    const response = axios.put(`http://localhost:3031/users/${formValues.id}`, formValues);;
-    return response.data;
-  } catch (error) {
-    return rejectWithValue(error);
+export const updateUsers = createAsyncThunk(
+  'updateUser',
+  async (formValues, { rejectWithValue }) => {
+    try {
+      const response = axios.put(`http://localhost:3031/users/${formValues.id}`, formValues);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
-});
+);
 
 export const deleteUsers = createAsyncThunk('deleteUser', async (id, { rejectWithValue }) => {
   try {
@@ -38,7 +41,7 @@ export const todoSlice = createSlice({
   initialState: {
     data: [],
     isLoading: false,
-    
+
     isError: false,
   },
   extraReducers: {
@@ -52,7 +55,7 @@ export const todoSlice = createSlice({
       isLoading: true,
       data: action.payload,
     }),
-   
+
     [fetchAllUsers.rejected]: (state) => ({
       ...state,
       isLoading: false,
@@ -70,7 +73,7 @@ export const todoSlice = createSlice({
     [createUsers.rejected]: (state) => ({
       ...state,
       isLoading: true,
-      isError:true
+      isError: true,
     }),
 
     [deleteUsers.pending]: (state) => ({
@@ -88,9 +91,7 @@ export const todoSlice = createSlice({
       ...state,
       isLoading: false,
     }),
-
   },
- 
 });
 
 export default todoSlice.reducer;

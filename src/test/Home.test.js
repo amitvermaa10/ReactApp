@@ -1,7 +1,6 @@
 import React from 'react';
 import Home from '../components/Home';
-import { render,fireEvent} from '@testing-library/react';
-
+import { render, fireEvent } from '@testing-library/react';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -23,10 +22,8 @@ describe('home component', () => {
   });
 
   it('open the form on button click', () => {
-   const {getByText} = render (<Home/>);
-   const newAssesmentButton = getByText('+ New Assessment');
-   fireEvent.click(newAssesmentButton);
+    const { getByText } = render(<Home />);
+    const newAssesmentButton = getByText('+ New Assessment');
+    fireEvent.click(newAssesmentButton);
   });
-
-
 });
