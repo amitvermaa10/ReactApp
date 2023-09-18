@@ -48,20 +48,12 @@ function InputForm({
       ...inputData,
       [name]: value,
     });
-    // if (name === 'overallExperience') {
-    //   setInputData({ ...inputData, overallExperience: value.replace(/[^0-9]/g, '') });
-    // }
-    // if (name === 'interviewerName') {
-    //   const alphabeticRegex = /^[A-Za-z]+$/;
-    //   if ((value.match(alphabeticRegex) || value === '') && value.length <= 20) {
-    //     //     setInputData({ ...inputData, interviewerName: inputValue});
-    //     setInputData({
-    //       ...inputData,
-    //       [name]: value,
-    //     });
-    //     //   }
-    //   }
-    // }
+    if (name === 'overallExperience' || name === 'years') {
+      const inputExperience = value.replace(/[^0-9]/g, '');
+      let numericValue = parseInt(inputExperience, 10);
+      numericValue = Math.max(0, Math.min(20, numericValue));
+      setInputData({ ...inputData, [name]: numericValue.toString() });
+    }
   };
 
   const inputFromDetailUpdated = (e) => {
@@ -95,7 +87,7 @@ function InputForm({
       >
         {isview && (
           <div>
-            <FormView inputData={inputData}/>
+            <FormView inputData={inputData} />
           </div>
         )}
         {!isview && (

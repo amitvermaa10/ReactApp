@@ -19,6 +19,7 @@
     },
     "plugins": ["react", "jest"],
     "rules": {
+        "import/no-named-as-default": 0,
         "react/prop-types": "off",
         "no-underscore-dangle": 0,
         "import/extensions": [

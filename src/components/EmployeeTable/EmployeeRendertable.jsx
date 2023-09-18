@@ -31,7 +31,7 @@ function EmployeeRendertable({
   handleSort,
 }) {
   const [page, setPage] = useState(1);
-  const [rowsPerPage] = useState(3);
+  const [rowsPerPage] = useState(8);
 
   const startIndex = (page - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;

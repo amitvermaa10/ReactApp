@@ -106,7 +106,7 @@ function Primaryskill({ inputData, isNewMode, inputFromDetail, datevalue, ondate
                   value={inputData.overallExperience}
                   onChange={(e) => inputFromDetail(e)}
                   InputProps={{
-                    inputProps: { min: 3, max: 10 },
+                    inputProps: { min: 3, max: 20 },
                     inputMode: 'numeric',
                   }}
                   fullWidth
@@ -135,7 +135,7 @@ function Primaryskill({ inputData, isNewMode, inputFromDetail, datevalue, ondate
           <div className="select-field">
             <Grid container spacing={2}>
               &nbsp;
-              <Grid xs={4} sm={4} item>
+              <Grid xs={4} sm={4} item >
                 <TextField
                   label=" Relevant years"
                   name="years"
@@ -145,7 +145,11 @@ function Primaryskill({ inputData, isNewMode, inputFromDetail, datevalue, ondate
                   required
                   value={inputData.years}
                   onChange={(e) => inputFromDetail(e)}
-                  inputProps={{ inputMode: 'numeric' }}
+                  InputProps={{
+                    inputProps: { min: 3, max: 20 },
+                    inputMode: 'numeric',
+                  }}
+                  fullWidth
                 />
               </Grid>
             </Grid>
