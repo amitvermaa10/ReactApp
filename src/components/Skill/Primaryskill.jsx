@@ -19,7 +19,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import './Primaryskill.scss';
 
-function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue, ondateChange ,inputFromDetailUpdated}) {
+function Primaryskill({ inputData, isNewMode, inputFromDetail, datevalue, ondateChange ,inputFromDetailUpdated}) {
   return (
     <div>
       <header>
@@ -39,11 +39,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   required
                   onChange={(e) => inputFromDetailUpdated(e)}
                   disabled={!isNewMode}
-                  sx={{
-                    '& fieldset': { border: isview ? 'none' : '' },
-                  }}
-                  inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
-                  inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                 />
               </Grid>
               <Grid xs={4} sm={4} item style={{ paddingLeft: '20px' }}>
@@ -60,11 +55,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                             error: false,
                           },
                         }}
-                        sx={{
-                          '& fieldset': { border: isview ? 'none' : '' },
-                        }}
-                        inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
-                        inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                         disableFuture
                       />
                     </DemoContainer>
@@ -81,16 +71,10 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   required
                   onChange={(e) => inputFromDetailUpdated(e)}
                   disabled={!isNewMode}
-                  sx={{
-                    '& fieldset': { border: isview ? 'none' : '' },
-                  }}
-                  inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
-                  inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                 />
               </Grid>
             </Grid>
           </div>
-
           <div className="select-field">
             <Grid container spacing={2}>
               <Grid xs={4} sm={4} item>
@@ -103,11 +87,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                     value={inputData.interviewRound}
                     defaultValue=""
                     disabled={!isNewMode}
-                    sx={{
-                      '& fieldset': { border: isview ? 'none' : '' },
-                    }}
-                    inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
-                    inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
                   >
                     <MenuItem value="first">First</MenuItem>
                     <MenuItem value="second">Second</MenuItem>
@@ -129,19 +108,13 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   InputProps={{
                     inputProps: { min: 3, max: 10 },
                     inputMode: 'numeric',
-                    style: { fontSize: isview ? 20 : '' },
-                  }}
-                  disabled={isview}
-                  inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
-                  sx={{
-                    '& fieldset': { border: isview ? 'none' : '' },
                   }}
                   fullWidth
                 />
               </Grid>
               <Grid xs={4} sm={4} item style={{ paddingLeft: '20px' }}>
                 <FormControl variant="outlined" sx={{ minWidth: 225 }}>
-                  <InputLabel style={{ fontSize: isview ? 20 : '' }} disabled={isview}>
+                  <InputLabel >
                     Relevant experience
                   </InputLabel>
                   <Select
@@ -150,12 +123,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                     label="Relevant experience"
                     onChange={(e) => inputFromDetail(e)}
                     defaultValue=""
-                    disabled={isview}
-                    inputProps={{ style: { fontSize: isview ? 20 : '' } }} // font size of input text
-                    inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
-                    sx={{
-                      '& fieldset': { border: isview ? 'none' : '' },
-                    }}
                   >
                     <MenuItem value="react">React</MenuItem>
                     <MenuItem value="angular">Angular</MenuItem>
@@ -178,12 +145,7 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   required
                   value={inputData.years}
                   onChange={(e) => inputFromDetail(e)}
-                  inputProps={{ inputMode: 'numeric', style: { fontSize: isview ? 20 : '' } }}
-                  disabled={isview}
-                  inputlabelprops={{ style: { fontSize: isview ? 20 : '' } }}
-                  sx={{
-                    '& fieldset': { border: isview ? 'none' : '' },
-                  }}
+                  inputProps={{ inputMode: 'numeric' }}
                 />
               </Grid>
             </Grid>
@@ -204,7 +166,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   precision={0.5}
                   value={parseFloat(inputData.html)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -215,7 +176,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   precision={0.5}
                   value={parseFloat(inputData.css)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -226,7 +186,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   precision={0.5}
                   value={parseFloat(inputData.javascript)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isview}
                 />
               </Grid>
             </Grid>
@@ -241,7 +200,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   precision={0.5}
                   value={parseFloat(inputData.es6)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -252,7 +210,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   precision={0.5}
                   value={parseFloat(inputData.typescript)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -263,7 +220,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   precision={0.5}
                   value={parseFloat(inputData.react)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isview}
                 />
               </Grid>
             </Grid>
@@ -278,7 +234,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   max={5}
                   precision={0.5}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isview}
                 />
               </Grid>
               <Grid xs={4} sm={4} item>
@@ -289,7 +244,6 @@ function Primaryskill({ inputData, isNewMode, isview, inputFromDetail, datevalue
                   precision={0.5}
                   value={parseFloat(inputData.redux)}
                   onChange={(e) => inputFromDetail(e)}
-                  disabled={isview}
                 />
               </Grid>
             </Grid>

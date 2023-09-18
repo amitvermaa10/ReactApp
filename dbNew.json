@@ -1,32 +1,6 @@
 {
   "users": [
     {
-      "id": 5,
-      "interviewerName": "Utkarsh",
-      "candidateName": "Rriocard",
-      "interviewRound": "second",
-      "overallExperience": 5,
-      "relevantExperience": "angular",
-      "years": 2,
-      "html": 2,
-      "css": 2,
-      "javascript": 0,
-      "es6": 0,
-      "typescript": 4,
-      "react": 3,
-      "hooks": 3,
-      "redux": 4,
-      "communication": 5,
-      "attitude": 5,
-      "selflearning": 4,
-      "radiogroup": "yes",
-      "interviewFeedback": "",
-      "additionalComments": "",
-      "trainingRecommended": "",
-      "others": "",
-      "datepicker": "2023-07-13"
-    },
-    {
       "id": 8,
       "interviewerName": "Utkarsh",
       "candidateName": "Georgy",
@@ -1611,6 +1585,32 @@
       "trainingRecommended": "",
       "others": "",
       "datepicker": "2023-08-11"
+    },
+    {
+      "interviewerName": "akhil",
+      "candidateName": "suresh",
+      "interviewRound": "second",
+      "overallExperience": "5",
+      "relevantExperience": "angular",
+      "years": "14",
+      "html": "4",
+      "css": "2.5",
+      "javascript": "3",
+      "es6": 0,
+      "typescript": 0,
+      "react": "3.5",
+      "hooks": 0,
+      "redux": 0,
+      "communication": "4",
+      "attitude": "4.5",
+      "selflearning": "2.5",
+      "radiogroup": "yes",
+      "interviewFeedback": "",
+      "additionalComments": "",
+      "trainingRecommended": "",
+      "others": "",
+      "datepicker": "2023-09-01",
+      "id": "847"
     }
   ]
 }

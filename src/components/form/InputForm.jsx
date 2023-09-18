@@ -4,6 +4,7 @@ import moment from 'moment/moment';
 import './InputForm.scss';
 import Primaryskill from '../Skill/Primaryskill.jsx';
 import Decision from '../decision/Decision.jsx';
+import FormView from './FormView.jsx';
 
 function InputForm({
   formValueHandler,
@@ -64,7 +65,7 @@ function InputForm({
   };
 
   const inputFromDetailUpdated = (e) => {
-    const { name} = e.target;
+    const { name } = e.target;
     const formattedValue = e.target.value.replace(/[^A-Za-z]/g, '').slice(0, 20);
     setInputData({ ...inputData, [name]: formattedValue });
   };
@@ -92,41 +93,32 @@ function InputForm({
           },
         }}
       >
-        {/* <div className="dialogActions">
-          <DialogActions>
-            <Button
-              type="submit"
-              onClick={(e) => handleSubmit(e)}
-              disabled={isview}
-            >
-              Save
-            </Button>
-            <Button
-              onClick={(e) => handleClick(e)}
-              disabled={!isNewMode}
-             
-            >
-              Reset
-            </Button>
-            <Button onClick={() => displayForm()}>Cancel</Button>
-          </DialogActions>
-        </div> */}
-        <Primaryskill
-          inputData={inputData}
-          isNewMode={isNewMode}
-          isview={isview}
-          inputFromDetail={inputFromDetail}
-          datevalue={datevalue}
-          ondateChange={ondateChange}
-          inputFromDetailUpdated={inputFromDetailUpdated}
-        />
+        {isview && (
+          <div>
+            <FormView inputData={inputData}/>
+          </div>
+        )}
+        {!isview && (
+          <div>
+            <Primaryskill
+              inputData={inputData}
+              isNewMode={isNewMode}
+              isview={isview}
+              inputFromDetail={inputFromDetail}
+              datevalue={datevalue}
+              ondateChange={ondateChange}
+              inputFromDetailUpdated={inputFromDetailUpdated}
+            />
 
-        <Decision
-          inputData={inputData}
-          isview={isview}
-          isNewMode={isNewMode}
-          inputFromDetail={inputFromDetail}
-        />
+            <Decision
+              inputData={inputData}
+              isview={isview}
+              isNewMode={isNewMode}
+              inputFromDetail={inputFromDetail}
+            />
+          </div>
+        )}
+
         <div className="dialogActionsNew">
           <DialogActions>
             <Button onClick={() => displayForm()}>Cancel</Button>

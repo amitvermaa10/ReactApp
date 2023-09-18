@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from 'react-router-dom';
@@ -30,14 +30,8 @@ function Home() {
     dispatch(fetchAllUsers());
   },);
 
-  const stateUpdated = useSelector((state) =>
-    // state.app
-    console.log('&&&&sate', state)
-  );
-
-  //  console.log("^^^^^^^",state.app)
-
   const handleClick = () => {
+    setIsView(false);
     setUserItem({
       interviewerName: '',
       candidateName: '',
@@ -82,7 +76,6 @@ function Home() {
     setUserItem(item);
     setIsView(true);
     setIsEdit(false);
-    alert('heya view');
   };
 
   const DeleteForm = (item) => {
@@ -101,45 +94,6 @@ function Home() {
     }
   };
 
-  // const DeleteForm = (item) => {
-  //   try {
-  //     if (isdeleteSuccess) {
-  //       setIsDeleteSuccess(false);
-  //     }
-  //     deleteData(item.id).then((res) => {
-  //       if (res) {
-  //         setIsDeleteSuccess(true);
-  //         setOpen(true);
-  //         setSnackbartext('Delete is successfull');
-  //       }
-  //     });
-  //   } catch (error) {
-  //     setOpen(true);
-  //     setIssnackbarError(true);
-  //     setSnackbartext('Delete is unsuccessfull');
-  //   }
-  // };
-
-  // const formValueHandler = async (formValues) => {
-  //   try {
-  //     if (isSuccess) {
-  //       setIsSuccess(false);
-  //     }
-  //     postData(formValues).then((res) => {
-  //       if (res) {
-  //         setIsSuccess(true);
-  //         setOpen(true);
-
-  //         setSnackbartext('Submit is successfull');
-  //       }
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //     setOpen(true);
-  //     setIssnackbarError(true);
-  //     setSnackbartext('Submit is successfull');
-  //   }
-  // };
 
   const formValueHandler = async (formValues) => {
     try {
@@ -158,26 +112,6 @@ function Home() {
     }
   };
 
-  // const updateFormHandler = async (formValues) => {
-  //   if (isupdateSuccess) {
-  //     setIsUpdateSuccess(false);
-  //   }
-  //   UpdatetData(formValues)
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         setIsUpdateSuccess(true);
-  //         setOpen(true);
-  //         setSnackbartext('it is successfull');
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setOpen(true);
-  //       setIssnackbarError(true);
-  //       setSnackbartext('it is not successfull');
-  //     });
-  // };
-
   const updateFormHandler = async (formValues) => {
     if (isupdateSuccess) {
       setIsUpdateSuccess(false);
@@ -186,19 +120,6 @@ function Home() {
     setIsUpdateSuccess(true);
     setOpen(true);
     setSnackbartext('it is successfull');
-    // .then((res) => {
-    //   if (res.status === 200) {
-    //     setIsUpdateSuccess(true);
-    //     setOpen(true);
-    //     setSnackbartext('it is successfull');
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    //   setOpen(true);
-    //   setIssnackbarError(true);
-    //   setSnackbartext('it is not successfull');
-    // });
   };
 
   const handleClose = () => {
@@ -216,7 +137,6 @@ function Home() {
       </IconButton>
     </>
   );
-  console.log('&&&stateUpdated', stateUpdated);
   return (
     <div>
       <HeaderComp name={location?.state?.name} />
@@ -229,7 +149,6 @@ function Home() {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         ContentProps={{
           sx: {
-            // background: 'green',
             ...(issnackbarError ? { background: 'red' } : { background: 'green' }),
           },
         }}
