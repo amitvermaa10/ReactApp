@@ -16,7 +16,9 @@ function CandidateCard() {
     });
   }
 
-  const average = overallsum / totalNoOfCandidate;
+  const average = Number.isNaN(overallsum / totalNoOfCandidate)
+    ? 0
+    : overallsum / totalNoOfCandidate;
   const overalltotalAvg = Math.round(average * 10) / 10;
 
   let candidatecount = 0;
@@ -32,7 +34,8 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              // maxWidth: '25rem',
+              minHeight: '220px',
+              maxHeight: '220px',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}
@@ -50,7 +53,8 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              // maxWidth: '25rem',
+              minHeight: '220px',
+              maxHeight: '220px',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}
@@ -68,7 +72,8 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              // maxWidth: '25rem',
+              minHeight: '220px',
+              maxHeight: '220px',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}
@@ -85,7 +90,8 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              // maxWidth: '25rem',
+              minHeight: '220px',
+              maxHeight: '220px',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}

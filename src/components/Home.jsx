@@ -28,7 +28,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(fetchAllUsers());
-  },[isupdateSuccess,isdeleteSuccess]);
+  }, [isupdateSuccess, isdeleteSuccess]);
 
   const handleClick = () => {
     setIsView(false);
@@ -88,9 +88,9 @@ function Home() {
       setIsDeleteSuccess(true);
       setOpen(true);
       setSnackbartext('Delete is successfull');
-      setTimeout(()=>{
+      setTimeout(() => {
         setIsDeleteSuccess(false);
-      },2000);
+      }, 2000);
     } catch (error) {
       setOpen(true);
       setIssnackbarError(true);
@@ -156,7 +156,6 @@ function Home() {
           },
         }}
       />
-
       <div className="align-button">
         <Button data-testid="button" onClick={handleClick}>
           + New Assessment

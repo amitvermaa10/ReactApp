@@ -31,7 +31,7 @@ function EmployeeChart() {
   return (
     <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
       <Grid container spacing={2}>
-        <Grid xs={6} sm={6} item>
+        <Grid xs={6} sm={6} md={6} item>
           <Card>
             <BarChart
               xAxis={[
@@ -51,7 +51,7 @@ function EmployeeChart() {
             />
           </Card>
         </Grid>
-        <Grid xs={6} sm={6} item>
+        <Grid xs={6} sm={6} md={6} item>
           <Card>
             <PieChart
               series={[

@@ -1,10 +1,7 @@
 import React from 'react';
 import {
   Grid,
-  DialogTitle,
   DialogContent,
-  Rating,
-  Typography,
   Divider,
   TextField,
   Select,
@@ -17,6 +14,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
+import PrimaryRating from './PrimaryRating.jsx';
 import './Primaryskill.scss';
 
 function Primaryskill({
@@ -63,6 +61,7 @@ function Primaryskill({
                           },
                         }}
                         disableFuture
+                        minDate={dayjs('1990-01-01')}
                       />
                     </DemoContainer>
                   </LocalizationProvider>
@@ -137,6 +136,8 @@ function Primaryskill({
               </Grid>
             </Grid>
           </div>
+          {/* //////////////// */}
+
           <div className="select-field">
             <Grid container spacing={2}>
               &nbsp;
@@ -162,7 +163,12 @@ function Primaryskill({
         </DialogContent>
         <Divider />
       </div>
-      <div>
+      <PrimaryRating
+        inputData={inputData}
+        inputFromDetail={inputFromDetail}
+        isNewMode={isNewMode}
+      />
+      {/* <div>
         <DialogTitle style={{ fontSize: '17px' }}>Primary Skill evaluated</DialogTitle>
         <DialogContent>
           <div className="select-field">
@@ -302,7 +308,7 @@ function Primaryskill({
           </div>
         </DialogContent>
         <Divider />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -30,9 +30,9 @@ export const updateUsers = createAsyncThunk(
 export const deleteUsers = createAsyncThunk('deleteUser', async (id, { rejectWithValue }) => {
   try {
     const response = await axios.delete(`http://localhost:3031/users/${id}`);
-    return response;
+    return response.data;
   } catch (error) {
-    return rejectWithValue(error);
+    return rejectWithValue(error.response.data);
   }
 });
 
