@@ -4,8 +4,13 @@ import { TextField, InputAdornment, Rating } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import saveAs from 'file-saver';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
-import EmployeeRendertable from './EmployeeRendertable.jsx';
+
 // import Othertable from './Othertable.jsx';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import EmployeeRendertable from './EmployeeRendertable.jsx';
 import './EmployeeTable.scss';
 
 function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
@@ -196,19 +201,21 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
       }}
     />
   );
-  console.log('&&&sortedDataOther', sortedDataOther);
   return (
-    <div>
-      {sortedDataOther.length > 0 && (
-        <div>
-          <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>My Interviews</h3>
+    <div style={{marginTop:'10px'}}>
+      <Accordion style={{ textAlign: 'left', marginLeft: '100px',marginRight:'100px' }}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          // aria-controls="panel2a-content"
+          // id="panel2a-header"
+        >
+            <h3 style={{ textAlign: 'left'}}>My Interviews</h3>
+        </AccordionSummary>
+        <AccordionDetails>
           <div
             className="search-textbox"
             style={{
-              marginBottom: '20px',
-              marginTop: '20px',
-              marginLeft: '100px',
-              marginRight: '100px',
+             marginBottom: '20px',
             }}
           >
             <TextField
@@ -240,8 +247,14 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
             order={orderOther}
             handleSort={handleSortOther}
           />
-        </div>
-      )}
+        </AccordionDetails>
+      </Accordion>
+      
+       
+
+      <div>
+        <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>My Interviews</h3>
+      </div>
 
       <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>Other Interviews</h3>
       <div

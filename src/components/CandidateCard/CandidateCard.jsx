@@ -34,8 +34,8 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              minHeight: '220px',
-              maxHeight: '220px',
+              minHeight: '180px',
+              maxHeight: '180px',
               margin: '3rem auto',
               background: 'linear-gradient(to bottom, #1976D2, white)',
             }}
@@ -53,10 +53,10 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              minHeight: '220px',
-              maxHeight: '220px',
+              minHeight: '180px',
+              maxHeight: '180px',
               margin: '3rem auto',
-              background: 'linear-gradient(to bottom, #1976D2, white)',
+              background: 'linear-gradient(to bottom, green, white)',
             }}
           >
             <CardHeader avatar={<Avatar>O</Avatar>} title="Overall Experience" />
@@ -72,10 +72,10 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              minHeight: '220px',
-              maxHeight: '220px',
+              minHeight: '180px',
+              maxHeight: '180px',
               margin: '3rem auto',
-              background: 'linear-gradient(to bottom, #1976D2, white)',
+              background: 'linear-gradient(to bottom, #E5E055, white)',
             }}
           >
             <CardHeader avatar={<Avatar>I</Avatar>} title="My Interviews" />
@@ -90,10 +90,10 @@ function CandidateCard() {
         <Grid xs={3} sm={3} item>
           <Card
             sx={{
-              minHeight: '220px',
-              maxHeight: '220px',
+              minHeight: '180px',
+              maxHeight: '180px',
               margin: '3rem auto',
-              background: 'linear-gradient(to bottom, #1976D2, white)',
+              background: 'linear-gradient(to bottom, #E487CC, white)',
             }}
           >
             <CardHeader avatar={<Avatar>O</Avatar>} title="Other Interviews" />

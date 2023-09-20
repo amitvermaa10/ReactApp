@@ -108,7 +108,6 @@ function Home() {
       setOpen(true);
       setSnackbartext('Submit is successfull');
     } catch (error) {
-      console.log(error);
       setOpen(true);
       setIssnackbarError(true);
       setSnackbartext('Submit is successfull');

@@ -40,7 +40,7 @@ function EmployeeRendertable({
     setPage(newPage);
   };
   return (
-    <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
+    <div style={{ textAlign: 'centre' }}>
       {isaxioserror && (
         <div style={{ marginBottom: '10px' }}>
           <TextField
