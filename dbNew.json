@@ -1767,32 +1767,6 @@
       "others": "",
       "datepicker": "2023-09-18",
       "id": "90b"
-    },
-    {
-      "interviewerName": "Utkarsh",
-      "candidateName": "Amitt",
-      "interviewRound": "second",
-      "overallExperience": "11",
-      "relevantExperience": "angular",
-      "years": "5",
-      "html": 0,
-      "css": 0,
-      "javascript": 0,
-      "es6": 0,
-      "typescript": 0,
-      "react": 0,
-      "hooks": 0,
-      "redux": 0,
-      "communication": 0,
-      "attitude": 0,
-      "selflearning": 0,
-      "radiogroup": "yes",
-      "interviewFeedback": "",
-      "additionalComments": "",
-      "trainingRecommended": "",
-      "others": "",
-      "datepicker": null,
-      "id": "611"
     }
   ]
 }

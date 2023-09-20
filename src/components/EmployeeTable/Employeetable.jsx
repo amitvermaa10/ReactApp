@@ -196,47 +196,53 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
       }}
     />
   );
+  console.log('&&&sortedDataOther', sortedDataOther);
   return (
     <div>
-      <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>My Interviews</h3>
-      <div
-        className="search-textbox"
-        style={{
-          marginBottom: '20px',
-          marginTop: '20px',
-          marginLeft: '100px',
-          marginRight: '100px',
-        }}
-      >
-        <TextField
-          type="search"
-          sx={{ minWidth: '100%' }}
-          label="Search"
-          value={searchQueryOther}
-          onChange={(e) => setSearchQueryOther(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
-      <EmployeeRendertable
-        handlechangenew={handlechangenew}
-        isaxioserror={isaxioserror}
-        handleDownload={handleDownload}
-        viewForm={viewForm}
-        DeleteForm={DeleteForm}
-        EditForm={EditForm}
-        sortedData={sortedDataOther}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        orderBy={orderByOther}
-        order={orderOther}
-        handleSort={handleSortOther}
-      />
+      {sortedDataOther.length > 0 && (
+        <div>
+          <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>My Interviews</h3>
+          <div
+            className="search-textbox"
+            style={{
+              marginBottom: '20px',
+              marginTop: '20px',
+              marginLeft: '100px',
+              marginRight: '100px',
+            }}
+          >
+            <TextField
+              type="search"
+              sx={{ minWidth: '100%' }}
+              label="Search"
+              value={searchQueryOther}
+              onChange={(e) => setSearchQueryOther(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
+          <EmployeeRendertable
+            handlechangenew={handlechangenew}
+            isaxioserror={isaxioserror}
+            handleDownload={handleDownload}
+            viewForm={viewForm}
+            DeleteForm={DeleteForm}
+            EditForm={EditForm}
+            sortedData={sortedDataOther}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            orderBy={orderByOther}
+            order={orderOther}
+            handleSort={handleSortOther}
+          />
+        </div>
+      )}
+
       <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>Other Interviews</h3>
       <div
         className="search-textbox"
