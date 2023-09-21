@@ -87,7 +87,7 @@ function InputForm({
       >
         {isview && (
           <div>
-            <FormView inputData={inputData} />
+            <FormView inputData={inputData} displayForm={displayForm} />
           </div>
         )}
         {!isview && (
@@ -100,6 +100,7 @@ function InputForm({
               datevalue={datevalue}
               ondateChange={ondateChange}
               inputFromDetailUpdated={inputFromDetailUpdated}
+              displayForm={displayForm}
             />
 
             <Decision

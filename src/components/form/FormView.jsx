@@ -1,13 +1,15 @@
 import React from 'react';
-import { Grid, DialogTitle, DialogContent, Rating, Divider } from '@mui/material';
+import { Grid, DialogTitle, DialogContent, Rating, Divider, Button } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 import SkillView from './SkillView.jsx';
 import './FormView.scss';
 
-function FormView({ inputData }) {
+function FormView({ inputData,displayForm }) {
   return (
     <div>
-      <header>
-        <h3 style={{ paddingLeft: '30px' }}>Skill Assessment Form </h3>
+      <header style={{position:'sticky',top:'30px',marginBottom:'0'}}>
+        <h3 style={{ paddingLeft: '30px',marginBottom:'0'}}>Skill Assessment Form </h3>
+        <div className='cross'><Button onClick={() => displayForm()}><CancelIcon/></Button></div>
       </header>
       <div className="viewform">
         <DialogContent>

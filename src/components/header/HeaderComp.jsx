@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppBar, Typography, Toolbar } from '@mui/material';
+import user from '../../assests/user.png';
 
 function HeaderComp({ name }) {
   return (
@@ -15,6 +16,11 @@ function HeaderComp({ name }) {
           <Typography variant="h12" component="div" align="right" sx={{ flexGrow: 1 }}>
             {name}
           </Typography>
+          &nbsp;
+          <div >
+          <img style={{borderRadius:'50%'}} src={user} width='35px' height='35px' alt="react logo" />
+          </div>
+          
         </Toolbar>
       </AppBar>
     </div>

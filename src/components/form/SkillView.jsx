@@ -56,26 +56,38 @@ function SkillView({ inputData }) {
           <DialogContent>
             <div className="select-field">
               <Grid container spacing={2}>
-                <Grid item xs={4} sm={4}>
-                  <p className="nameBlock">Interview Feedback</p>
-                  <p>{inputData.interviewFeedback}</p>
-                </Grid>
-                <Grid item xs={4} sm={4}>
-                  <p className="nameBlock">Training Recommended</p>
-                  <p>{inputData.trainingRecommended}</p>
-                </Grid>
-                <Grid item xs={4} sm={4}>
-                  <p className="nameBlock">Others</p>
-                  <p>{inputData.others}</p>
-                </Grid>
+                {inputData.interviewFeedback !== '' && (
+                  <Grid item xs={4} sm={4}>
+                    <p className="nameBlock">Interview Feedback</p>
+                    <p>{inputData.interviewFeedback}</p>
+                  </Grid>
+                )}
+
+                {inputData.trainingRecommended !== '' && (
+                  <Grid item xs={4} sm={4}>
+                    <p className="nameBlock">Training Recommended</p>
+                    <p>{inputData.trainingRecommended}</p>
+                  </Grid>
+                )}
+
+                {inputData.others !== '' && (
+                  <Grid item xs={4} sm={4}>
+                    <p className="nameBlock">Others</p>
+                    <p>{inputData.others}</p>
+                  </Grid>
+                )}
               </Grid>
             </div>
+
             <div className="select-field">
               <Grid container spacing={2}>
-                <Grid item xs={4} sm={4}>
-                  <p className="nameBlock">Additional Comments</p>
-                  <p>{inputData.additionalComments}</p>
-                </Grid>
+                {inputData.additionalComments !== '' && (
+                  <Grid item xs={4} sm={4}>
+                    <p className="nameBlock">Additional Comments</p>
+                    <p>{inputData.additionalComments}</p>
+                  </Grid>
+                )}
+
                 <Grid item xs={4} sm={4}>
                   <p className="nameBlock">Selected</p>
                   <p>{inputData.radiogroup}</p>

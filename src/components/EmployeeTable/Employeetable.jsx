@@ -202,20 +202,18 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
     />
   );
   return (
-    <div style={{marginTop:'10px'}}>
-      <Accordion style={{ textAlign: 'left', marginLeft: '100px',marginRight:'100px' }}>
+    <div style={{ marginTop: '10px' }}>
+      <Accordion style={{ textAlign: 'left', marginLeft: '100px', marginRight: '100px' }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          // aria-controls="panel2a-content"
-          // id="panel2a-header"
         >
-            <h3 style={{ textAlign: 'left'}}>My Interviews</h3>
+          <h3 style={{ textAlign: 'left' }}>My Interviews</h3>
         </AccordionSummary>
         <AccordionDetails>
           <div
             className="search-textbox"
             style={{
-             marginBottom: '20px',
+              marginBottom: '20px',
             }}
           >
             <TextField
@@ -249,52 +247,50 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
           />
         </AccordionDetails>
       </Accordion>
-      
-       
-
-      <div>
-        <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>My Interviews</h3>
-      </div>
-
-      <h3 style={{ textAlign: 'left', marginLeft: '100px' }}>Other Interviews</h3>
-      <div
-        className="search-textbox"
-        style={{
-          marginBottom: '20px',
-          marginTop: '20px',
-          marginLeft: '100px',
-          marginRight: '100px',
-        }}
-      >
-        <TextField
-          type="search"
-          sx={{ minWidth: '100%' }}
-          label="Search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
-      <EmployeeRendertable
-        handlechangenew={handlechangenew}
-        isaxioserror={isaxioserror}
-        handleDownload={handleDownload}
-        viewForm={viewForm}
-        DeleteForm={DeleteForm}
-        EditForm={EditForm}
-        sortedData={sortedData}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        orderBy={orderBy}
-        order={order}
-        handleSort={handleSort}
-      />
+      <Accordion style={{ textAlign: 'left', marginLeft: '100px', marginRight: '100px' }}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+        >
+          <h3 style={{ textAlign: 'left' }}>Other Interviews</h3>
+        </AccordionSummary>
+        <AccordionDetails>
+          <div
+            className="search-textbox"
+            style={{
+              marginBottom: '20px',
+            }}
+          >
+            <TextField
+              type="search"
+              sx={{ minWidth: '100%' }}
+              label="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
+          <EmployeeRendertable
+            handlechangenew={handlechangenew}
+            isaxioserror={isaxioserror}
+            handleDownload={handleDownload}
+            viewForm={viewForm}
+            DeleteForm={DeleteForm}
+            EditForm={EditForm}
+            sortedData={sortedData}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            orderBy={orderBy}
+            order={order}
+            handleSort={handleSort}
+          />
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 }

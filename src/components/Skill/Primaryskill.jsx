@@ -8,7 +8,9 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
+  Button
 } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -24,11 +26,13 @@ function Primaryskill({
   datevalue,
   ondateChange,
   inputFromDetailUpdated,
+  displayForm
 }) {
   return (
     <div>
-      <header>
-        <h3 style={{ paddingLeft: '30px' }}>Skill Assessment Form </h3>
+      <header style={{position:'sticky',top:'30px',marginBottom:'0'}}>
+        <h3 style={{ paddingLeft: '30px',marginBottom:'0'}}>Skill Assessment Form </h3>
+        <div className='cross'><Button onClick={() => displayForm()}><CancelIcon/></Button></div>
       </header>
       <div>
         <DialogContent>
