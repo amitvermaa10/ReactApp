@@ -22,6 +22,7 @@ function Home() {
   const [open, setOpen] = useState(false);
   const [snackbartext, setSnackbartext] = useState('');
   const [issnackbarError, setIssnackbarError] = useState(false);
+  const [snackbarcolor,setSnackbarcolor] = useState('green');
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -88,9 +89,12 @@ function Home() {
       setIsDeleteSuccess(true);
       setOpen(true);
       setSnackbartext('Delete is successfull');
+      setSnackbarcolor('#fffdd0');
       setTimeout(() => {
         setIsDeleteSuccess(false);
-      }, 2000);
+        setSnackbarcolor('green');
+
+      }, 4000);
     } catch (error) {
       setOpen(true);
       setIssnackbarError(true);
@@ -111,6 +115,7 @@ function Home() {
       setOpen(true);
       setIssnackbarError(true);
       setSnackbartext('Submit is successfull');
+      
     }
   };
 
@@ -142,19 +147,27 @@ function Home() {
   return (
     <div>
       <HeaderComp name={location?.state?.name} />
+      <div className='snackbar-position'>
       <Snackbar
         open={open}
         autoHideDuration={2000}
         message={snackbartext}
         action={action}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{  vertical: 'bottom', horizontal: 'right'}}
+        // ContentProps={{
+        //   sx: {
+        //     ...(issnackbarError ? { background: 'red' } : { background: 'green' }),
+        //   },
+        // }}
         ContentProps={{
           sx: {
-            ...(issnackbarError ? { background: 'red' } : { background: 'green' }),
+            color: 'black',
+            ...(issnackbarError ? { background: 'red' } : { background: snackbarcolor }),
           },
         }}
       />
+      </div>
       <div className="align-button">
         <Button data-testid="button" onClick={handleClick}>
           + New Assessment

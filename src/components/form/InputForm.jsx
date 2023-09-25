@@ -115,12 +115,16 @@ function InputForm({
         <div className="dialogActionsNew">
           <DialogActions>
             <Button onClick={() => displayForm()}>Cancel</Button>
-            <Button type="submit" onClick={(e) => handleSubmit(e)} disabled={isview}>
-              Save
-            </Button>
-            <Button onClick={(e) => handleClick(e)} disabled={!isNewMode}>
-              Reset
-            </Button>
+            {!isview && (
+              <div>
+                <Button type="submit" onClick={(e) => handleSubmit(e)} disabled={isview}>
+                  Save
+                </Button>
+                <Button onClick={(e) => handleClick(e)} disabled={!isNewMode}>
+                  Reset
+                </Button>
+              </div>
+            )}
           </DialogActions>
         </div>
       </Dialog>

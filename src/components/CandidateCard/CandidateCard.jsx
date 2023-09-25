@@ -30,6 +30,7 @@ function CandidateCard() {
 
   return (
     <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
+       <h2> Candidate Insights </h2>
       <Grid container spacing={2}>
         <Grid xs={3} sm={3} item>
           <Card
