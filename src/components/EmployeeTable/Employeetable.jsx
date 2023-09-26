@@ -202,7 +202,7 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
     />
   );
   return (
-    <div style={{ marginTop: '10px' }}>
+    <div style={{ marginTop: '10px' ,marginBottom:'20px'}}>
       <Accordion style={{ textAlign: 'left', marginLeft: '100px', marginRight: '100px' }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -247,6 +247,7 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
           />
         </AccordionDetails>
       </Accordion>
+      <br/>
       <Accordion style={{ textAlign: 'left', marginLeft: '100px', marginRight: '100px' }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

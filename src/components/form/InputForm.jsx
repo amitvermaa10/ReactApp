@@ -114,7 +114,7 @@ function InputForm({
 
         <div className="dialogActionsNew">
           <DialogActions>
-            <Button onClick={() => displayForm()}>Cancel</Button>
+            <Button onClick={() => displayForm()}>Close</Button>
             {!isview && (
               <div>
                 <Button type="submit" onClick={(e) => handleSubmit(e)} disabled={isview}>

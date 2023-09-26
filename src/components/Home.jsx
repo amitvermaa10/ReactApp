@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Snackbar, IconButton } from '@mui/material';
+import { Button, Snackbar, IconButton, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from 'react-router-dom';
 import './home.scss';
@@ -22,7 +22,7 @@ function Home() {
   const [open, setOpen] = useState(false);
   const [snackbartext, setSnackbartext] = useState('');
   const [issnackbarError, setIssnackbarError] = useState(false);
-  const [snackbarcolor,setSnackbarcolor] = useState('green');
+  const [snackbarcolor, setSnackbarcolor] = useState('success');
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -89,11 +89,10 @@ function Home() {
       setIsDeleteSuccess(true);
       setOpen(true);
       setSnackbartext('Delete is successfull');
-      setSnackbarcolor('#fffdd0');
+      setSnackbarcolor('warning');
       setTimeout(() => {
         setIsDeleteSuccess(false);
-        setSnackbarcolor('green');
-
+        setSnackbarcolor('success');
       }, 4000);
     } catch (error) {
       setOpen(true);
@@ -115,7 +114,6 @@ function Home() {
       setOpen(true);
       setIssnackbarError(true);
       setSnackbartext('Submit is successfull');
-      
     }
   };
 
@@ -147,26 +145,19 @@ function Home() {
   return (
     <div>
       <HeaderComp name={location?.state?.name} />
-      <div className='snackbar-position'>
-      <Snackbar
-        open={open}
-        autoHideDuration={2000}
-        message={snackbartext}
-        action={action}
-        onClose={handleClose}
-        anchorOrigin={{  vertical: 'bottom', horizontal: 'right'}}
-        // ContentProps={{
-        //   sx: {
-        //     ...(issnackbarError ? { background: 'red' } : { background: 'green' }),
-        //   },
-        // }}
-        ContentProps={{
-          sx: {
-            color: 'black',
-            ...(issnackbarError ? { background: 'red' } : { background: snackbarcolor }),
-          },
-        }}
-      />
+      <div className="snackbar-position">
+        <Snackbar
+          open={open}
+          autoHideDuration={2000}
+          message={snackbartext}
+          action={action}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        >
+          <Alert severity={issnackbarError ? 'error' : snackbarcolor} sx={{ color: 'black' }}>
+            {snackbartext}
+          </Alert>
+        </Snackbar>
       </div>
       <div className="align-button">
         <Button data-testid="button" onClick={handleClick}>

@@ -4,13 +4,26 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import SkillView from './SkillView.jsx';
 import './FormView.scss';
 
-function FormView({ inputData,displayForm }) {
+function FormView({ inputData, displayForm }) {
   return (
     <div>
-      <header style={{position:'sticky',top:'30px',marginBottom:'0'}}>
-        <h3 style={{ paddingLeft: '30px',marginBottom:'0'}}>Skill Assessment Form </h3>
-        <div className='cross'><Button onClick={() => displayForm()}><CancelIcon/></Button></div>
+      <header
+        style={{
+          position: 'sticky',
+          top: '30px',
+          marginBottom: '0',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <h3 style={{ paddingLeft: '30px' }}>Skill Assessment Form</h3>
+        <div className="cross">
+          <Button onClick={() => displayForm()}>
+            <CancelIcon />
+          </Button>
+        </div>
       </header>
+
       <div className="viewform">
         <DialogContent>
           <div className="select-field">

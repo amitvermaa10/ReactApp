@@ -2,6 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Avatar, Card, CardHeader, CardContent, Typography, Grid } from '@mui/material';
 import './CandidateCard.scss';
+import LogoCandidate from '../../assests/LogoCandidate.jpg';
+import Experience from '../../assests/Experience.png';
+import Interview from '../../assests/Interview.png';
+import OtherInterview from '../../assests/OtherInterview.png';
 
 function CandidateCard() {
   const data = useSelector((state) => state.app.data);
@@ -38,10 +42,12 @@ function CandidateCard() {
               minHeight: '180px',
               maxHeight: '180px',
               margin: '3rem auto',
-              background: 'linear-gradient(to bottom, #1976D2, white)',
+              background: '#64ACFF',
             }}
           >
-            <CardHeader avatar={<Avatar>C</Avatar>} title="Total Candidate" />
+            <CardHeader  
+             avatar={<Avatar alt="Apple" src= {LogoCandidate} />}
+            title="Total Candidate" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
                 {totalNoOfCandidate}
@@ -57,10 +63,11 @@ function CandidateCard() {
               minHeight: '180px',
               maxHeight: '180px',
               margin: '3rem auto',
-              background: 'linear-gradient(to bottom, green, white)',
+              background: '#50DFC2',
             }}
           >
-            <CardHeader avatar={<Avatar>O</Avatar>} title="Overall Experience" />
+            <CardHeader avatar={<Avatar alt="Apple" src= {Experience} />}
+             title="Overall Experience" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
                 {overalltotalAvg}
@@ -76,10 +83,12 @@ function CandidateCard() {
               minHeight: '180px',
               maxHeight: '180px',
               margin: '3rem auto',
-              background: 'linear-gradient(to bottom, #E5E055, white)',
+              background: '#FFC673',
             }}
           >
-            <CardHeader avatar={<Avatar>I</Avatar>} title="My Interviews" />
+            <CardHeader
+              avatar={<Avatar alt="Apple" src= {Interview} />}
+             title="My Interviews" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
                 {candidatecount}
@@ -94,10 +103,12 @@ function CandidateCard() {
               minHeight: '180px',
               maxHeight: '180px',
               margin: '3rem auto',
-              background: 'linear-gradient(to bottom, #E487CC, white)',
+              background: '#FF7A90',
             }}
           >
-            <CardHeader avatar={<Avatar>O</Avatar>} title="Other Interviews" />
+            <CardHeader 
+            avatar={<Avatar alt="Apple" src= {OtherInterview} />}
+            title="Other Interviews" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
                 {totalNoOfCandidate - candidatecount}

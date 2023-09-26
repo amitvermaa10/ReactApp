@@ -18,38 +18,55 @@ function EmployeeChart() {
     let typescriptTotal = 0;
     let reduxTotal = 0;
     let count = 0;
+  
     data.forEach((interview) => {
-      reactTotal += interview.react;
-      hooksTotal += interview.hooks;
-      javascriptTotal += interview.javascript;
-      typescriptTotal += interview.typescript;
-      reduxTotal += interview.redux;
+      if (typeof interview.react === 'number') {
+        reactTotal += interview.react;
+      }
+      if (typeof interview.hooks === 'number') {
+        hooksTotal += interview.hooks;
+      }
+      if (typeof interview.javascript === 'number') {
+        javascriptTotal += interview.javascript;
+      }
+      if (typeof interview.typescript === 'number') {
+        typescriptTotal += interview.typescript;
+      }
+      if (typeof interview.redux === 'number') {
+        reduxTotal += interview.redux;
+      }
       count += 1;
     });
-    const reactAverage = (reactTotal / count).toFixed(1);
-    const hooksAverage = (hooksTotal / count).toFixed(1);
-    const javascriptAverage = (javascriptTotal / count).toFixed(1);
-    const typescriptAverage = (typescriptTotal / count).toFixed(1);
-    const reduxAverage = (reduxTotal / count).toFixed(1);
-    return [reactAverage, javascriptAverage,hooksAverage,typescriptAverage,reduxAverage];
+  
+    const reactAverage = count > 0 ? Number((reactTotal / count).toFixed(1)) : 0;
+    const hooksAverage = count > 0 ? Number((hooksTotal / count).toFixed(1)) : 0;
+    const javascriptAverage = count > 0 ? Number((javascriptTotal / count).toFixed(1)) : 0;
+    const typescriptAverage = count > 0 ? Number((typescriptTotal / count).toFixed(1)) : 0;
+    const reduxAverage = count > 0 ? Number((reduxTotal / count).toFixed(1)) : 0;
+  
+    return [reactAverage, javascriptAverage, hooksAverage, typescriptAverage, reduxAverage];
   };
 
   const calculateCommonSkillAverage = () => {
     let communicationTotal = 0;
     let attitudeTotal = 0;
     let selfLearningTotal = 0;
-    let countNew = 0;
+    let count = 0;
     data.forEach((interview) => {
-      communicationTotal += interview.communication;
-      selfLearningTotal += interview.selflearning;
-      attitudeTotal += interview.attitude;
-      countNew += 1;
+      if (typeof interview.communication === 'number') {
+        communicationTotal += interview.communication;
+      }
+      if (typeof interview.selflearning === 'number') {
+        selfLearningTotal += interview.selflearning;
+      }
+      if (typeof interview.attitude === 'number') {
+        attitudeTotal += interview.attitude;
+      }
+      count += 1;
     });
-    const communicationAverage = (communicationTotal / countNew).toFixed(1);
-    const selfLearningtAverage = (selfLearningTotal / countNew).toFixed(1);
-    const atttitudeAverage = (attitudeTotal /countNew).toFixed(1);
-
-    console.log("&&communicationAverage",communicationTotal,attitudeTotal,countNew);
+    const communicationAverage = count > 0 ? Number((communicationTotal / count).toFixed(1)) : 0;
+    const selfLearningtAverage = count > 0 ? Number((selfLearningTotal / count).toFixed(1)): 0;
+    const atttitudeAverage = count > 0 ? Number((attitudeTotal /count).toFixed(1)): 0;
     return [selfLearningtAverage,atttitudeAverage,communicationAverage];
   };
 
@@ -85,7 +102,13 @@ function EmployeeChart() {
   const pData = calculateAverageRating(data);
   const commonskillData = calculateCommonSkillAverage();
   const xLabels = ['React',  'javascript','hooks','typescript','redux'];
-  const commonLabel = ['selfLearning','communication','attitude'];
+  const commonLabel = ['selfLearning','attitude','communication'];
+
+ 
+
+  
+const convertedData = pData.map((value) => Number(value));
+const commonskillUpdatedData = commonskillData.map((value) => Number(value))
   return (
     <div style={{ marginLeft: '100px', marginRight: '100px', textAlign: 'centre' }}>
       <h2>Candidate Statistics</h2>
@@ -104,7 +127,7 @@ function EmployeeChart() {
                   ]}
                   series={[
                     {
-                      data: experienceCountsArray,
+                      data: experienceCountsArray, label: 'Average Rating for Primary Skills',
                     },
                   ]}
                   width={640}
@@ -122,9 +145,10 @@ function EmployeeChart() {
                         { id: 1, value: selectedcount, label: 'select' },
                         { id: 2, value: notSelectedCandidate, label: 'not Select' },
                       ],
+                      
                     },
                   ]}
-                  width={650}
+                  width={550}
                   height={300}
                 />
               </Card>
@@ -139,7 +163,7 @@ function EmployeeChart() {
                   width={600}
                   height={300}
                   series={[
-                    { data: pData, label: 'Average Rating',area: true },
+                    { data: convertedData, label: 'Average Rating',area: true },
                   ]}
                  
                   xAxis={[{ scaleType: 'point', data: xLabels }]}
@@ -152,7 +176,7 @@ function EmployeeChart() {
                   width={600}
                   height={300}
                   series={[
-                    { data: commonskillData, label: 'CommonSkill Average Rating' }
+                    { data: commonskillUpdatedData, label: 'CommonSkill Average Rating' }
                   ]}
                   xAxis={[{ scaleType: 'point', data: commonLabel }]}
                 />
