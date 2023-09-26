@@ -46,7 +46,7 @@ function CandidateCard() {
             }}
           >
             <CardHeader  
-             avatar={<Avatar alt="Apple" src= {LogoCandidate} />}
+             avatar={<Avatar alt="candidate" src= {LogoCandidate} />}
             title="Total Candidate" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
@@ -66,7 +66,7 @@ function CandidateCard() {
               background: '#50DFC2',
             }}
           >
-            <CardHeader avatar={<Avatar alt="Apple" src= {Experience} />}
+            <CardHeader avatar={<Avatar alt="experience" src= {Experience} />}
              title="Overall Experience" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
@@ -87,7 +87,7 @@ function CandidateCard() {
             }}
           >
             <CardHeader
-              avatar={<Avatar alt="Apple" src= {Interview} />}
+              avatar={<Avatar alt="interview" src= {Interview} />}
              title="My Interviews" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
@@ -107,7 +107,7 @@ function CandidateCard() {
             }}
           >
             <CardHeader 
-            avatar={<Avatar alt="Apple" src= {OtherInterview} />}
+            avatar={<Avatar alt="otherInterview" src= {OtherInterview} />}
             title="Other Interviews" />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
