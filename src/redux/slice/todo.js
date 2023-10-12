@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchAllUsers = createAsyncThunk('fetchAllUsers', async () => {
-  const response = await axios.get('http://localhost:3031/users');
+  const response = await axios.get('http://localhost:3000/usersLists');
   return response.data;
 });
 
 export const createUsers = createAsyncThunk('createUser', async (data, { rejectWithValue }) => {
   try {
-    const response = await axios.post('http://localhost:3031/users', data);
+    const response = await axios.post('http://localhost:3000/usersLists', data);
     return response.data;
   } catch (error) {
     return rejectWithValue(error);
@@ -19,7 +19,7 @@ export const updateUsers = createAsyncThunk(
   'updateUser',
   async (formValues, { rejectWithValue }) => {
     try {
-      const response = axios.put(`http://localhost:3031/users/${formValues.id}`, formValues);
+      const response = axios.put(`http://localhost:3000/usersLists/${formValues.id}`, formValues);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -29,7 +29,7 @@ export const updateUsers = createAsyncThunk(
 
 export const deleteUsers = createAsyncThunk('deleteUser', async (id, { rejectWithValue }) => {
   try {
-    const response = await axios.delete(`http://localhost:3031/users/${id}`);
+    const response = await axios.delete(`http://localhost:3000/usersLists/${id}`);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data);

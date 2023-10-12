@@ -115,7 +115,7 @@ const commonskillUpdatedData = commonskillData.map((value) => Number(value))
       <Slider {...settings}>
         <div>
           <Grid container spacing={2}>
-            <Grid xs={6} sm={6} md={6} item>
+            <Grid xs={6} sm={12} md={6} item>
               <Card>
                 <BarChart
                   xAxis={[
@@ -135,7 +135,7 @@ const commonskillUpdatedData = commonskillData.map((value) => Number(value))
                 />
               </Card>
             </Grid>
-            <Grid xs={6} sm={6} md={6} item>
+            <Grid xs={6} sm={12} md={6} item>
               <Card>
                 <PieChart
                   series={[
@@ -157,7 +157,7 @@ const commonskillUpdatedData = commonskillData.map((value) => Number(value))
         </div>
         <div>
           <Grid container spacing={2}>
-            <Grid xs={6} sm={6} md={6} item>
+            <Grid xs={6} sm={12} md={6} item>
               <Card>
                 <LineChart
                   width={600}
@@ -170,7 +170,7 @@ const commonskillUpdatedData = commonskillData.map((value) => Number(value))
                 />
               </Card>
             </Grid>
-            <Grid xs={6} sm={6} md={6} item>
+            <Grid xs={6} sm={12} md={6} item>
             <Card>
                 <LineChart
                   width={600}

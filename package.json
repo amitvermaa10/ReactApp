@@ -29,6 +29,7 @@
     "jest-cli": "^29.6.3",
     "jest-environment-jsdom": "^29.6.3",
     "json-server": "^0.17.3",
+    "json-server-auth": "^2.1.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-csv-downloader": "^2.9.1",

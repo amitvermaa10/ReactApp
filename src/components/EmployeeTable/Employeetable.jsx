@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { TextField, InputAdornment, Rating } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import saveAs from 'file-saver';
-import { Document, Packer, Paragraph, TextRun } from 'docx';
+import { Document, Packer, Paragraph, TextRun, TableCell, TableRow, Table } from 'docx';
 
 // import Othertable from './Othertable.jsx';
 import Accordion from '@mui/material/Accordion';
@@ -109,74 +109,644 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
         {
           properties: {},
           children: [
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Name: ${rowData.candidateName}`,
-                  bold: true,
+            new Table({
+              rows: [
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Interviewer Name',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.interviewerName,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Overall Experience: ${rowData.overallExperience}`,
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Date',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.datepicker,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Date: ${rowData.datepicker}`,
+                // Add more rows and cells as needed
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Candidate Name',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.candidateName,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Interviewer Name: ${rowData.interviewerName}`,
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Candidate Experience',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.overallExperience.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Relevant Experience: ${rowData.relevantExperience} ${rowData.years}`,
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Relevant Experience',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: `${rowData.relevantExperience} ${rowData.years} years`,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Selected: ${rowData.radiogroup}`,
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Interview Round: ${rowData.interviewRound}`,
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Primary Skills',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Avg Skills: ${avgCalculate(rowData)}`,
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'HTML',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.html.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Interview Feedback: ${rowData.interviewFeedback}`,
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'CSS',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.css.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
-              ],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Training Recommended: ${rowData.trainingRecommended}`,
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Javascript',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.javascript.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Typescript',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.typescript.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'React',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.react.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Hooks',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.hooks.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Redux',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.redux.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Common Skills',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Communication',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.communication.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Attitude',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.attitude.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Self-Learning',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.selflearning.toString(),
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Decision',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Selected',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.radiogroup,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'interview Remarks/ Comments',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.interviewFeedback,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Training Recommended',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.trainingRecommended,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: 'Others',
+                              bold: true,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children: [
+                            new TextRun({
+                              text: rowData.others,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
                 }),
               ],
             }),
@@ -202,11 +772,9 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
     />
   );
   return (
-    <div style={{ marginTop: '10px' ,marginBottom:'20px'}}>
+    <div style={{ marginTop: '10px' ,marginBottom:'10px'}}>
       <Accordion style={{ textAlign: 'left', marginLeft: '100px', marginRight: '100px' }}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-        >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <h3 style={{ textAlign: 'left' }}>My Interviews</h3>
         </AccordionSummary>
         <AccordionDetails>
@@ -247,11 +815,8 @@ function EmployeeTable({ EditForm, DeleteForm, viewForm, name }) {
           />
         </AccordionDetails>
       </Accordion>
-      <br/>
       <Accordion style={{ textAlign: 'left', marginLeft: '100px', marginRight: '100px' }}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-        >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <h3 style={{ textAlign: 'left' }}>Other Interviews</h3>
         </AccordionSummary>
         <AccordionDetails>
